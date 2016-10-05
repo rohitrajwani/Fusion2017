@@ -105,7 +105,7 @@
                     </div>
                 </form>
             </div>
-        <!-- End Cancel Event View -->
+        <!-- End Cancel Events View -->
 
 		<!-- Start View All Event View -->        
         <div class="row" id="view_all_events">
