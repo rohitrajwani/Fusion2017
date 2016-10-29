@@ -21,6 +21,7 @@ class FusionDB extends Migration
             $table->string('username', 100);
             $table->string('user_type', 100);
             $table->string('password', 100);
+            $table->rememberToken();
             $table->primary('username');
             
             $table->foreign('username')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
