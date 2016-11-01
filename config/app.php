@@ -178,7 +178,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+	
+	Illuminate\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -227,6 +228,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'MaterializeCSS' => Skydiver\LaravelMaterializeCSS\MaterializeCSS::class,
+	'Form'=> 'Illuminate\Html\FormFacade',
+	'HTML'=> 'Illuminate\Html\HtmlFacade'
 
     ],
 
