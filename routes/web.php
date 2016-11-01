@@ -11,23 +11,50 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+   Route::get('/', function () {
+      return view('welcome');
+   });
 
-Route::post('/login','dashboardController@login_check');
+   Route::post('/login','dashboardController@login_check');
 
-Route::post('/signup','dashboardController@signup');
+   Route::post('/signup','dashboardController@signup');
 
-Route::group(['middleware' => ['auth']], function () {
+   Route::group(['middleware' => ['auth']], function () {
     
-    Route::get('/dashboard','dashboardController@dashboard');
+   Route::get('/dashboard','dashboardController@dashboard');
 
-    Route::get('/logout','dashboardController@logout');
+   Route::get('/logout','dashboardController@logout');
 
-    //Function to attach role
-    Route::get('/attachRole/{role}','dashboardController@attachRole');
+   //Function to attach role
+   Route::get('/attachRole/{role}','dashboardController@attachRole');
 
+
+   //Assignments_and_Course_Documentations Routes
+
+   Route::get('/Assignments_and_Course_Documentations/student', 'Assignments_and_Course_Documentations\Student@home');
+
+   Route::get('/Assignments_and_Course_Documentations/student/{course}','Assignments_and_Course_Documentations\Student@selected_course');
+
+   Route::get('/Assignments_and_Course_Documentations/student/{course}/solve_assignment','Assignments_and_Course_Documentations\Student@solve_assignment');
     
+   Route::get('/Assignments_and_Course_Documentations/faculty/{course}/assess_assignments', 'Assignments_and_Course_Documentations\Faculty@assess_assignment');
+
+   Route::get('/Assignments_and_Course_Documentations/student/{course}/course_documents', 'Assignments_and_Course_Documentations\Student@course_documents');
+
+   Route::get('/Assignments_and_Course_Documentations/faculty', 'Assignments_and_Course_Documentations\Faculty@home');
+
+   Route::get('/Assignments_and_Course_Documentations/faculty/{course}', 'Assignments_and_Course_Documentations\Faculty@selected_course2');
+
+   Route::get('/Assignments_and_Course_Documentations/faculty/{course}/Documents2', 'Assignments_and_Course_Documentations\Faculty@Documents2');
+
+   Route::get('/Assignments_and_Course_Documentations/faculty/{course}/Documents2/delete', 'Assignments_and_Course_Documentations\Faculty@delete');
+
+   Route::post('/Assignments_and_Course_Documentations/document', 'Assignments_and_Course_Documentations\Faculty@store');
+
+   Route::post('/Assignments_and_Course_Documentations/assignment', 'Assignments_and_Course_Documentations\Faculty@store1');
+
+   Route::post('/Assignments_and_Course_Documentations/assess_assignment', 'Assignments_and_Course_Documentations\Faculty@store2');
+
+   Route::post('/Assignments_and_Course_Documentations/solve_assignment','Assignments_and_Course_Documentations\Student@store');
 
 });
