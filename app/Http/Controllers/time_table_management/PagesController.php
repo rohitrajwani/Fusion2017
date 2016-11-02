@@ -72,6 +72,8 @@ class PagesController extends BaseController
             return Redirect::to('time_table_management');
         }
 
+	DB::table('Room_Booking_Request')->where('date','<', date('Y-m-d'))->delete();
+
     	$requests = DB::table('Room_Booking_Request')->where('status', 0)->get();
 
     	return view('time_table_management/viewallrequests',compact('requests'));

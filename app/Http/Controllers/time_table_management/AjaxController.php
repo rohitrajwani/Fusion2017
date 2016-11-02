@@ -51,17 +51,7 @@ class AjaxController extends Controller {
         }
         
         return redirect()->back();
-	}
-
-	public function maintain(){
-        if(!Auth::user()->hasRole('admin') && Auth::user()->user_type!="faculty"){
-            return Redirect::to('time_table_management');
-        }
-
-		$repair = new Room_booking_request;
-		$date1 = date('Y-m-d');
-		$repair::where('date','<', $date1)->delete();
-	}
+	}	
 
     public function get_slots(){        
         $stime = $_GET['stime'];

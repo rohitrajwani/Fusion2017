@@ -53,16 +53,6 @@
     </table> 
     <script>
       $(document).ready(function(){
-          var data = '';
-          $.ajax({
-            url:"/time_table_management/db_maintain",
-            type:"GET",
-            data:data,
-            success:function(data){
-              
-            }
-          });
-
           @foreach($requests as $request)
             var stime = "{{ $request->start_time}}";
             var etime = "{{ $request->end_time }}";

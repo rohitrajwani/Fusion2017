@@ -40,8 +40,6 @@
 		Route::get('/time_table_management/viewmyrequests', 'time_table_management\PagesController@viewmyrequests');
 		Route::get('/time_table_management/viewallrequests', 'time_table_management\PagesController@viewallrequests');
 		Route::get('/time_table_management/db_update','time_table_management\AjaxController@allot_room');
-		Route::get('/time_table_management/db_maintain','time_table_management\AjaxController@maintain');
-
 
 		Route::get('/time_table_management/creatett','time_table_management\PagesController@creatett');
 		Route::get('/time_table_management/post_tt','time_table_management\PagesController@create_tt');
