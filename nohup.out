@@ -7,3 +7,4 @@ Laravel development server started on http://localhost:8000/
 [Tue Nov  1 00:29:12 2016] 127.0.0.1:55991 Invalid request (Unexpected EOF)
 [Tue Nov  1 00:29:22 2016] 127.0.0.1:55992 Invalid request (Unexpected EOF)
 [Tue Nov  1 00:29:22 2016] 127.0.0.1:55993 Invalid request (Unexpected EOF)
+PHP Parse error:  syntax error, unexpected T_CLASS, expecting T_STRING or T_VARIABLE or '$' in /home/ccuser/iiitdmj-fusion/artisan on line 31

@@ -15,6 +15,7 @@
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         
         <link href="/css/style.css" type="text/css" rel="stylesheet">
+	<link href="/css/tt_style.css" type="text/css" rel="stylesheet">
 
         <script src="/js/jquery-3.1.1.min.js"></script> 
         <script src="/materialize-css/js/materialize.min.js"></script>

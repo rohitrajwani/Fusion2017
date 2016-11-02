@@ -51,7 +51,7 @@
 		</div>
 
 		<div id="tt_area">
-			<table class="responsive-table centered bordered highlight" id="tt"></table>
+			<table border="1" class="responsive-table centered bordered highlight" id="tt"></table>
 		</div>
 
 	</center>
@@ -144,6 +144,7 @@
 									var n_hrs = d[k][j-c].slice(6);
 
 									$('#'+k).html($('#'+k).html() + "<td colspan='"+n_hrs+"'>" + fd + "</td>");
+									j+=n_hrs-1;
 								}
 								if(d[l][j-c].length < 6){
 									$('#'+l).html($('#'+l).html() + "<td>"+ d[l][j-c] +"</td>");
@@ -152,7 +153,8 @@
 									var fd = d[l][j-c].slice(0,6);
 									var n_hrs = d[l][j-c].slice(6);
 
-									$('#'+l).html($('#'+l).html() + "<td colspan='"+n_hrs+"'>" + fd + "</td>");
+									$('#'+l).html($('#'+l).html() + "<td colspan='"+n_hrs+"'>" + fd + "</td>")
+									j+=n_hrs-1;
 								}
 
 								if(d[m][j-c].length < 6){
@@ -163,6 +165,7 @@
 									var n_hrs = d[m][j-c].slice(6);
 
 									$('#'+m).html($('#'+m).html() + "<td colspan='"+n_hrs+"'>" + fd + "</td>");
+									j+=n_hrs-1;
 								}
 							}
 							else if(j==6){

@@ -138,7 +138,7 @@ class AjaxController extends Controller {
             }
         }
 
-        return available_rooms;
+        return $available_rooms;
     }
 }
 
