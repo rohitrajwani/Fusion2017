@@ -17,6 +17,7 @@
 	</nav>
 
 	<center>
+		<div class="col" style="color:red"> Note: Please fill mutiple adjacent columns with same course for duration greater than 1 hour  </div> <br>
 		<form action="/time_table_management/post_tt" method="get">
 			<div class="input-field col s2">
                 <select id="prog">

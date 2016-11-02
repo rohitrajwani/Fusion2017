@@ -11,8 +11,14 @@ use DB;
 class AjaxController extends Controller {
 	public function change_tt(){
 		$courses = '';
+
 		if(!(empty($_GET['prog']) || empty($_GET['sem'])))
-			$courses = DB::table('Course')->get()->where('sem', $_GET['sem'])->where('programme', $_GET['prog']);
+			if(!empty($_GET['dep']))
+				$courses = DB::table('Course')->get()->where('sem', $_GET['sem'])->where('programme', $_GET['prog'])->where('department', $_GET['dep']);
+			else
+				$courses = DB::table('Course')->get()->where('sem', $_GET['sem'])->where('programme', $_GET['prog']);
+
+
 		if(!empty($_GET['fcode'])){
 			$courses = DB::table('Course_Taken_By')->get()->where('faculty_id', $_GET['fcode']);
 		}
@@ -35,20 +41,15 @@ class AjaxController extends Controller {
         $req_id = $_GET["req_id"];
         $dummy = "dummy_class";
         if($room_id == ''){
-            //$approve->room_id = $dummy;
-            //$approve->status = 2; 
             $approve::where('req_id', $req_id)
           ->update(['room_id' => $dummy,'status' => '2']);
 
         }
         else {
-            # code...
             $approve::where('req_id', $req_id)
           ->update(['room_id' => $room_id,'status' => '1']);
-            //$approve->room_id=room_id;
-            //$approve->status = 1;
         }
-        //$approve->save();
+        
         return redirect()->back();
 	}
 

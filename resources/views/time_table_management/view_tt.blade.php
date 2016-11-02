@@ -38,6 +38,17 @@
 		</div>
 
 		<div class="input-field col s2">
+                    <select id="dep">
+                        <option value="0" disabled selected>Choose Department</option>
+                        <option value="1">CSE</option>
+                        <option value="2">ECE</option>
+                        <option value="3">ME</option>
+			<option value="4">Design</option>
+                    </select>
+                    <label>Department</label>
+                </div>
+
+		<div class="input-field col s2">
 			<input id="faculty_code" type="text" placeholder=" Your Code (eg. MKB)" class="validate">
                 	<label for="faculty_code">Faculty Code</label>
                 </div>
@@ -51,7 +62,7 @@
 		</div>
 
 		<div id="tt_area">
-			<table border="1" class="responsive-table centered bordered highlight" id="tt"></table>
+			<table class="responsive-table centered bordered highlight" id="tt"></table>
 		</div>
 
 	</center>
@@ -99,6 +110,7 @@
 			if(!fcode){
 				var prog = $('#prog option:selected').text();
 				var sem = $('#sem option:selected').text();
+				var dep = $('#dep option:selected').text();
 
 				if(prog!=="Choose Programme" || sem!=="Choose Semester"){
 					if(sem==="Choose Semester"){
@@ -108,12 +120,14 @@
 						alert("Please Choose Programme first");
 					}
 					else{
-						data += "prog="+prog+"&sem="+sem;
+						if(dep!=="Choose Department")
+							data += "prog="+prog+"&sem="+sem+"&dep="+dep;
+						else if(parseInt(sem) < 4)
+							data += "prog="+prog+"&sem="+sem;
+						else
+							alert('Semester should be less than 4 when no department chosen');
 					}
 				}
-				
-				
-
 			}
 			else{
 				data += "fcode="+fcode;
