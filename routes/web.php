@@ -48,5 +48,5 @@
 
 		Route::get('/time_table_management/view_tt', 'time_table_management\PagesController@view_tt');
 		Route::get('/time_table_management/change_tt', 'time_table_management\AjaxController@change_tt');
-
+		Route::get('/time_table_management/modify_tt', 'time_table_management\PagesController@modify_tt');
 	});

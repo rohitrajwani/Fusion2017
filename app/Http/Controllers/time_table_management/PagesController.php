@@ -148,6 +148,21 @@ class PagesController extends BaseController
         return redirect()->back()->with('alert', 'Successfully Created!');
     }
 
+    public function modify_tt(){
+	if(!(empty($_GET['cid']) || empty($_GET['rid']) || empty($_GET['ftime']) || empty($_GET['etime']))){
+		$cid = $_GET['cid'];
+		$rid = $_GET['rid'];
+		$ftime = $_GET['ftime'];
+		$etime = $_GET['etime'];
+
+		if($cid && $rid && $ftime && $etime){
+			DB::table('Classroom_Slots')->where('room_id', $rid)->where('course_id', $cid)->where('from_time', $ftime)->where('to_time', $etime)->delete();
+		}
+	}
+	
+	return view('time_table_management/modify_tt');
+    }
+
     public function view_tt(){
 	   return view ('time_table_management/view_tt');
     }

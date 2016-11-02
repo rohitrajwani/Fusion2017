@@ -1,4 +1,4 @@
-@extends('time_table_management/layout')
+@extends('layout')
 
 @section('title')
 	Create Time Table
@@ -11,6 +11,7 @@
 		  <li><a href="/time_table_management/view_tt">View Time Table</a></li>
 		  <li><a href="/time_table_management/scheduleanextraclass">Book a Slot</a></li>
 		  <li><a href="/time_table_management/creatett">Create Time Table</a></li>
+                  <li><a href="/time_table_management/modify_tt">Modify Time Table</a></li>
 		  <li><a href="/time_table_management/viewallrequests">Handle Requests</a></li>
 	    </ul>
 	  </div>

@@ -1,4 +1,4 @@
-@extends('time_table_management/layout')
+@extends('layout')
 @section('title')
   Schedule an extra class
 @stop
