@@ -16,21 +16,7 @@ class FusionDB extends Migration
     public function up()
     {
 
-        Schema::create('Login',function (Blueprint $table)
-        {
-            $table->string('username', 100);
-            $table->string('user_type', 100);
-            $table->string('password', 100);
-            $table->rememberToken();
-            $table->primary('username');
-            
-            $table->foreign('username')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('username')->references('faculty_id')->on('Faculty')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('username')->references('staff_id')->on('Staff')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('username')->references('admin_id')->on('Administrators')->onDelete('cascade')->onUpdate('cascade');
-
-            $table->timestamps();
-        });
+        
 
         Schema::create('All_Student',function (Blueprint $table)
         {
@@ -98,6 +84,22 @@ class FusionDB extends Migration
             $table->string('hall_no', 5);
             $table->string('fathers_email_id', 50);
             $table->bigInteger('allah_account_no')->nullable();
+            $table->timestamps();
+        });
+        
+        Schema::create('Login',function (Blueprint $table)
+        {
+            $table->string('username', 100);
+            $table->string('user_type', 100);
+            $table->string('password', 100);
+            $table->rememberToken();
+            $table->primary('username');
+            
+            $table->foreign('username')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
+            //$table->foreign('username')->references('faculty_id')->on('Faculty')->onDelete('cascade')->onUpdate('cascade');
+            //$table->foreign('username')->references('staff_id')->on('Staff')->onDelete('cascade')->onUpdate('cascade');
+            //$table->foreign('username')->references('admin_id')->on('Administrators')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
 
@@ -565,9 +567,12 @@ class FusionDB extends Migration
         Schema::create('Application_Student_Guide',function (Blueprint $table)
         {
             $table->string('student_id', 100);
+			$table->string('cpi', 100);
+			$table->string('name', 100);
+			$table->string('branch', 100);
             $table->string('reason', 100);
             $table->primary('student_id');
-            $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('student_id')->references('student_id')->on('Student');
             $table->timestamps();
         });
         Schema::create('Applied_For_Company',function (Blueprint $table)
@@ -593,13 +598,21 @@ class FusionDB extends Migration
         });
         Schema::create('Assistant_Coordinator',function (Blueprint $table)
         {
-            $table->string('stuguide_id', 100);
             $table->string('assist_id', 100);
-            $table->primary('stuguide_id');
-            $table->foreign('stuguide_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
+            $table->primary('assist_id');
             $table->foreign('assist_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+		
+		Schema::create('Assistant_Coordinator_Assign', function (Blueprint $table) {
+            $table->string('assist_id', 100);
+			$table->string('stuguide_id', 100);
+			$table->primary(['assist_id','stuguide_id']);
+			$table->foreign('assist_id')->references('assist_id')->on('Assistant_Coordinator');
+			$table->foreign('stuguide_id')->references('student_id')->on('Student');
+			$table->timestamps();
+        });
+		
         Schema::create('Awards_Applications',function (Blueprint $table)
         {
             $table->string('scholarship_id', 100);
@@ -866,6 +879,16 @@ class FusionDB extends Migration
         $table->foreign('student_id')->references('student_id')->on('Student');
         $table->timestamps();
         });*/
+		
+		Schema::create('Student_Guide', function (Blueprint $table) {
+            $table->string('stuguide_id', 100);
+            $table->string('assist_id', 100);
+            $table->primary('stuguide_id');
+            $table->foreign('stuguide_id')->references('student_id')->on('Student');
+            $table->foreign('assist_id')->references('assist_id')->on('Assistant_Coordinator');
+            $table->timestamps();
+        });
+		
         Schema::create('Student_Guide_Assign',function (Blueprint $table)
         {
             $table->string('student_id', 100);
@@ -896,6 +919,37 @@ class FusionDB extends Migration
             $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+		
+		Schema::create('private_post', function (Blueprint $table) {
+           $table->increments('id');
+            $table->string('student_id', 100);
+            $table->string('question', 500);
+            $table->string('sg_id', 11)->references('stuguide_id')->on('Student_Guide');
+			$table->string('ac_id', 11)->references('assist_id')->on('assistant_coordinator');
+            $table->foreign('student_id')->references('student_id')->on('Student');
+            $table->timestamps();
+        });
+		
+		Schema::create('answers', function (Blueprint $table) {
+			$table->increments('ans_id');
+            $table->string('des_ans', 500);
+			$table->string('student_id', 100);
+            $table->integer('pid');
+            $table->foreign('pid')->references('id')->on('public_post');
+			$table->foreign('student_id')->references('student_id')->on('Student');
+            $table->timestamps();
+        });
+        
+        Schema::create('private_ans', function (Blueprint $table) {
+            $table->string('answer_desc', 500);
+			$table->string('student_id', 100);
+			$table->increments('ans_id');
+			$table->integer('pid');
+            $table->foreign('pid')->references('id')->on('private_post');
+			$table->foreign('student_id')->references('student_id')->on('Student');
+            $table->timestamps();
+        });
+		
         Schema::create('Register_Course',function (Blueprint $table)
         {
             $table->string('course_id', 100);
@@ -1119,9 +1173,12 @@ class FusionDB extends Migration
         Schema::create('Application_Assistant_Coordinator',function (Blueprint $table)
         {
             $table->string('student_id', 100);
+			$table->string('cpi', 100);
+			$table->string('name', 100);
+			$table->string('branch', 100);
             $table->string('reason', 100);
             $table->primary('student_id');
-            $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('student_id')->references('student_id')->on('Student');
             $table->timestamps();
         });
         Schema::create('Rules_and_Reg',function (Blueprint $table)
