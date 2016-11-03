@@ -240,7 +240,7 @@ class Fusion extends Migration
 			$table->time('arrival_time');
 			$table->string('name', 50);
 			$table->string('address', 100);
-			$table->string('organisation', 50);
+			$table->string('organization', 50);
 			$table->string('nationality', 50);
 			$table->string('purpose_of_visit', 50);
 			$table->string('email_id', 50);
@@ -248,7 +248,7 @@ class Fusion extends Migration
 			$table->integer('no_of_rooms')->default(0); //just give a if condition as not assigned if value is 0
 			$table->biginteger('phone_no');
 			$table->integer('no_of_person');
-			$table->string('bill_settle,by', 20);
+			$table->string('bill_settle_by', 20);
 			$table->integer('status');
 			$table->double('fine')->default(null)->nullable();
 			$table->double('bill')->default(null)->nullable();
@@ -325,10 +325,18 @@ class Fusion extends Migration
 			$table->string('result', 200)->nullable();
 			$table->timestamp('start_timestamp')->nullable();
 			$table->timestamp('end_timestamp')->nullable();
-                        $table->string('room_id',10);
-                        $table->foreign('room_id')->references('room_id')->on('Class_Rooms')->onDelete('cascade')->onUpdate('cascade');
+			$table->string('room_id',10);
+			$table->foreign('room_id')->references('room_id')->on('Class_Rooms')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 			});
+			
+		Schema::create('Booking_Rooms', function (Blueprint $table)
+			{
+			$table->integer('booking_id');
+			$table->string('room_no', 5);
+			$table->primary(['booking_id','room_no']);
+			});
+		
 		Schema::create('Balance_leaves', function (Blueprint $table)
 			{
 			$table->string('user_id', 100);
