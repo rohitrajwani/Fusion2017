@@ -163,7 +163,7 @@ class FusionDB extends Migration
             Schema::create('Inventory', function (Blueprint $table)
                   {
                   $table->integer('item_id');
-                  $table->integer('item_category');
+                  $table->string('item_category');
                   $table->string('item_name', 100);
                   $table->string('item_description', 100);
                   $table->string('supplier_id', 100);
