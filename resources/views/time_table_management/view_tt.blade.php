@@ -87,7 +87,7 @@
                                 res.data[m][0] = "";
 			}
 			
-			doc.autoTable(res.columns, res.data);
+			doc.autoTable(res.columns, res.data, {theme:'grid'});
 			var fcode = $('#faculty_code').val();
 			var prog = $('#prog option:selected').text(), sem = $('#sem option:selected').text();
 
