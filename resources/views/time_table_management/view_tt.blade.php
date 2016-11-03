@@ -148,8 +148,8 @@
 						$('#tt').html($('#tt').html() + "<tr id='"+k+"'>" + "<tr id='"+l+"'>"+ "<tr id='"+m+"'>");
 						$('#'+k).html('<td rowspan="3">'+ dslots[i] +'</td>');
 						c = 1;
-						for (var j=1; j<tslots.length; j++){
-							if(j!=6){
+						for (var j=1, b=1, a=1; j<tslots.length || a<tslots.length || b<tslots.length; j++, a++, b++){
+							if(j!=6 && j<tslots.length){
 								if(d[k][j-c].length < 6){
 									$('#'+k).html($('#'+k).html() + "<td>" + d[k][j-c] + "</td>");
 								}
@@ -160,31 +160,40 @@
 									$('#'+k).html($('#'+k).html() + "<td colspan='"+n_hrs+"'>" + fd + "</td>");
 									j+=n_hrs-1;
 								}
-								if(d[l][j-c].length < 6){
-									$('#'+l).html($('#'+l).html() + "<td>"+ d[l][j-c] +"</td>");
+							}
+							if(b!=6 && b<tslots.length){
+								if(d[l][b-c].length < 6){
+									$('#'+l).html($('#'+l).html() + "<td>"+ d[l][b-c] +"</td>");
 								}
 								else{
-									var fd = d[l][j-c].slice(0,6);
-									var n_hrs = d[l][j-c].slice(6);
+									var fd = d[l][b-c].slice(0,6);
+									var n_hrs = d[l][b-c].slice(6);
 
 									$('#'+l).html($('#'+l).html() + "<td colspan='"+n_hrs+"'>" + fd + "</td>")
-									j+=n_hrs-1;
-								}
-
-								if(d[m][j-c].length < 6){
-									$('#'+m).html($('#'+m).html() + "<td>"+ d[m][j-c] +"</td>");
-								}
-								else {
-									var fd = d[m][j-c].slice(0,6);
-									var n_hrs = d[m][j-c].slice(6);
-
-									$('#'+m).html($('#'+m).html() + "<td colspan='"+n_hrs+"'>" + fd + "</td>");
-									j+=n_hrs-1;
+									b+=n_hrs-1;
 								}
 							}
-							else if(j==6){
+							if (a!=6 && a<tslots.length){
+								if(d[m][a-c].length < 6){
+									$('#'+m).html($('#'+m).html() + "<td>"+ d[m][a-c] +"</td>");
+								}
+								else {
+									var fd = d[m][a-c].slice(0,6);
+									var n_hrs = d[m][a-c].slice(6);
+
+									$('#'+m).html($('#'+m).html() + "<td colspan='"+n_hrs+"'>" + fd + "</td>");
+									a+=n_hrs-1;
+								}
+							}
+							if(j==6){
 								$('#'+k).html($('#'+k).html() + "<td> </td>");
+								c=2;
+							}
+							if(b==6){
 								$('#'+l).html($('#'+l).html() + "<td> </td>");	
+								c=2;
+							}
+							if(a==6){
 								$('#'+m).html($('#'+m).html() + "<td> </td>");
 								c=2;
 							}
