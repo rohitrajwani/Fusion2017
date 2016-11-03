@@ -9,12 +9,15 @@
 <!--      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
       <!--Import materialize.css-->
 
-        {!! MaterializeCSS::include_full() !!}
-
-        <script src="https://use.fontawesome.com/5fd0aa1ca7.js"></script>
+		
+	  
+        <script src="/js/jquery-3.1.1.min.js"></script>
+		<script src="/js/materialize.min.js"></script>
         
         <!-- <link rel="stylesheet" href="fonts/font-awesome-4.6.3/css/font-awesome.min.css"> -->
         
+		
+        <link href="/css/materialize.min.css" type="text/css" rel="stylesheet">
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         
         <link href="/css/style.css" type="text/css" rel="stylesheet">
