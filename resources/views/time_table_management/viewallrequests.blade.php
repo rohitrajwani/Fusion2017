@@ -18,6 +18,7 @@
 <table class="bordered highlight centered"> 
 <thead>
  <tr> 
+ <th>Booked By</th>
  <th>Booked On</th> 
  <th>Booked For</th> 
  <th>Start Time</th>
@@ -31,6 +32,7 @@
   <tbody>
   @foreach($requests as $request)
       <tr>
+      <td>{{ $request->requester_id }}</td>
       <td>{{ $request->created_at }}</td>
       <td>{{ $request->date }}</td>
       <td>{{ $request->start_time }}</td>
