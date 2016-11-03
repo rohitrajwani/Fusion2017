@@ -25,8 +25,9 @@ class Student extends Controller
 	
 	public function solve_assignment($course) {
 		$solve= DB::table('Assignment')->where('course_id', '=', $course)->get();
-			
-                return view('Assignments_and_Course_Documentations/solve_assignments',compact('solve','course'));
+		$assigns = DB::table('Solves_Assignment')->where('student_id', Auth::user()->username)->where('course_id', $course)->get();
+
+                return view('Assignments_and_Course_Documentations/solve_assignments',compact('solve','course','assigns'));
         }     
 
 	public function course_documents($course) {

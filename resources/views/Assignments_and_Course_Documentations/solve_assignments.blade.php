@@ -27,7 +27,7 @@
           <td>{{ $solve1->assign_id }}</td>
           <td>{{ $solve1->upload_time }}</td>
           <td><a href="/Assignments_and_Course_Documentations/assignments/{{ $solve1->url_assign }}" download>{{ $solve1->url_assign }}</a></td>
-          <td>{{ $solve1->deadline }}</td>
+          <td id="deadline{{$solve1->assign_id}}">{{ $solve1->deadline }}</td>
 
       		<td>
             <form action="/Assignments_and_Course_Documentations/solve_assignment" method='post' class="col s12" enctype="multipart/form-data">
@@ -49,7 +49,7 @@
                 </div>
               </div>
               
-              <div class="col s2" id="submit{{$solve1->assign_id}}">
+              <div class="input-field col s2" id="submit{{$solve1->assign_id}}">
                 <input type='submit' value='Submit' class="waves-effect btn-flat" >
               </div>
             </form>
@@ -60,4 +60,44 @@
       @endforeach
     </tbody>
   </table>
+
+  <script>
+	$(document).ready(function(){
+		var deadlines = [];
+		var solved = [];
+		var ids = [];
+		@foreach($solve as $s)
+			deadlines.push('{{ $s->deadline }}');
+			ids.push('{{ $s->assign_id }}');
+		@endforeach
+
+		@foreach($assigns as $a)
+			solved.push('{{ $a->assign_id }}');
+		@endforeach
+
+		for(var i=0; i<ids.length; i++){
+			var cur_date = new Date();
+
+			var t = deadlines[i].split('-');
+			var dd = new Date(t[0], parseInt(t[1])-1, t[2]);
+
+			if(cur_date.getTime() > dd.getTime()){
+				$('#deadline'+ids[i]).css('color', 'red');
+				$('#submit'+ids[i]).children('input').attr('disabled', 'true');
+			}
+
+			var f = 1;
+			for(var j=0; j<solved.length; j++){
+				if(solved[j] == ids[i]){
+					f = 0; break;
+				}
+			}
+
+			if(f==0){
+				$('#deadline'+ids[i]).css('color', 'green');
+                                $('#submit'+ids[i]).children('input').attr('disabled', 'true');
+			}
+		}
+	});
+  </script>
 @stop
