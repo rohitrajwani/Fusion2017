@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\fac;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Request;
 
 use App\Http\Requests;
 use DB;
@@ -19,16 +19,25 @@ class rejourcontroller extends Controller
  
 	public function rj_store(Request $request)
     {
-    	$rj = new research_jour;
-		$rj->faculty_id= Auth::user()->username;
-        $rj->author= $request->author;
-		$rj->title= $request->title;
-		$rj->journal_name= $request->journal_name;
-        $rj->j_publisher=$request->j_publisher;
-        $rj->pub_date= $request->pub_date;
-		
-        $rj->save();
-        return redirect('/fac');
+    	  $rj = new research_jour;
+         $file_name = $request::file('doc_file')->getClientOriginalName();
+        $destination_path = 'documents';
+
+        research_jour::create([
+            'rjpath' => $request::input('document'),
+            'author' => $request::input('author'),
+            'faculty_id' =>Auth::user()->username,
+            'title' => $request::input('title'),
+            'journal_name' => $request::input('journal_name'),
+            'j_publisher' => $request::input('j_publisher'),
+             'pub_date' => $request::input('pub_date')
+     
+       
+        ]);
+
+        $request::file('doc_file')->move($destination_path, $file_name);
+
+        return redirect()->back()->with('status', 'Successful');
 		
 		
     }

@@ -11,7 +11,7 @@
 
         {!! MaterializeCSS::include_full() !!}
 
-        <script src="https://use.fontawesome.com/5fd0aa1ca7.js"></script>
+        <!-- <script src="https://use.fontawesome.com/5fd0aa1ca7.js"></script> -->
         
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         

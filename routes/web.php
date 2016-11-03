@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('fac/rjadd', 'fac\rejourcontroller@rj_store');
 	Route::get('rjdel/{id}',['as' => 'rjdel', 'uses' => 'fac\rejourcontroller@destroy']);
 	Route::post('fac/cadd', 'fac\consulcontroller@c_store');
+	Route::post('/document', 'rejourcontroller@rj_store');
 	Route::get('cdel/{id}',['as' => 'cdel', 'uses' => 'fac\consulcontroller@destroy']);
 	Route::post('fac/padd', 'fac\patcontroller@p_store');
 	Route::get('pdel/{id}',['as' => 'pdel', 'uses' => 'fac\patcontroller@destroy']);

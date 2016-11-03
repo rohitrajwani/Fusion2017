@@ -210,6 +210,7 @@ class FusionDB extends Migration
             $table->string('title')->nullable();
             $table->string('journal_name')->nullable();
             $table->string('j_publisher')->nullable();
+            $table->string('rjpath')->nullable();
 			$table->date('pub_date')->nullable();
             $table->timestamps();
             $table->foreign('faculty_id')->references('faculty_id')->on('Faculty');

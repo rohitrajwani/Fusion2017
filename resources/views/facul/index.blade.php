@@ -212,7 +212,7 @@
 	<div id="research_journal" class="modal modal-fixed-footer">
 		<div class="modal-content">
 			<center><h5><b>Enter Research Journal details</b></h5></center>
-			<form method="POST" action="fac/rjadd">
+			<form method="POST" action="/document" class="col s12" enctype="multipart/form-data">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="input-field col s6">
 								<textarea id="author_name" name="author" class="materialize-textarea" required="true"></textarea>
@@ -234,12 +234,17 @@
 								<input type="date" id="doa" name="pub_date" class="validate" required="true">
 								<label for="doa"></label>
 							</div>
-							<div class="file-field input-field">
-								<div class="btn"> <span>Upload</span>
-									<input type="file" name="path" id="path" > </div>
-								<div class="file-path-wrapper">
-									<input class="file-path validate" type="text"> </div>
-							</div>
+									{{ csrf_field() }}
+           <div class="file-field input-field">
+        <div class="btn">
+          <span>Document</span>
+          <input type="file" name='doc_file'>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate valid" name = 'document' type="text" required>
+        </div>
+      </div>
+							
 					<button type="submit" class="btn">Save</button>  
 					<a href="#!" class="modal-action modal-close waves-effect waves-green btn">Cancel</a> 
 				</form>
@@ -646,7 +651,8 @@
 							  <div style="border:none" class="collapsible-header blue-grey lighten-5 z-depth-0"><i style= "color:#757575" class="material-icons">label</i>{{ $rj->title }}</div>
 							  <div class="collapsible-body">
 									<p>Author: {{$rj->author}}<br><br>Journal Details: {{$rj->journal_name}} <br><br>
-									Publisher: {{$rj->j_publisher}} <br><br> Publication Date: {{$rj->pub_date}} </p>
+									Publisher: {{$rj->j_publisher}} <br><br> Publication Date: {{$rj->pub_date}} </p><br><br>
+									<a href="/documents/{{ $rj->rjpath }}" stream>{{$rj -> rjpath }}</a></td> </p>
 									</p><div class="right-align"><a href="/rjdel/{{$rj->id}}"><span><i class="small material-icons">delete</i></span></a></div>
 							  </div>
 							</li>
