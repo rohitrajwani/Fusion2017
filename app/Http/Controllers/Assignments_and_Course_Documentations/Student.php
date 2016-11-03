@@ -13,6 +13,13 @@ use Auth;
 
 class Student extends Controller
 {
+	public function check(){
+		if(Auth::user()->user_type == 'student')
+                	return view('/Assignments_and_Course_Documentations/student');
+        	else if (Auth::user()->user_type == 'faculty')
+	                return view('/Assignments_and_Course_Documentations/faculty');
+	}
+
 	public function home() {
 	$courses = DB::table('Register_Course')->where('student_id', Auth::user()->username)->get();
 		return view('Assignments_and_Course_Documentations/index1', compact('courses'));

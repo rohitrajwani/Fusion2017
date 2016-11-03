@@ -30,6 +30,7 @@
 
 
    //Assignments_and_Course_Documentations Routes
+   Route::get('/Assignments_and_Course_Documentations', 'Assignments_and_Course_Documentations\Student@check');
 
    Route::get('/Assignments_and_Course_Documentations/student', 'Assignments_and_Course_Documentations\Student@home');
 
