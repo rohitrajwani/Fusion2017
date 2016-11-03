@@ -1664,6 +1664,17 @@ class FusionDB extends Migration
                   $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   $table->timestamps();
                   });
+              Schema::create('Request', function (Blueprint $table)
+                  {
+                  $table->string('req_id', 100);
+                  $table->string('user_id', 100);
+                  $table->string('req_to', 100);
+                  $table->string('item_id',15);
+                  $table->integer('quantity');
+                  $table->string('status',100);
+                  $table->primary('req_id');
+                  $table->timestamps();
+                  });
             }
       /**
        * Reverse the
@@ -1771,6 +1782,7 @@ class FusionDB extends Migration
             Schema::drop('Record_Hospital');
             Schema::drop('Register_Course');
             Schema::drop('Registration');
+            Schema::drop('Request');
             Schema::drop('Research_Journal');
             Schema::drop('Research_projects');
             Schema::drop('response');
