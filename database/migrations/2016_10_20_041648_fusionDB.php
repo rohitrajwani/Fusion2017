@@ -1290,6 +1290,7 @@ class FusionDB extends Migration
                   $table->foreign('cm3')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   $table->foreign('cm4')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   $table->foreign('cm5')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
+                  $table->timestamps();
                   });
             Schema::create('Seminar_Committee', function (Blueprint $table)
                   {
@@ -1308,6 +1309,7 @@ class FusionDB extends Migration
                   $table->foreign('pcm3')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   $table->foreign('pcm4')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   $table->foreign('pcm5')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
+                  $table->timestamps();
                   });
             Schema::create('Supervisor', function (Blueprint $table)
                   {
@@ -1315,6 +1317,7 @@ class FusionDB extends Migration
                   $table->string('faculty_id', 100);
                   $table->primary('student_id');
                   $table->integer('status');
+                  $table->timestamps();
                   $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   $table->foreign('faculty_id')->references('faculty_id')->on('Faculty')->onDelete('cascade')->onUpdate('cascade');
                   });
@@ -1324,6 +1327,7 @@ class FusionDB extends Migration
                   $table->string('theme', 100);
                   $table->string('contribution', 100);
                   $table->integer('approved');
+                  $table->timestamps();
                   $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   });
             Schema::create('Branch_Change', function (Blueprint $table)
@@ -1334,6 +1338,8 @@ class FusionDB extends Migration
                   $table->double('current_cpi');
                   $table->integer('category');
                   $table->primary('student_id');
+                  $table->timestamps();
+                  $table->integer('status');
                   $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   });
             Schema::create('quiz', function (Blueprint $table)
