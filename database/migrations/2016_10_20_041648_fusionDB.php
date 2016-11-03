@@ -523,7 +523,7 @@ class FusionDB extends Migration
                   $table->string('user_type', 100);
                   $table->string('password', 100);
                   $table->primary('username');
-                  $table->foreign('username')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
+                  //$table->foreign('username')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   // $table->foreign('username')->references('faculty_id')->on('Faculty')->onDelete('cascade')->onUpdate('cascade');
                   // $table->foreign('username')->references('staff_id')->on('Staff')->onDelete('cascade')->onUpdate('cascade');
                   // $table->foreign('username')->references('admin_id')->on('Administrators')->onDelete('cascade')->onUpdate('cascade');
