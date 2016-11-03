@@ -2,7 +2,7 @@
 // create database name 'IIITDMJFUSION'
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-class Fusion extends Migration
+class FusionDB extends Migration
 
 	{
 	/**
@@ -116,6 +116,14 @@ class Fusion extends Migration
 			$table->timestamps();
 			$table->primary('course_id');
 			});
+			 Schema::create('Class_Rooms', function (Blueprint $table)
+			{
+			$table->string('room_id', 100);
+			$table->integer('strength');
+			$table->string('room_type', 100);
+			$table->primary('room_id');
+			$table->timestamps();
+			});
 		Schema::create('Medals_Awards_Scholarship', function (Blueprint $table)
 			{
 			$table->string('scholarship_id', 100);
@@ -137,8 +145,8 @@ class Fusion extends Migration
 			$table->integer('capacity');
 			$table->timestamp('start_timestamp');
 			$table->timestamp('end_timestamp');
-                        $table->string('room_id',10);
-                        $table->foreign('room_id')->references('room_id')->on('Class_Rooms')->onDelete('cascade')->onUpdate('cascade');
+			$table->string('room_id',100);
+			$table->foreign('room_id')->references('room_id')->on('Class_Rooms')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 
 			});
@@ -207,14 +215,7 @@ class Fusion extends Migration
 			$table->timestamps();
 			$table->primary(['emp_id', 'emp_type']);
 			});
-		Schema::create('Class_Rooms', function (Blueprint $table)
-			{
-			$table->string('room_id', 100);
-			$table->integer('strength');
-			$table->string('room_type', 100);
-			$table->primary('room_id');
-			$table->timestamps();
-			});
+		
 		Schema::create('CC_Complaint', function (Blueprint $table)
 			{
 			$table->string('complaint_id', 100);
@@ -325,7 +326,7 @@ class Fusion extends Migration
 			$table->string('result', 200)->nullable();
 			$table->timestamp('start_timestamp')->nullable();
 			$table->timestamp('end_timestamp')->nullable();
-			$table->string('room_id',10);
+			$table->string('room_id',100);
 			$table->foreign('room_id')->references('room_id')->on('Class_Rooms')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 			});
@@ -1667,78 +1668,119 @@ class Fusion extends Migration
 	public function down()
 
 		{
-		//
 		Schema::drop('Academic_Events');
 		Schema::drop('Academic_Result');
+		Schema::drop('Achievements');
 		Schema::drop('Activity_Description');
 		Schema::drop('Administrators');
+		Schema::drop('All_Student');
 		Schema::drop('Answer');
+		Schema::drop('Application_Assistant_Coordinator');
 		Schema::drop('Application_Counselling');
 		Schema::drop('Application_documents');
 		Schema::drop('Application_Student_Guide');
 		Schema::drop('Applied_For_Company');
 		Schema::drop('Applied_For_TA');
 		Schema::drop('Appointment_Doctor');
+		Schema::drop('Assessment');
+		Schema::drop('Assignment');
 		Schema::drop('Assistant_Coordinator');
-		Schema::drop('Awards_Applications');
-		Schema::drop('Achievements');
 		Schema::drop('Awards_Achievement');
+		Schema::drop('Awards_Applications');
 		Schema::drop('Balance_leaves');
+		Schema::drop('Bid');
 		Schema::drop('Bonafide');
 		Schema::drop('Booking');
+		Schema::drop('Booking_Rooms');
+		Schema::drop('Branch_Change');
 		Schema::drop('Bus');
 		Schema::drop('Bus_Booking');
 		Schema::drop('Bus_Feedback');
 		Schema::drop('Bus_Schedule');
 		Schema::drop('Candidate_Witness');
 		Schema::drop('CC_Complaint');
+		Schema::drop('Ce_Committee');
 		Schema::drop('Classroom_Slots');
 		Schema::drop('Class_Rooms');
 		Schema::drop('Club_Members');
 		Schema::drop('Company');
+		Schema::drop('Conferences');
+		Schema::drop('Cons_Project');
 		Schema::drop('Course');
 		Schema::drop('Course_Taken_By');
+		Schema::drop('Cpi');
+		Schema::drop('Dependents_Details');
 		Schema::drop('Doctor');
+		Schema::drop('Document');
+		Schema::drop('Employee_Achievements');
 		Schema::drop('Employee_Approve_Reimb');
 		Schema::drop('Employee_Leave');
 		Schema::drop('Employee_request_reimb');
 		Schema::drop('Evaluation_Of_Phd');
+		Schema::drop('Experience_Details');
 		Schema::drop('Faculty');
 		Schema::drop('Faculty_Phone_No');
 		Schema::drop('Faculty_Roles');
-		Schema::drop('Faculty_Takes_Course');
+		Schema::drop('Finalized_bid');
+		Schema::drop('Foreign_Visits');
 		Schema::drop('Gymkhana_Club_Cocoordinator');
 		Schema::drop('Gymkhana_Club_Coordinator');
 		Schema::drop('Hostel_Complaint');
+		Schema::drop('Indenter');
+		Schema::drop('Indian_Visits');
 		Schema::drop('Inventory');
+		Schema::drop('Keynote');
+		Schema::drop('Lectures');
+		Schema::drop('Login');
 		Schema::drop('Medals_Awards_Scholarship');
 		Schema::drop('Menu');
+		Schema::drop('Mess_Bill');
 		Schema::drop('Mess_Committee');
 		Schema::drop('Mess_Feedback');
-		Schema::drop('Mess_Order');
 		Schema::drop('Mess_Leave_Application');
+		Schema::drop('Mess_Order');
 		Schema::drop('Mess_Registration');
+		Schema::drop('migrations');
 		Schema::drop('Non_Academic_Events');
 		Schema::drop('Notification');
+		Schema::drop('options');
+		Schema::drop('Order');
+		Schema::drop('Patents');
 		Schema::drop('Patient');
-		// Schema::drop('Polling');
+		Schema::drop('Pbi');
+		Schema::drop('Pbi_Applied_For');
+		Schema::drop('Pbi_Reports');
 		Schema::drop('Problem');
+		Schema::drop('Procurement_form');
+		Schema::drop('Procurement_item');
 		Schema::drop('Project_by_Gymkhana');
-		// Schema::drop('Proposed_Events');
+		Schema::drop('Publications');
 		Schema::drop('Public_Post');
+		Schema::drop('Purchase_dept');
+		Schema::drop('Qualification_Details');
 		Schema::drop('Question');
+		Schema::drop('questions');
 		Schema::drop('Question_Of_Semester_Feedback');
+		Schema::drop('quiz');
 		Schema::drop('Record_Hospital');
 		Schema::drop('Register_Course');
-		// Schema::drop('Requested_Events');
+		Schema::drop('Registration');
+		Schema::drop('Research_Journal');
+		Schema::drop('Research_projects');
+		Schema::drop('response');
+		Schema::drop('response_option');
 		Schema::drop('Review');
 		Schema::drop('Room_Booking_Request');
+		Schema::drop('Rules_and_Reg');
 		Schema::drop('Salary');
 		Schema::drop('Scheduled_Activity');
 		Schema::drop('Semester_Feedback');
+		Schema::drop('Seminar_Committee');
+		Schema::drop('Seminar_Report');
 		Schema::drop('Senate_Meeting');
 		Schema::drop('Senate_Member');
-		//Schema::drop('Other_Venues');
+		Schema::drop('Solves_Assignment');
+		Schema::drop('Spi');
 		Schema::drop('Staff');
 		Schema::drop('Staff_Phone_No');
 		Schema::drop('Student');
@@ -1749,23 +1791,35 @@ class Fusion extends Migration
 		Schema::drop('Student_Guide_Assign');
 		Schema::drop('Student_Leave_Application');
 		Schema::drop('Study_Material');
+		Schema::drop('St_Achievement');
+		Schema::drop('St_Cert');
+		Schema::drop('St_Courses');
+		Schema::drop('St_Education');
+		Schema::drop('St_Interest');
+		Schema::drop('St_Internship');
+		Schema::drop('St_Objective');
+		Schema::drop('St_Patent');
+		Schema::drop('St_Pos_Of_Resp');
+		Schema::drop('St_Projects');
+		Schema::drop('St_Publications');
+		Schema::drop('St_Skills');
+		Schema::drop('St_Training');
 		Schema::drop('Suggestions_By_Students');
+		Schema::drop('Supervisor');
+		Schema::drop('Supplier');
 		Schema::drop('Supplier_Info');
+		Schema::drop('T&C');
 		Schema::drop('Ta');
 		Schema::drop('Ta_Attendance');
-		Schema::drop('Ta_Attendance_Sheet');
 		Schema::drop('Ta_Claim');
+		Schema::drop('Ta_feedback');
 		Schema::drop('Ta_Post_Openings');
 		Schema::drop('Teaching_Credit');
+		Schema::drop('Tender');
+		Schema::drop('Thesis');
 		Schema::drop('VH_Rooms');
 		Schema::drop('Visitors_Complaint');
 		Schema::drop('Ward');
-		Schema::drop('Pbi');
-		Schema::drop('Pbi_Reports');
-		Schema::drop('Pbi_Applied_For');
-		Schema::drop('Assignment');
-		Schema::drop('Solves_Assignment');
-		Schema::drop('Rules_and_Reg');
-		Schema::drop('Spi');
+		
 		}
 	}
