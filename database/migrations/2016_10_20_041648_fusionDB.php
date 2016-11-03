@@ -267,10 +267,10 @@ class FusionDB extends Migration
             Schema::create('Appointment_Doctor', function (Blueprint $table) //Changes
                   {
                   $table->integer('appointment_id')->unique();
-                  $table->string('user_id', 100);
-                  $table->string('user_type', 100);
-                  $table->string('date', 100);
-                  $table->string('doctor_id', 100);
+                  $table->string('user_id', 15);
+                  $table->string('user_type', 15);
+                  $table->string('date', 20);
+                  $table->string('doctor_id', 10);
                   $table->primary(['user_id', 'user_type', 'date', 'doctor_id']);
                   $table->timestamps();
                   });
