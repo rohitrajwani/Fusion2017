@@ -1344,14 +1344,6 @@ class FusionDB extends Migration
                   $table->integer('status');
                   $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   });
-            Schema::create('quiz', function (Blueprint $table)
-                  {
-                  $table->increments('id');
-                  $table->integer('course_id');
-                  $table->integer('duration');
-                  $table->integer('slot_id');
-                  $table->timestamps();
-                  });
             Schema::create('questions', function (Blueprint $table)
                   {
                   $table->increments('id');
@@ -1381,6 +1373,23 @@ class FusionDB extends Migration
                   $table->integer('option_id');
                   $table->timestamps();
                   });
+	    Schema::create('quiz', function (Blueprint $table) {
+	    $table->increments('id');
+	    $table->string('course_id');
+	    $table->string('quiz_name');
+	    $table->date('date');
+	    $table->time('start_time');
+	    $table->time('end_time');
+	    $table->timestamps();
+		});
+	    
+	    Schema::create('Score', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('student_id');
+            $table->integer('quiz_id');
+            $table->integer('marks');
+            $table->timestamps();
+        	});
             Schema::create('Assessment', function (Blueprint $table)
                   {
                   $table->integer('assessment_id');
