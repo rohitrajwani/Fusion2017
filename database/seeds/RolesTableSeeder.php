@@ -171,5 +171,9 @@ class RolesTableSeeder extends Seeder
             'name' => 'spacscom_iiitdmj_prof',
             'display_name' => 'Spacscom IIITDMJ Prof'
         ]);
+         DB::table('roles')->insert([
+            'name' => 'cc_admin',
+            'display_name' => 'CC Admin'
+        ]);
     }
 }
