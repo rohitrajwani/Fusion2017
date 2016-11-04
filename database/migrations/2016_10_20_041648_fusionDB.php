@@ -1025,7 +1025,7 @@ class FusionDB extends Migration
                   $table->string('student_id', 100);
                   $table->integer('month');
                   $table->bigInteger('bank_acc_no');
-                  $table->integer('applicability');
+                  $table->string('applicability',20);
                   $table->integer('status');
                   $table->string('ta_sup_comment', 100);
                   $table->integer('stipend');
