@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 Route::post('/login','dashboardController@login_check');
@@ -20,14 +20,21 @@ Route::post('/login','dashboardController@login_check');
 Route::post('/signup','dashboardController@signup');
 
 Route::group(['middleware' => ['auth']], function () {
-    
-    Route::get('/dashboard','dashboardController@dashboard');
 
-    Route::get('/logout','dashboardController@logout');
+	Route::get('/dashboard','dashboardController@dashboard');
+
+	Route::get('/logout','dashboardController@logout');
 
     //Function to attach role
-    Route::get('/attachRole/{role}','dashboardController@attachRole');
+	Route::get('/attachRole/{role}','dashboardController@attachRole');
 
-    
+	Route::get('/hostelComplaints','ComplaintsController@display');
+
+	Route::post('/hostelComplaints','ComplaintsController@store');
+
+	Route::post('/hostelComplaints/{complaint}','ComplaintsController@update');	  
+
+	Route::post('/Complaints','ComplaintsController@show');
 
 });
+
