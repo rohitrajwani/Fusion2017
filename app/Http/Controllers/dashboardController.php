@@ -55,6 +55,14 @@ class dashboardController extends Controller
 	}
 
 	public function dashboard(){
+		if(Auth::check()){
+	        if(Auth::user()->user_type == 'student'){
+	            return Redirect::to('/training_and_placement_cell/student');
+	        }
+	        elseif(Auth::user()->user_type == 'others'){
+	            return Redirect::to('/training_and_placement_cell/tpo/page');
+	        }
+	    }
 		return view('dashboard');
 	}
 
