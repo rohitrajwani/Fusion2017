@@ -1029,7 +1029,7 @@ class FusionDB extends Migration
                   $table->integer('status');
                   $table->string('ta_sup_comment', 100);
                   $table->integer('stipend');
-                  $table->primary('student_id');
+                  $table->primary(['student_id','month']);
                   $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   $table->timestamps();
                   });
@@ -1045,7 +1045,7 @@ class FusionDB extends Migration
             Schema::create('Ta_feedback', function (Blueprint $table)
                   {
                   $table->string('student_id', 100);
-                  $table->integer('description');
+                  $table->string('description',500);
                   $table->integer('rating');
                   $table->primary('student_id');
                   $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
