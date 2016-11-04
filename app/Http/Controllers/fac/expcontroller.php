@@ -23,4 +23,12 @@ class expcontroller extends Controller
         $exp->save();
         return redirect('/fac');
     }
+	
+	
+	public function destroy($id)
+    {
+    	$x = Experience::find($id);    
+		$x->delete();
+        return redirect('/fac');
+    }
 }

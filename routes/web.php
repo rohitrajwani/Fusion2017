@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('fac/add', 'fac\QualController@store');
 	Route::get('del/{id}',['as' => 'del', 'uses' => 'fac\QualController@destroy']);
 	Route::post('addexp','fac\expcontroller@addexperience');
+	Route::get('del/{id}',['as' => 'del', 'uses' => 'fac\expController@destroy']);
 	Route::post('fac/achadd', 'fac\achcontroller@ach_store');
 	Route::get('acdel/{id}',['as' => 'acdel', 'uses' => 'fac\achController@destroy']);
 	Route::post('fac/rpdd', 'fac\reprojcontroller@rp_store');
@@ -61,4 +62,6 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/getPDF','fac\PDFController@getPDF');
 	
 	Route::post('/fac/upd', 'fac\faculty@update');
+	
+	Route::post('/image_upload', 'fac\faculty@img');
 });

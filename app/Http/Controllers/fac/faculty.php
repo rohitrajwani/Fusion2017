@@ -47,4 +47,19 @@ class faculty extends Controller
 		DB::table('Faculty')->where('faculty_id', Auth::user()->username)->update(["name"=>$name, "sex"=>$sex, "address"=>$add, "email"=>$email,"department"=>$dep,"mobile_no"=>$mob,"DOB"=>$DOB,"blood_group"=>$bgroup,"alternate_email"=>$aemail,"designation"=>$desig,"about_me"=>$abt_me,"start_date"=>$sdate,"end_date"=>$edate]);
 		return redirect('/fac');
 	}
+	
+	public function img(Request $request){
+		$file_name = $request::file('doc_file')->getClientOriginalName();
+      $destination_path = 'upload_img';
+
+        $request::file('doc_file')->move($destination_path, $file_name);
+
+		DB::table('Faculty')->where('faculty_id', Auth::user()->username)->update(["photo_url"=>$request::input('photo_url')]);
+		return redirect('/fac');
+	}
+	
+	
+	
+	
+	
 }

@@ -451,6 +451,26 @@
 						<button type="submit" class="btn">Save</button> 
 						<a href="#!" class="modal-action modal-close waves-effect waves-green btn">Cancel</a> </form></div>
 	</div>
+	
+	<div id="upload_pic" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<center><h5><b>Upload Image</b></h5></center>
+		   <form action="/image_upload" method='post' class="col s12" enctype="multipart/form-data"">
+      		{{ csrf_field() }}
+           <div class="file-field input-field">
+        <div class="btn">
+          <span>upload</span>
+          <input type="file" name='doc_file'>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate valid" name ='photo_url' type="text" required>
+        </div>
+		</div>
+		<center><button type="submit" class="primary btn">Save</button></center>
+		</form>
+		</div>
+	</div>
+	
 	<header>
 		<nav>
 			<div class="nav-wrapper"> <a href="#!" class="brand-logo">Fusion</a> <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -504,9 +524,9 @@
 				
 				<div class="row valign-wrapper">
 					<div id="perso" class="section scrollspy">
-					<!-- <div class="col s4"> --><span class="black-text">
-		                <h5 style="color:#0077B5" ><b>Atul Gupta</b></h5><div><span><i class="tiny material-icons">mode_edit</i></span> </div>
-		                <p style="font-size: 20px">
+					<!-- <div class="col s4"> --><span class="black-text">@foreach($Faculty as $f)
+		                <h5 style="color:#0077B5" ><b>{{$f->name}}</b></h5>@endforeach<div><span></span> </div>
+		                <p style="font-size: 18px">
 						
 		                @foreach($Faculty as $f)
 							Faculty id: {{$f->faculty_id }} <br>
@@ -515,19 +535,35 @@
 							Address: {{$f->address}}<br>
 							Email: {{$f->email}}<br>
 							Department: {{$f->department}}<br>
-							Mobile: {{$f->email}}<br>
+							Mobile: {{$f->mobile_no}}<br>
+							
+							Date of Birth: {{$f->DOB}}<br>
+							About Me: {{$f->about_me}}<br>
+							Start Date: {{$f->start_date}}<br>
+							End Date: {{$f->end_date}}<br>
+							
 						@endforeach
 						
 						
-						<br><a class="modal-trigger" href="#personal"><h6 style="color:#0077B5"> + Add Details </h6></a>
+						<br><a class="modal-trigger" href="#personal"><h6 style="color:#0077B5"> Edit Details </h6></a>
 		                </p>
 		                
 		              </span>
 					<!-- </div> -->
 					</div>
-					<div class="col l2 s12 offset-l4">
-					<img class="hide-on-small-only" src="img/Atul Gupta.jpg" height=200 width=200 style="border-radius: 100px; float:right;">
-					</div>
+					<div class="col l4 s12 offset-l4">
+					<?php
+					foreach ($Faculty as $f){
+						$pic=$f->photo_url;
+						echo '<div class="hovereffect"><img class="hide-on-small-only z-depth-2 img-responsive" id="pro_pic" src="upload_img/'.$pic.'"height=200 width=200 style="margin: 0 auto;">';
+							echo '<div class="overlay">
+          
+           <a class="info modal-trigger" href="#upload_pic">Upload Picture</a>
+        </div></div>';
+						
+						
+					}?>
+					</div>	
 				</div>
 				
 
@@ -551,7 +587,7 @@
 			                <td>{{$q -> institute }} </td>
 			                <td>{{$q -> year }} </td>
 			                <td>{{$q -> cgpa }} </td>
-			                <td><a class="modal-trigger" href="/upd/{{$q->id}}"><span><i class="tiny material-icons">mode_edit</i></span></a> </td>
+			                <td><a class="modal-trigger" href="#"><span><i class="tiny material-icons">mode_edit</i></span></a> </td>
 			                <td><a href="/del/{{$q->id}}"><span><i class="tiny material-icons">delete</i></span></a> </td></tr>
 			            @endforeach 
 				</table>
@@ -566,14 +602,14 @@
 		          </div>
 		          	
 		          </div>
-					<?php
-					
-					$abc= DB::table('experience')->where('experience.faculty_id','=',Auth::user()->username)->get();
-		          	foreach($abc as $experience)
-					echo $experience->details.'<br>';
 					
 					
-					?>
+					@foreach ($experiences as $e)
+			                <li style="font-size:18px">{{$e->details}}   <span class="right"> 
+			                
+			                <a href="/del/{{$e->id}}"><span><i class="tiny material-icons">delete</i></span></a></span></li>
+			            @endforeach 
+					
 		          	 <a class="modal-trigger" href="#experience"><h6 style="color:#0077B5"> + Add Experience </h6></a>
 		          	 </div>
 		             </span>
@@ -840,13 +876,10 @@
 			</li>
 			<li><a href="#lectu" class="waves-effect">Lectures</a>
 			</li>
-			<li><a href="#keyno" class="waves-effect">Keynote</a>
+			
+			<li><a href="#forei" class="waves-effect">Visits</a>
 			</li>
-			<li><a href="#india" class="waves-effect">Indian visits</a>
-			</li>
-			<li><a href="#forei" class="waves-effect">Foreign visits</a>
-			</li>
-      		</ul>
+				</ul>
 			<a href="{{URL::to('getPDF')}}" class="waves-effect waves-light btn-large"><i class="material-icons left">system_update_alt</i>Resume</a>
 
 			</div>
