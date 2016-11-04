@@ -45,30 +45,30 @@ class StudentFormController extends Controller
     public function store(Request $request1, Request8 $request)
     {
     	// $request::input('objective');
-        $validator = validator::make($request1->all(), [
-            'objective'=>'required|max:255'
-        ]);
-        $counter = $request::input('dummy');
-        for($a = 1; $a <= $counter; $a++){
-        $validator = validator::make($request1->all(),[
+        // $validator = validator::make($request1->all(), [
+        //     'objective'=>'required|max:255'
+        // ]);
+        // $counter = $request::input('dummy');
+        // for($a = 1; $a <= $counter; $a++){
+        // $validator = validator::make($request1->all(),[
             
-                'qualification'.$a=>'required',
-                'institute'.$a=>'required',
-                'performance'.$a=>'required|numeric',
-                'year'.$a=>'required|numeric|max:4'
+        //         'qualification'.$a=>'required',
+        //         'institute'.$a=>'required',
+        //         'performance'.$a=>'required|numeric',
+        //         'year'.$a=>'required|numeric|max:4'
             
-        ]);
-        }
+        // ]);
+        // }
 
-        if($validator->fails()) {
-            return redirect()->back()->withInput()->withErrors($validator);
-        }
-        // foreach($this->request->get('qualification') as $key => $val)
-        //  {
-        //    $rules['qualification'.$key] = 'required';
-        //  }
+        // if($validator->fails()) {
+        //     return redirect()->back()->withInput()->withErrors($validator);
+        // }
+        // // foreach($this->request->get('qualification') as $key => $val)
+        // //  {
+        // //    $rules['qualification'.$key] = 'required';
+        // //  }
 
-        else {
+        // else {
             $user = StudentEducation::where('student_id', '=', Auth::user()->username)->get();
             if ($user) {
                DB::table('St_Education')->where('student_id', '=', Auth::user()->username)->delete();
@@ -307,7 +307,7 @@ class StudentFormController extends Controller
                 }
                     
             }
-        }
+        // }
         
         return redirect('/training_and_placement_cell')->with('message', 'Form Submitted Successfully!');
     }
