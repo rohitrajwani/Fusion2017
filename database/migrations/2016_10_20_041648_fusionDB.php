@@ -699,14 +699,38 @@ class FusionDB extends Migration
                   $table->foreign('bus_id')->references('bus_id')->on('Bus')->onDelete('cascade')->onUpdate('cascade');
                   $table->timestamps();
                   });
-            Schema::create('Candidate_Witness', function (Blueprint $table)
+            Schema::create('Senate_Election', function (Blueprint $table)
                   {
-                  $table->string('student_id', 100);
-                  $table->string('witness_student_id', 100);
-                  $table->primary(['student_id', 'witness_student_id']);
-                  $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
-                  $table->foreign('witness_student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
+                  $table->string('election_name', 100);
+                  $table->integer('batch');
+	          $table->date('nomination_last_date');
+	          $table->date('voting_last_date'); 
+	          $table->primary('election_name');
                   $table->timestamps();
+                  });
+	      Schema::create('Senate_Election_Nominees', function (Blueprint $table)
+                  {
+                  $table->string('election_name', 100);
+                  $table->string('nominee_id',100);
+	          $table->integer('votes');
+	          $table->string('branch',100); 
+	          $table->integer('batch');
+		  $table->integer('approval');
+		  $table->float('cpi',5,2);
+	          $table->primary(['election_name','nominee_id']);
+		  $table->foreign('election_name')->references('election_name')->on('Senate_Election')->onDelete('cascade')->onUpdate('cascade');
+                  $table->timestamps();
+                  });
+	      Schema::create('Senate_Election_Votes', function (Blueprint $table)
+                  {
+                  $table->string('election_name', 100);
+                  $table->string('nominee_id',100);
+	          $table->string('voter_id',100);
+	          $table->primary(['election_name','voter_id']);
+		  $table->foreign('election_name')->references('election_name')->on('Senate_Election')->onDelete('cascade')->onUpdate('cascade');
+                 
+                  
+	          $table->timestamps();
                   });
             Schema::create('Classroom_Slots', function (Blueprint $table)
                   {
@@ -1733,7 +1757,7 @@ class FusionDB extends Migration
             Schema::drop('Bus_Booking');
             Schema::drop('Bus_Feedback');
             Schema::drop('Bus_Schedule');
-            Schema::drop('Candidate_Witness');
+            
             Schema::drop('CC_Complaint');
             Schema::drop('Ce_Committee');
             Schema::drop('Classroom_Slots');
@@ -1814,6 +1838,9 @@ class FusionDB extends Migration
             Schema::drop('Semester_Feedback');
             Schema::drop('Seminar_Committee');
             Schema::drop('Seminar_Report');
+	    Schema::drop('Senate_Election');
+	    Schema::drop('Senate_Election_Nominees');
+	    Schema::drop('Senate_Election_Votes');
             Schema::drop('Senate_Meeting');
             Schema::drop('Senate_Member');
             Schema::drop('Solves_Assignment');
