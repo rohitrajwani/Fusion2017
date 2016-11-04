@@ -1675,6 +1675,14 @@ class FusionDB extends Migration
                   $table->primary('req_id');
                   $table->timestamps();
                   });
+              Schema::create('leave_granting_officer', function (Blueprint $table)
+			{
+			$table->string('user_id');
+			$table->primary('user_id');
+			$table->string('user_type', 100);
+			$table->string('lgo_id', 100);
+			$table->timestamps();
+			});
             }
       /**
        * Reverse the
