@@ -48,16 +48,19 @@ class StudentFormController extends Controller
         $validator = validator::make($request1->all(), [
             'objective'=>'required|max:255'
         ]);
-        $validator1 = validator::make($request1->all(),[
-            for($a = 1; $a <= $counter; $a++)
+        $counter = $request::input('dummy');
+        for($a = 1; $a <= $counter; $a++){
+        $validator = validator::make($request1->all(),[
+            
                 'qualification'.$a=>'required',
                 'institute'.$a=>'required',
                 'performance'.$a=>'required|numeric',
                 'year'.$a=>'required|numeric|max:4'
             
         ]);
+        }
 
-        if($validator->fails() || $validator1->fails()) {
+        if($validator->fails()) {
             return redirect()->back()->withInput()->withErrors($validator);
         }
         // foreach($this->request->get('qualification') as $key => $val)
