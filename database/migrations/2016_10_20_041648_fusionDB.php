@@ -352,6 +352,7 @@ class FusionDB extends Migration
                   $table->integer('study');
                   $table->integer('sabbatical');
                   $table->integer('leave_not_due');
+		  $table->integer('restricted_holiday');
                   $table->integer('foreign_service_short');
                   $table->integer('foreign_service_long');
                   $table->primary(['user_id', 'user_type']);
