@@ -477,7 +477,7 @@
 				<ul class="right hide-on-med-and-down">
 					<li><a href="#">Change Password</a>
 					</li>
-					<li><a href="#">Logout</a>
+					<li><a href="/logout">Logout</a>
 					</li>
 				</ul>
 				<ul class="side-nav" id="mobile-demo">
