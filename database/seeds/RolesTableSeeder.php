@@ -154,6 +154,22 @@ class RolesTableSeeder extends Seeder
         DB::table('roles')->insert([
             'name' => 'spacscom_dir_gm',
             'display_name' => 'Spacscom Dir GM'
-        ]);   
+        ]);
+        DB::table('roles')->insert([
+            'name' => 'spacscom_dir_sc',
+            'display_name' => 'Spacscom Dir SC'
+        ]);
+        DB::table('roles')->insert([
+            'name' => 'spacscom_dir_sg',
+            'display_name' => 'Spacscom Dir SG'
+        ]);
+        DB::table('roles')->insert([
+            'name' => 'spacscom_dm_gm',
+            'display_name' => 'Spacscom DM GM'
+        ]);
+        DB::table('roles')->insert([
+            'name' => 'spacscom_iiitdmj_prof',
+            'display_name' => 'Spacscom IIITDMJ Prof'
+        ]);
     }
 }
