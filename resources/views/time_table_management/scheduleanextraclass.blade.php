@@ -9,7 +9,6 @@
 		<ul>
 			<li><a href="/time_table_management/">Back To Dashboard</a></li>
 			<li><a href="/time_table_management/view_tt/">View Time Table</a></li>
-			<li><a href="/time_table_management/scheduleanextraclass">Schedule an Extra Class</a></li>
 			<li><a href="/time_table_management/viewmyrequests">View My Requests</a></li>
 			@if(Auth::user()->hasRole('admin'))
 				<li><a href="/time_table_management/modify_tt">Modify Time Table</a></li></li>

@@ -20,6 +20,16 @@
                 </ul>
         </div>
 </nav>
+<br>
+<input name="filters" type="radio" id="all"/>
+<label for="all">All</label>
+
+<input name="filters" type="radio" id="app" />
+<label for="approve">Approved</label>
+
+<input name="filters" type="radio" id="rej" />
+<label for="reject">Rejected</label>
+
 
 <table class="bordered highlight centered"> 
 <thead>
@@ -47,15 +57,44 @@
       <td>{{ $request->room_id }}</td>
     </tr>
   @endforeach
-<!--   <tr> 
-  <td>19-01-2016</td> 
-  <td>25-01-2016</td> 
-  <td>09:00</td>
-  <td>10:00</td>
-  <td>NS101</td>
-  <td>Approved</td>
-  <td>CR-101</td>
-  </tr> --> 
     </tbody> 
-    </table>    
-    @stop
+    </table>
+
+   <script>
+	$(document).ready(function(){
+		var loc = window.location.search;
+		
+		if(loc){
+			var loc_d = loc.split('?');
+			var search_term = loc_d[1];
+
+			if(search_term){
+				var filter = search_term.split('=')[0];
+
+				$('#'+filter).attr('checked', 'true');
+			}
+			else{
+				$('#all').attr('checked', 'true');
+			}
+		}
+		else{
+			$('#all').attr('checked', 'true');
+		}
+	});
+
+	$('input:radio').on('change', function(){
+		var type = $(this).attr('id');
+		var data;
+
+		if(type==='all'){
+			window.location = '/time_table_management/viewmyrequests';
+		}
+
+		else if(type==='app')
+			window.location = '/time_table_management/viewmyrequests?app=1';
+
+		else
+			window.location = '/time_table_management/viewmyrequests?rej=1';
+	});
+   </script>    
+@stop

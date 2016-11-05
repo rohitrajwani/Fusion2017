@@ -10,6 +10,9 @@
 	  <div class="nav-wrapper">
 	    <ul>
 		  <li><a href="/time_table_management">Back to Dashboard</a></li>
+		  @if(Auth::user()->user_type=='student')
+			  <li><a href="/time_table_management/extra_classes">Extra Classes</a></li>
+		  @endif
 		  @if(Auth::user()->user_type=='faculty')
 			<li><a href="/time_table_management/scheduleanextraclass">Schedule an Extra Class</a></li>
 			<li><a href="/time_table_management/viewmyrequests">View My Requests</a></li>
