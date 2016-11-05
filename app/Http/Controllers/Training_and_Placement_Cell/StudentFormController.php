@@ -52,10 +52,10 @@ class StudentFormController extends Controller
         // for($a = 1; $a <= $counter; $a++){
         // $validator = validator::make($request1->all(),[
             
-        //         'qualification'.$a=>'required',
-        //         'institute'.$a=>'required',
-        //         'performance'.$a=>'required|numeric',
-        //         'year'.$a=>'required|numeric|max:4'
+                // 'qualification'.$a=>'required',
+                // 'institute'.$a=>'required',
+                // 'performance'.$a=>'required|numeric',
+                // 'year'.$a=>'required|numeric|max:4'
             
         // ]);
         // }
@@ -67,7 +67,158 @@ class StudentFormController extends Controller
         // //  {
         // //    $rules['qualification'.$key] = 'required';
         // //  }
+        $this->validate($request1, [
+            'objective'=>'required|max:255'
+            ]);
 
+        $counter10 = $request::input('dummy10');
+        for($k = 1; $k <= $counter10; $k++){
+            if($request::input('interest'.$k)){
+                $this->validate($request1, [
+                    'interest'.$k=>'required'
+                    ]);
+            }
+        }
+        $counter = $request::input('dummy');
+        for($a = 1; $a <= $counter; $a++){
+            if($request::input('year'.$a)){
+                $this->validate($request1, [
+                    'qualification'.$a=>'required',
+                    'institute'.$a=>'required',
+                    'performance'.$a=>'required|numeric',
+                    'year'.$a=>'required|numeric|digits:4'
+                    ]);
+            }
+        }
+        $counter11 = $request::input('dummy11');
+        for($l = 1; $l <= $counter11; $l++){
+            if($request::input('skills'.$l)){
+               $this->validate($request1, [
+                    'skills'.$l=>'required'
+                    ]);  
+            }   
+        }
+
+        $counter1 = $request::input('dummy1');
+        for($b = 1; $b <= $counter1; $b++){
+            if($request::input('projName'.$b)){
+                $this->validate($request1, [
+                    'projName'.$b=>'max:20',
+                    'projUrl'.$b=>'active_url',
+                    'projYear'.$b=>'numeric|digits:4',
+                    'projDesc'.$b=>'max:150'
+                    ]);
+            }
+                
+        }
+
+        $counter2 = $request::input('dummy2');
+        for($c = 1; $c <= $counter2; $c++){ 
+            if($request::input('cname'.$c)){
+                $this->validate($request1, [
+                    'cname'.$c=>'max:20',
+                    'cauth'.$c=>'max:20',
+                    'lno'.$c=>'numeric',
+                    'cYear'.$c=>'numeric|digits:4',
+                    'curl'.$c=>'active_url'
+                    ]); 
+            }
+                
+        }
+
+        $counter3 = $request::input('dummy3');
+        for($d = 1; $d <= $counter3; $d++){
+            if($request::input('role'.$d)){
+                $this->validate($request1, [
+                    'orgname'.$d=>'max:20',
+                    'role'.$d=>'max:20',
+                    'resYear'.$d=>'numeric|digits:4'
+                    ]);
+            }
+                
+        }
+
+        $counter4 = $request::input('dummy4');
+        for($e = 1; $e <= $counter4; $e++){
+            if($request::input('coname'.$e)){
+                $this->validate($request1, [
+                    'coname'.$e=>'required|max:20',
+                    'coauth'.$e=>'required|max:20'
+                    ]);
+            }
+        }
+                
+        
+
+        $counter5 = $request::input('dummy5');
+        for($f = 1; $f <= $counter5; $f++){
+            if($request::input('profile'.$f)){
+                $this->validate($request1, [
+                    'profile'.$f=>'max:50',
+                    'org'.$f=>'max:50',
+                    'loc'.$f=>'max:20',
+                    'stdate'.$f=>'date',
+                    'enddate'.$f=>'date|after:stdate',
+                    'indesc'.$f=>'max:150'
+                    ]);
+            }
+        }
+
+        $counter6 = $request::input('dummy6');
+        for($g = 1; $g <= $counter6; $g++){
+            if($request::input('tname'.$g)){
+                $this->validate($request1, [
+                    'tname'.$g=>'max:20',
+                    'torg'.$g=>'max:20',
+                    'tloc'.$g=>'max:50',
+                    'tstdate'.$g=>'date',
+                    'tenddate'.$g=>'date|after:tstdate',
+                    'tdesc'.$g=>'max:150'
+                    ]);
+            }
+        }
+
+        $counter7 = $request::input('dummy7');
+        for($h = 1; $h <= $counter7; $h++){
+            if($request::input('title'.$h)){
+                $this->validate($request1, [
+                    'title'.$h=>'max:20',
+                    'publisher'.$h=>'max:20',
+                    'pdate'.$h=>'date',
+                    'purl'.$h=>'active_url',
+                    'pdesc'.$h=>'max:150'
+                    ]);
+            }    
+        }
+
+        $counter8 = $request::input('dummy8');
+        for($i = 1; $i <= $counter8; $i++){
+            if($request::input('pOffice'.$i)){
+                $this->validate($request1, [
+                    'pOffice'.$i=>'max:50',
+                    'ptname'.$i=>'numeric',
+                    'ptitle'.$i=>'max:20',
+                    'isdate'.$i=>'date',
+                    'inventors'.$i=>'max:20',
+                    'pturl'.$i=>'active_url',
+                    'ptdesc'.$i=>'max:150'
+                    ]);
+            }   
+        }
+
+        $counter9 = $request::input('dummy9');
+        for($j = 1; $j <= $counter9; $j++){
+            if($request::input('acres'.$j)){
+                $this->validate($request1, [
+                    'acorgname'.$j=>'max:20',
+                    'acevname'.$j=>'max:20',
+                    'acevYear'.$j=>'numeric|digits:4',
+                    'acres'.$j=>'max:30'
+                    ]);
+            }
+        }
+
+        
         // else {
             $user = StudentEducation::where('student_id', '=', Auth::user()->username)->get();
             if ($user) {

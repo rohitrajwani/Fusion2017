@@ -7,7 +7,7 @@ use Illuminate\Routing\Controller as Controller;
 use Illuminate\Http\Request;
 
 use DB;
-
+use Auth;
 use Request as Request1;
 
 use App\Http\Requests;

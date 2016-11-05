@@ -11,19 +11,13 @@
                 <li><a href="/training_and_placement_cell/form/studentForm/student">Student Form</a></li>
                 <li><a href="/training_and_placement_cell/student/companyList">Companies</a></li>
                 <li><a href="/training_and_placement_cell/profile/student/student">Profile</a></li>
+                <li><a href="/training_and_placement_cell/student/selectedStudent">Selection Status</a></li>
             </ul>
           </div>
         </nav>
             <div class="col s12 m4 offset-m4">
                 <h4>Selected Students</h4>
             </div>
-          
-          
-            <a href="/training_and_placement_cell/tpo/page">
-                <div class="col m1 offset-m3 link" style="background-color:#076392;">
-                    <center><h5 style="color:white;"><i class="fa fa-home"></i></h5></center>
-                </div>
-            </a>
             
 
           <div class="container col s12" >

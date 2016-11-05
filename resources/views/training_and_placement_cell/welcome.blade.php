@@ -12,6 +12,7 @@
                 <li><a href="/training_and_placement_cell/form/studentForm/student">Student Form</a></li>
                 <li><a href="/training_and_placement_cell/student/companyList">Companies</a></li>
                 <li><a href="/training_and_placement_cell/profile/student/student">Profile</a></li>
+                <li><a href="/training_and_placement_cell/student/selectedStudent">Selection Status</a></li>
             </ul>
           </div>
         </nav>

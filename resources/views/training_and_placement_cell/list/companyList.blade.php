@@ -11,6 +11,7 @@
                 <li><a href="/training_and_placement_cell/form/studentForm/student">Student Form</a></li>
                 <li><a href="/training_and_placement_cell/student/companyList">Companies</a></li>
                 <li><a href="/training_and_placement_cell/profile/student/student">Profile</a></li>
+                <li><a href="/training_and_placement_cell/student/selectedStudent">Selection Status</a></li>
             </ul>
           </div>
         </nav>
@@ -29,7 +30,7 @@
                      
                 </div>
                 <div class="col s4">
-                     <a href="/training_and_placement_cell/{{$students[0]}}/profile/company/{{ $comp->company_id }}" class="waves-effect btn">View Profile</a>
+                     <a href="/training_and_placement_cell/student/profile/company/{{ $comp->company_id }}" class="waves-effect btn">View Profile</a>
                      
                 </div>
           </div>

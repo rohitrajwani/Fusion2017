@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 use DB;
 use Redirect;
-
+use Auth;
 use App\Company;
 use App\CompanyStudent;
 use App\Student;

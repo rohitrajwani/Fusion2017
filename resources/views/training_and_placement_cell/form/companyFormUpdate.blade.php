@@ -25,7 +25,7 @@
               @endif
             </div>
            
-            {!! Form::open(array('route' => 'companyForm_store', 'class' => 'form')) !!}
+            {!! Form::open(array('route' => 'companyForm_store1', 'class' => 'form')) !!}
             
              <div class="container col s10" style= "position:relative;box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);margin-left:75px;margin-top:20px;padding-top:20px;">
                         <div class="col s12">
@@ -34,7 +34,7 @@
                           <div class="input-field col s12">
                               
                               
-                          {!! Form::text('comID', null, 
+                          {!! Form::text('comID', $company[0], 
                               array('id' => 'comID', 
                                     'class'=>'validate',
                                     'placeholder'=>'Company ID..')) !!}

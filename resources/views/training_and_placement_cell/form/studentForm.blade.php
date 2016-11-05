@@ -11,6 +11,7 @@
                 <li><a href="/training_and_placement_cell/form/studentForm/student">Student Form</a></li>
                 <li><a href="/training_and_placement_cell/student/companyList">Companies</a></li>
                 <li><a href="/training_and_placement_cell/profile/student/student">Profile</a></li>
+                <li><a href="/training_and_placement_cell/student/selectedStudent">Selection Status</a></li>
             </ul>
           </div>
         </nav>
@@ -24,7 +25,7 @@
                 <div class="alert alert-danger">
               		
               		    @foreach($errors->all() as $error)
-              		        <h6 style="color:red; display:inline;">{{ $error }} |</h6> 
+              		        <h6 style="color:red; display:inline;">{{ $error }}</h6> 
               		    @endforeach
               		
                 </div>
@@ -35,10 +36,10 @@
 		{!! Form::open(array('route' => 'studentForm_store', 'class' => 'form')) !!}
 
 			<div class="container col s12" >
-                
+                <h6>Fields marked * are compulsary.</h6>
                 <ul class="collapsible popout" data-collapsible="accordion">
                  <li>
-                  <div class="collapsible-header active">Objective</div>
+                  <div class="collapsible-header active">Objective*</div>
                   <div class="collapsible-body">
                           <center><div class="input-field" style="width:90%;padding-top:20px;">
                         
@@ -51,7 +52,7 @@
                 
                 <li>
                 
-                  <div class="collapsible-header">Area of Interests</div>
+                  <div class="collapsible-header">Areas of Interest*</div>
                   	<div class="collapsible-body container">
                         <div class="row">
                             <div class="input-field col m10">
@@ -86,7 +87,7 @@
                     </div>
                 </li>
                 <li>
-                  <div class="collapsible-header">Education</div>
+                  <div class="collapsible-header">Education*</div>
                   <div class="collapsible-body container">
                       
                      
@@ -201,7 +202,7 @@
                   </div>
                 </li>
                 <li>
-                  <div class="collapsible-header">Skills</div>
+                  <div class="collapsible-header">Skills*</div>
                     <div class="collapsible-body container">
                         <div class="row">
                             <div class="input-field col m10">
@@ -540,7 +541,7 @@
                   </div>
                 </li>
                     <li>
-                  <div class="collapsible-header">Courses</div>
+                  <div class="collapsible-header">Courses*</div>
                   <div class="collapsible-body container" id="ac">
                    <div class="row ">
                               <div class="input-field col m12">

@@ -70,6 +70,10 @@
                       </div>
 
                   @endforeach
+
+                  @foreach( $company as $comp )
+                  <a href="/training_and_placement_cell/tpo/form/companyForm/{{$comp->company_id}}" class="waves-effect btn">Update</a>
+                  @endforeach
                       
            </div>
            

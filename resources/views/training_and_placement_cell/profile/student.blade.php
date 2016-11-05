@@ -10,6 +10,7 @@
                 <li><a href="/training_and_placement_cell/form/studentForm/student">Student Form</a></li>
                 <li><a href="/training_and_placement_cell/student/companyList">Companies</a></li>
                 <li><a href="/training_and_placement_cell/profile/student/student">Profile</a></li>
+                <li><a href="/training_and_placement_cell/student/selectedStudent">Selection Status</a></li>
             </ul>
           </div>
         </nav>
@@ -29,7 +30,7 @@
                   <div class="col s12">
                         <ul>
                               <li>{{ $stud->branch }}</li>
-                              <li>PDPM Indian Institute of Information Technology, Desgign and Manufacturing Jabalpur</li>
+                              <li>PDPM Indian Institute of Information Technology, Design and Manufacturing Jabalpur</li>
                               <li>{{ $stud->email }}</li>
                         </ul>
                   </div>
@@ -52,7 +53,7 @@
                 
                <div class="container col s10" style= "position:relative;box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);;margin-left:75px;">
            
-                <div class="col s4"><h5 style="float:left;">Area of interests</h5></div>
+                <div class="col s4"><h5 style="float:left;">Areas of interest</h5></div>
                   <div class="col s8">
                   @foreach( $interest as $interest )
                       <div class="row">
@@ -234,11 +235,9 @@
                       {{ $int->location }}
                       </div>
                         <div class="col s12">
-                      {{ $int->start_date }}
+                      {{ $int->start_date }} to {{ $int->end_date }}
                       </div>
-                      <div class="col s12">
-                      {{ $int->end_date }}
-                      </div>
+          
                        <div class="col s12">
                      <p>{{ $int->description }}</p>
                       </div>
@@ -262,11 +261,9 @@
                       {{ $train->location }}
                       </div>
                         <div class="col s12">
-                      {{ $train->start_date }}
+                      {{ $train->start_date }} to {{ $train->end_date }}
                       </div>
-                      <div class="col s12">
-                      {{ $train->end_date }}
-                      </div>
+                      
                        <div class="col s12">
                            <p>{{ $train->description }}</p>
                       </div>
@@ -352,8 +349,13 @@
                       </div>
                       @endforeach
            </div>
+           <br><br><br><br>
+           <div>
            <a href="/training_and_placement_cell/form/studentForm/student" class="waves-effect btn">Update</a>
-           <a  class="waves-effect btn" style="float: right;" href="/training_and_placement_cell/htmltopdfview/student">View PDF</a>
+           @foreach($student as $stud)
+           <a  class="waves-effect btn" style="float: right;" href="/training_and_placement_cell/htmltopdfview/student/{{$stud->student_id}}">View PDF</a>
+           @endforeach
+           </div>
             </div>
 
             

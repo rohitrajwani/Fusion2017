@@ -41,7 +41,7 @@ Route::get('/training_and_placement_cell/tpo/page', 'Training_and_Placement_Cell
 // Route::get('student', 'StudentResumeController@index');
 
 // Route::get('{student_id}/student', 'StudentResumeController@show');
-Route::get('/training_and_placement_cell/htmltopdfview/student',array('as'=>'htmltopdfview','uses'=>'Training_and_Placement_Cell\ProductController@htmltopdfview'));
+Route::get('/training_and_placement_cell/htmltopdfview/student/{student_id}',array('as'=>'htmltopdfview','uses'=>'Training_and_Placement_Cell\ProductController@htmltopdfview'));
 
 Route::get('/training_and_placement_cell/student/profile/company/{company_id}', 'Training_and_Placement_Cell\CompanyProfileController@index');
 
@@ -70,6 +70,12 @@ Route::get('/training_and_placement_cell/student/companyList', 'Training_and_Pla
 Route::get('/training_and_placement_cell/tpo/form/companyForm', ['as' => 'companyForm', 'uses' => 'Training_and_Placement_Cell\CompanyFormController@create']);
 
 Route::post('/training_and_placement_cell/tpo/form/companyForm', ['as' => 'companyForm_store', 'uses' => 'Training_and_Placement_Cell\CompanyFormController@store']);
+
+
+Route::get('/training_and_placement_cell/tpo/form/companyForm/{company_id}', ['as' => 'companyForm1', 'uses' => 'Training_and_Placement_Cell\CompanyFormController@create1']);
+
+Route::post('/training_and_placement_cell/tpo/form/companyForm/company_id', ['as' => 'companyForm_store1', 'uses' => 'Training_and_Placement_Cell\CompanyFormController@store1']);
+
 
 Route::get('/training_and_placement_cell/tpo/selectedStudent', 'Training_and_Placement_Cell\SelectedStudentController@showTpo');
 

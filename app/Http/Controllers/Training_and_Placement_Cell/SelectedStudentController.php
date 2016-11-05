@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Training_and_Placement_Cell;
 
 use Illuminate\Routing\Controller as Controller;
-
+use Redirect;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
@@ -13,7 +13,7 @@ use App\Http\Requests;
 class SelectedStudentController extends Controller
 {
     public function show() {
-    	if(Auth::user()->user_type != 'others' || Auth::user()->user_type != 'student'){
+    	if(Auth::user()->user_type != 'student'){
             return Redirect::to('training_and_placement_cell');
         }
 
@@ -33,6 +33,9 @@ class SelectedStudentController extends Controller
 	}
 
 	public function showTpo() {
+		if(Auth::user()->user_type != 'others'){
+            return Redirect::to('training_and_placement_cell');
+        }
 		$company = Company::with('compStud')->orderBy('name', 'asc')->get();
 		// $student = Student::with('compStud')->orderBy('name', 'asc')->get();
 		$student = DB::table('Applied_For_Company')

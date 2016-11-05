@@ -86,7 +86,7 @@
           <td><a href="/training_and_placement_cell/tpo/profile/student/{{ $stud->student_id }}">{{ $stud->name }}</a></td>
         <td>{{ $stud->branch }}</td>
           <td>{{ $stud->batch }}</td>
-        <td><a href="/training_and_placement_cell/htmltopdfview/{{ $stud->student_id }}">View as PDF</a></td>
+        <td><a href="/training_and_placement_cell/htmltopdfview/student/{{ $stud->student_id }}">View as PDF</a></td>
           
       </tr>
       @endforeach

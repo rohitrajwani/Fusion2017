@@ -21,31 +21,32 @@ use App\StudentTraining;
 use DB;
 use PDF;
 use Auth;
+use Redirect;
 use App\Http\Requests;
 
 class ProductController extends Controller
 {
-    public function htmltopdfview(Request $request)
+    public function htmltopdfview(Request $request, $student_id)
     {
-        if(Auth::user()->user_type != 'student'){
+        if(Auth::user()->user_type != 'student' && Auth::user()->user_type != 'others'){
             return Redirect::to('training_and_placement_cell');
         }
         // $products = Products::all();
-        $student = DB::table('All_Student')->where('student_id', '=', Auth::user()->username)->get();
-        $students = DB::table('All_Student')->where('student_id', '=', Auth::user()->username)->pluck('student_id');
-        $achieve = DB::table('St_Achievement')->where('student_id', '=', Auth::user()->username)->get();
-        $certif = DB::table('St_Cert')->where('student_id', '=', Auth::user()->username)->get();
-        $courses = DB::table('St_Courses')->where('student_id', '=', Auth::user()->username)->get();
-        $education = DB::table('St_Education')->where('student_id', '=', Auth::user()->username)->get();
-        $interest = DB::table('St_Interest')->where('student_id', '=', Auth::user()->username)->get();
-        $intern = DB::table('St_Internship')->where('student_id', '=', Auth::user()->username)->get();
-        $objective = DB::table('St_Objective')->where('student_id', '=', Auth::user()->username)->get();
-        $patent = DB::table('St_Patent')->where('student_id', '=', Auth::user()->username)->get();
-        $respo = DB::table('St_Pos_Of_Resp')->where('student_id', '=', Auth::user()->username)->get();
-        $projects = DB::table('St_Projects')->where('student_id', '=', Auth::user()->username)->get();
-        $public = DB::table('St_Publications')->where('student_id', '=', Auth::user()->username)->get();
-        $skills = DB::table('St_Skills')->where('student_id', '=', Auth::user()->username)->get();
-        $train = DB::table('St_Training')->where('student_id', '=', Auth::user()->username)->get();
+        $student = DB::table('All_Student')->where('student_id', '=', $student_id)->get();
+        $students = DB::table('All_Student')->where('student_id', '=', $student_id)->pluck('student_id');
+        $achieve = DB::table('St_Achievement')->where('student_id', '=', $student_id)->get();
+        $certif = DB::table('St_Cert')->where('student_id', '=', $student_id)->get();
+        $courses = DB::table('St_Courses')->where('student_id', '=', $student_id)->get();
+        $education = DB::table('St_Education')->where('student_id', '=', $student_id)->get();
+        $interest = DB::table('St_Interest')->where('student_id', '=', $student_id)->get();
+        $intern = DB::table('St_Internship')->where('student_id', '=', $student_id)->get();
+        $objective = DB::table('St_Objective')->where('student_id', '=', $student_id)->get();
+        $patent = DB::table('St_Patent')->where('student_id', '=', $student_id)->get();
+        $respo = DB::table('St_Pos_Of_Resp')->where('student_id', '=', $student_id)->get();
+        $projects = DB::table('St_Projects')->where('student_id', '=', $student_id)->get();
+        $public = DB::table('St_Publications')->where('student_id', '=', $student_id)->get();
+        $skills = DB::table('St_Skills')->where('student_id', '=', $student_id)->get();
+        $train = DB::table('St_Training')->where('student_id', '=', $student_id)->get();
         view()->share('students', $students);
         view()->share('student', $student);
         view()->share('achieve', $achieve);
