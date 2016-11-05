@@ -8,18 +8,19 @@
 	<div class="main-container">
 		<div class="head custom">
 			<div class="container">
-				<div class="heading"><h4>So and So Club</h4></div>
+				<div class="heading"><h4>{{$clubname}}</h4></div>
 			</div>
+			<a class="btn-floating btn-large grey darken-1" id="back_button" href="/event_organizing/clubs"><i class="fa fa-arrow-left"></i></a>
 			<a class="btn-floating btn-large waves-effect waves-light grey darken-1" id="drop_button"><i class="fa fa-arrow-down"></i></a>
 
+
 			<div class="white-text" id="description">
-				<div><h5>Coordinator- Lorem Ipsum</h5></div>
-				<div><h5>Co-Coordinator- Lorem Ipsum</h5></div>
+				<div><h5>Coordinator- {{$clubco}}</h5></div>
+				<div><h5>Co-Coordinator- {{$clubcoco}}</h5></div>
 			</div>
 		</div>
 
 		<br><br>
-
 		<div class="container" id="buttons_div">
 			<div class="row">
 				   
@@ -40,6 +41,7 @@
 
 		<!-- Start Cancel Event View -->
 			<div class="row" id="cancel_event">
+				@if(count($future_events)>0)
 				<div class="row"><h4 >Cancel Event</h4></div>
 				
 					<div class="row">
@@ -82,7 +84,7 @@
 							<br>
 							<br>
 							<div class="row center">
-								<form method="POST" action="/event_organizing/clubeventcanceled/{{$future_event->event_id}}">
+								<form method="POST" action="/event_organizing/{{$clubname}}/clubeventcanceled/{{$future_event->event_id}}">
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<button type="submit" class="btn modal-action modal-close waves-effect waves-light">YES</button>
 								<a class="btn modal-action modal-close waves-effect waves-light">NO</a>
@@ -91,6 +93,9 @@
 						</div>
 					</div>
 					@endforeach
+					@else
+						<div class="row"><h4>No Upcoming Event To Cancel</h4></div>
+					@endif
 			</div>
 			
 		<!-- End Cancel Events View -->
@@ -100,13 +105,14 @@
 			<div class="row">
 				<div class="col s12">
 				  <ul class="tabs">
-					<li class="tab col s3"><a href="#past_tab" id="past_link">Past</a></li>
-					<li class="tab col s3"><a class="active" href="#present_tab" id="present_link">Present</a></li>
-					<li class="tab col s3"><a href="#future_tab" id="future_link">Future</a></li>
+					<li class="tab col s3"><a href="#past_tab" id="past_link">Previous</a></li>
+					<li class="tab col s3"><a class="active" href="#present_tab" id="present_link">Ongoing</a></li>
+					<li class="tab col s3"><a href="#future_tab" id="future_link">Upcoming</a></li>
 				  </ul>
 				</div>
 				<div id="past_tab" class="col s12">
 					<br>
+					@if(count($past_events)>0)
 					<table class="bordered highlight responsive-table">
 							<thead>
 								<tr>
@@ -129,15 +135,23 @@
 								<td>{{date('d/m/Y',strtotime($past_event->start_timestamp))}}</td>
 								<td>{{$past_event->room_id}}</td>
 								
-								<td><div class="row"><a href="#declare_results{{$past_event->event_id}}" class="btn waves-effect waves-light modal-trigger">Results</a></div><div class="row"><a href="" class="btn waves-effect waves-light">Reviews</a></div></td></tr>
-								
+								<td><div class="row"><a href="#declare_results{{$past_event->event_id}}" class="btn waves-effect waves-light modal-trigger">Results</a>
+								</div>
+								<div class="row"><a href="#view_reviews{{$past_event->event_id}}" class="btn waves-effect waves-light  modal-trigger">Reviews</a>
+								</div>
+								</td>
+								</tr>
+								@endforeach
+
+								</tbody> </table>
+								@foreach($past_events  as $past_event)
 								<div id="declare_results{{$past_event->event_id}}" class="modal col s6">
 										<div class="modal-content">
 											@if($past_event->result == "")
-											<div class="center"><h5>Enter Results for : {{$past_event->event_name}} </h5></div>
+											<div class="center"><h5>Enter Results for : {{$past_event->event_name}} </h5><div class="divider"></div></div>
 											<br>
 											<br>
-												<form method="POST" action="/event_organizing/clubeventresults/{{$past_event->event_id}}">
+												<form method="POST" action="/event_organizing/{{$clubname}}/clubeventresults/{{$past_event->event_id}}">
 												<input type="hidden" name="_token" value="{{ csrf_token() }}">
 												<div class="input-field col s12"> <input id="event_result" type="text" class="validate" name="eresults" required> <label for="event_result">Enter Results</label> </div>
 												<div class="center">
@@ -147,18 +161,41 @@
 												</form>
 											@else
 												<div class="center">
-												<h5>Results for : {{$past_event->event_name}}</h5>
-												{{$past_event->result}}</div>
+												<h5>Results for : {{$past_event->event_name}}</h5><div class="divider"></div><br>
+												{{$past_event->result}}</div><br>
+												<div class="center"><a class="btn modal-action modal-close waves-effect waves-light">OK</a></div>
 											@endif
 										</div>
 								</div>
+								<div id="view_reviews{{$past_event->event_id}}" class="modal col s6">
+									<div class="modal-content">
+										<div class="center">
+												<h5>Reviews for : {{$past_event->event_name}}</h5><div class="divider"></div>
+										</div>
+										<br>
+										<div class="row">
+											<div class="col s6 center"><b>Name</b></div>
+											<div class="col s6 center"><b>Review</b></div>
+										</div>
+										@foreach($reviews  as $review)
+												@if($past_event->event_id==$review->event_id)
+													<div class="row">	
+														<div class="col s6 center">{{$review->student_id}}</div>
+														<div class="col s6 center">{{$review->description}}</div>
+													</div>
+												@endif
+										@endforeach
+										<div class="center"><a class="btn modal-action modal-close waves-effect waves-light">OK</a></div>
+									</div>
+								</div>
 								@endforeach
-
-								</tbody> </table>
-
+						@else
+							<div class="row"><h5>No Past Events</h5></div>
+						@endif
 				</div>
 				<div id="present_tab" class="col s12">
 					<br>
+					@if(count($present_events)>0)
 					<table class="bordered highlight responsive-table">
 							<thead>
 								<tr>
@@ -180,10 +217,14 @@
 								<td>{{$present_event->room_id}}</td></tr>
 								@endforeach
 								 </tbody> </table>
+					@else
+							<div class="row"><h5>No Ongoing Events</h5></div>
+					@endif
 
 				</div>
 				<div id="future_tab" class="col s12">
 					<br>
+					@if(count($future_events)>0)
 					<table class="bordered highlight responsive-table">
 							<thead>
 								<tr>
@@ -207,6 +248,9 @@
 								@endforeach
 
 								 </tbody> </table>
+						@else
+							<div class="row"><h5>No Upcoming Events</h5></div>
+						@endif
 
 				</div>
 			</div>
@@ -218,7 +262,7 @@
 		<!-- Start Create Event View -->
 			<div class="row" id="create_event">
 				<div class="row"><h4 >Create Event</h4></div>
-					<form method="POST" action="/event_organizing/clubeventcreated" id="create_event_form">
+					<form method="POST" action="/event_organizing/{{$clubname}}/clubeventcreated" id="create_event_form">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<div class="row">
 							<div class="col s12 m6 l6">
@@ -277,6 +321,33 @@
 				</div>
 		<!-- End Create Event View -->
 
+		{{-- Start View Members View --}}
+			<div class="row" id="view_members">
+				<div class="row"><h4 >Members List for: {{$clubname}}</h4></div>
+				<div class="row">
+					<br>
+					<table class="bordered highlight responsive-table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Roll No</th>
+								<th>Student Id</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							@foreach($clubmemberslist  as $clubmemberl)
+							<tr><td>{{$clubmemberl->name}}</td>
+							<td>{{$clubmemberl->roll_no}}</td>
+							<td>{{$clubmemberl->student_id}}</td>
+							</tr>
+							@endforeach
+						</tbody>
+						</table>
+				</div>
+			</div>
+		{{-- End View Members View --}}
+
 
 		</div>
 	</div>
@@ -329,54 +400,7 @@
 				
 			}
 
-			$(document).ready(function(){
-				
-				$("#create_event_btn").click(function(){
-					$("#buttons_div").css("display","none");
-					$("#cancel_event").css("display","none");
-					$("#view_all_events").css("display","none");
-					$("#create_event").fadeIn();
-					$("#drop_button").css("display","block");
-					scrollingtag(this);
-				});
-				$("#view_all_events_btn").click(function(){
-					$("#buttons_div").css("display","none");
-					$("#create_event").css("display","none");
-					$("#cancel_event").css("display","none");
-					$("#view_all_events").fadeIn();
-					$("#drop_button").css("display","block");
-					$('#present_link').click();
-					scrollingtag(this);
-				});
-				$("#cancel_event_btn").click(function(){
-					$("#buttons_div").css("display","none");
-					$("#create_event").css("display","none");
-					$("#view_all_events").css("display","none");
-					$("#cancel_event").fadeIn();
-					$("#drop_button").css("display","block");
-					scrollingtag(this);
-				});
-
-				$("#drop_button").click(function(){
-					$("#buttons_div").slideDown();
-					$("#create_event").css("display","none");
-					$("#cancel_event").css("display","none");
-					$("#view_all_events").css("display","none");
-					$(this).css("display","none");
-				});
-				if({{$event_created}}==1){
-					$('#view_all_events_btn').click();
-					$('#future_link').click();
-					alert("Club event has been created");
-				}
-
-				timerangedisplay(1);
-				timerangedisplay(2);
-				timerangedisplay(3);
-
-				$('select').material_select();
-
-				$("#find_room").click(function(){
+			function getrooms(){
 					
 					// $('#create_event_form select[id!="time_range"] option:not(:first)').remove().end();
 					$('#found_rooms').find('option').not(':first').remove();
@@ -403,16 +427,69 @@
 						}
 					   }
 					 });
-				});
+				}
 
-				$('#capacity').on('change', function () {
-					$("#find_room").click();
-					});
-				$('#time_range').on('change', function () {
-					$("#find_room").click();
-					});
-				$('#event_date').on('change', function () {
-					$("#find_room").click();
+			$(document).ready(function(){
+				
+				$("#create_event_btn").click(function(){
+					$("#buttons_div").css("display","none");
+					$("#cancel_event").css("display","none");
+					$("#view_all_events").css("display","none");
+					$("#view_members").css("display","none");
+					$("#create_event").fadeIn();
+					$("#drop_button").css("display","block");
+					scrollingtag(this);
+				});
+				$("#view_all_events_btn").click(function(){
+					$("#buttons_div").css("display","none");
+					$("#create_event").css("display","none");
+					$("#cancel_event").css("display","none");
+					$("#view_members").css("display","none");
+					$("#view_all_events").fadeIn();
+					$("#drop_button").css("display","block");
+					$('#present_link').click();
+					scrollingtag(this);
+				});
+				$("#cancel_event_btn").click(function(){
+					$("#buttons_div").css("display","none");
+					$("#create_event").css("display","none");
+					$("#view_all_events").css("display","none");
+					$("#view_members").css("display","none");
+					$("#cancel_event").fadeIn();
+					$("#drop_button").css("display","block");
+					scrollingtag(this);
+				});
+				$("#view_members_btn").click(function(){
+					$("#buttons_div").css("display","none");
+					$("#create_event").css("display","none");
+					$("#cancel_event").css("display","none");
+					$("#view_all_events").css("display","none");
+					$("#view_members").fadeIn();
+					$("#drop_button").css("display","block");
+					scrollingtag(this);
+				});
+				$("#drop_button").click(function(){
+					$("#buttons_div").slideDown();
+					$("#create_event").css("display","none");
+					$("#cancel_event").css("display","none");
+					$("#view_all_events").css("display","none");
+					$("#view_members").css("display","none");
+					$(this).css("display","none");
+				});
+				if({{$event_created}}==1){
+					$('#view_all_events_btn').click();
+					$('#future_link').click();
+					alert("Club event has been created");
+				}
+
+				timerangedisplay(1);
+				timerangedisplay(2);
+				timerangedisplay(3);
+
+				$('select').material_select();
+
+				$('#capacity,#time_range,#event_date').on('change', function () {
+					getrooms();
 					});
 
 				//select all checkboxes

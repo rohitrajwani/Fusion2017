@@ -36,8 +36,8 @@
 
 		<!-- Start Cancel Event View -->
 			<div class="row" id="cancel_event">
+				@if(count($future_events)>0)
 				<div class="row"><h4 >Cancel Event</h4></div>
-
 					<div class="row">
 						<div class="col s12">
 							<table class="bordered highlight responsive-table">
@@ -86,7 +86,9 @@
 						</div>
 					</div>
 					@endforeach
-
+				@else
+					<div class="row"><h5>No Upcoming Events To Cancel</h5></div>
+				@endif
 			</div>
 		<!-- End Cancel Events View -->
 
@@ -95,13 +97,14 @@
 			<div class="row">
 				<div class="col s12">
 				  <ul class="tabs">
-					<li class="tab col s3"><a href="#past_tab" id="past_link">Past</a></li>
-					<li class="tab col s3"><a class="active" href="#present_tab" id="present_link">Present</a></li>
-					<li class="tab col s3"><a href="#future_tab" id="future_link">Future</a></li>
+					<li class="tab col s3"><a href="#past_tab" id="past_link">Previous</a></li>
+					<li class="tab col s3"><a class="active" href="#present_tab" id="present_link">Ongoing</a></li>
+					<li class="tab col s3"><a href="#future_tab" id="future_link">Upcoming</a></li>
 				  </ul>
 				</div>
 				<div id="past_tab" class="col s12">
 					<br>
+					@if(count($past_events)>0)
 					<table class="bordered highlight responsive-table">
 							<thead>
 								<tr>
@@ -125,10 +128,14 @@
 								@endforeach
 
 								</tbody> </table>
+					@else
+						<div class="row"><h5>No Past Events</h5></div>
+					@endif
 
 				</div>
 				<div id="present_tab" class="col s12">
 					<br>
+					@if(count($present_events)>0)
 					<table class="bordered highlight responsive-table">
 							<thead>
 								<tr>
@@ -150,10 +157,14 @@
 								<td>{{$present_event->room_id}}</td></tr>
 								@endforeach
 								 </tbody> </table>
+					@else
+						<div class="row"><h5>No Ongoing Events</h5></div>
+					@endif
 
 				</div>
 				<div id="future_tab" class="col s12">
 					<br>
+					@if(count($future_events)>0)
 					<table class="bordered highlight responsive-table">
 							<thead>
 								<tr>
@@ -177,7 +188,9 @@
 								@endforeach
 
 								 </tbody> </table>
-
+					@else
+						<div class="row"><h5>No Upcoming Events</h5></div>
+					@endif
 				</div>
 			</div>
 		</div>
@@ -221,9 +234,6 @@
 									</select>
 									<label>Time Range</label>
 								</div>
-							</div>
-							<div class="col s12 m6 l6">
-								<a id="find_room" style="display:none;" class="waves-effect waves-light btn-large tooltipped" data-position="right" data-tooltip="Enter Capacity, Date and Time">Find Rooms</a>
 							</div>
 						</div>
 						<div class="row">
@@ -300,6 +310,35 @@
 				
 			}
 
+			function getrooms(){
+					
+					// $('#create_event_form select[id!="time_range"] option:not(:first)').remove().end();
+					$('#found_rooms').find('option').not(':first').remove();
+					var formData = {
+					ecapacity: $('#capacity').val(),
+					edate: $("input[name='edate']").val(),
+					timeranges: $('#time_range').val(),
+					}
+
+					$.ajax({
+					   type:'POST',
+					   url:'/event_organizing/getrooms',
+					   data:formData,
+					   headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						},
+					   success:function(data){
+							for(var i=0;i<data.length;i++){
+							$("#found_rooms").append($('<option>', {
+							value: data[i],
+							text: data[i],
+							}));
+							$("#found_rooms").material_select();
+						}
+					   }
+					 });
+				}
+
 			$(document).ready(function(){
 				
 				
@@ -350,43 +389,9 @@
 
 				$('select').material_select();
 
-				$("#find_room").click(function(){
-					
-					// $('#create_event_form select[id!="time_range"] option:not(:first)').remove().end();
-					$('#found_rooms').find('option').not(':first').remove();
-					var formData = {
-					ecapacity: $('#capacity').val(),
-					edate: $("input[name='edate']").val(),
-					timeranges: $('#time_range').val(),
-					}
 
-					$.ajax({
-					   type:'POST',
-					   url:'/event_organizing/getrooms',
-					   data:formData,
-					   headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-						},
-					   success:function(data){
-							for(var i=0;i<data.length;i++){
-							$("#found_rooms").append($('<option>', {
-							value: data[i],
-							text: data[i],
-							}));
-							$("#found_rooms").material_select();
-						}
-					   }
-					 });
-				});
-
-				$('#capacity').on('change', function () {
-					$("#find_room").click();
-					});
-				$('#time_range').on('change', function () {
-					$("#find_room").click();
-					});
-				$('#event_date').on('change', function () {
-					$("#find_room").click();
+				$('#capacity,#time_range,#event_date').on('change', function () {
+					getrooms();
 					});
 				//select all checkboxes
 				$("#select_all").change(function(){  //"select all" change

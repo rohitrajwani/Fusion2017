@@ -55,7 +55,15 @@ class dashboardController extends Controller
 	}
 
 	public function dashboard(){
-		return view('dashboard');
+		if(Auth::user()->hasRole('faculty') || Auth::user()->hasRole('Acad_staff'))
+		{
+			return redirect('/event_organizing/acad');
+		}
+		
+		if(Auth::user()->hasRole('ug_student'))
+		{
+			return \Redirect::action('event_organizing_Controllers\EventController@clubpages');
+		}
 	}
 
 	public function logout(){

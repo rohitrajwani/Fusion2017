@@ -12,6 +12,14 @@ use App\event_organizing_Models\Room_booking_request;
 
 use App\Http\Requests;
 
+use Auth;
+
+// use Illuminate\Foundation\Bus\DispatchesJobs;
+
+// use Illuminate\Foundation\Validation\ValidatesRequests;
+
+// use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class EventCreateController extends Controller
 {
 	public function store(Request $request)
@@ -51,13 +59,13 @@ class EventCreateController extends Controller
 		$create->start_timestamp = ($request->edate.' '. $stime);
 		$create->end_timestamp = ($request->edate.' '. $etime);
 		$create->room_id = $request->foundrooms;
-		$create->booked_by = 'Admin';
+		$create->booked_by = Auth::user()->username;
 		$create->save();
 
 		$book = new Room_booking_request;
 		$book->room_id= $request->foundrooms;
-		$book->requester_id="124";
-		$book->requester_type="Faculty";
+		$book->requester_id=Auth::user()->username;
+		$book->requester_type=Auth::user()->user_type;
 		$book->status="1";
 		$book->purpose = $request->edescription;
 		$book->expected_no_of_students = $request->ecapacity;

@@ -250,7 +250,14 @@ header.landing a{
 	display:none;
 }
 
-#block_unblock_room,#create_event,#cancel_event,#view_all_events{
+#back_button{
+    position: absolute;
+    left:2%;
+    top:5%;
+    color:white;
+}
+
+#block_unblock_room,#create_event,#cancel_event,#view_all_events,#view_members{
 	display:none;
 }
 
