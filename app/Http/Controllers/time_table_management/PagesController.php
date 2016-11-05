@@ -10,6 +10,8 @@ use App\Classroom_Slots;
 use DB;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
+use Request;
+use App\Room_booking_request;
 
 class PagesController extends BaseController
 {
@@ -23,6 +25,31 @@ class PagesController extends BaseController
     		//return view('scheduleanextraclass',compact('status'));
     	return view('time_table_management/scheduleanextraclass', compact('stat'));
     }
+
+	public function schedule(){
+		if(Auth::user()->user_type!= 'faculty' && !Auth::user()->hasRole('admin')){
+        	    return Redirect::to('time_table_management');
+ 	       	}
+
+		$schedule = new Room_booking_request;
+
+		$username = Auth::user()->username;
+		$schedule->room_id=' ';
+
+		$schedule->requester_id=$username;
+		$schedule->requester_type="faculty";
+		$schedule->status=0;
+		$schedule->purpose=$_GET['CourseCode'];
+		$schedule->expected_no_of_students=$_GET['Strength'];
+		$schedule->date=$_GET['bookingdate'];
+		$schedule->start_time=$_GET['StartTime'];
+		$schedule->end_time=$_GET['EndTime'];
+
+		$schedule->save();
+
+		return back()->with('alert', 'Successfully Created!');		
+
+	}
 
     public function index(){
         if(Auth::user()->hasRole('admin')){

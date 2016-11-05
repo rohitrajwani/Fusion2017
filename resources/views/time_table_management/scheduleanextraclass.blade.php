@@ -13,11 +13,11 @@
     </ul>
   </div>
 </nav>
-  <form method="post" action='schedule.store'>
+  <form method="get" action='/time_table_management/scheduleanextraclass/schedule'>
   <div class="row">
       <div class="col s6 l2 m4">
       <label for='bookingdate'>Booking For</label>
-      <input type='date' name="bookingdate" id='bookingdate' class='validate'>
+      <input type='date' data-date-inline-picker="true" name="bookingdate" id='bookingdate' class='validate'>
       </div>
       <div class="col s6 l2 m4">
       <label for='StartTime'>Start Time</label>

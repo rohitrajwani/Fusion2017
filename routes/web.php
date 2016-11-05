@@ -33,7 +33,7 @@
 		
 		Route::get('/time_table_management/scheduleanextraclass', 'time_table_management\PagesController@scheduleanextraclass');
 
-		Route::resource('/time_table_management/schedule','time_table_management\RequestsController');
+		Route::get('/time_table_management/scheduleanextraclass/schedule','time_table_management\PagesController@schedule');
 
 		Route::get('/time_table_management/get_slots', 'time_table_management\AjaxController@get_slots');
 
