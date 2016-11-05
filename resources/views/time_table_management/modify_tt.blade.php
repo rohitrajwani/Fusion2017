@@ -8,11 +8,14 @@
 	<nav class="mynav">
           <div class="nav-wrapper">
             <ul>
+		  <li><a href="/time_table_management">Back to Dashboard</a></li>
                   <li><a href="/time_table_management/view_tt">View Time Table</a></li>
-                  <li><a href="/time_table_management/scheduleanextraclass">Book a Slot</a></li>
+                  <li><a href="/time_table_management/scheduleanextraclass">Schedule an Extra Class</a></li>
                   <li><a href="/time_table_management/creatett">Create Time Table</a></li>
-                  <li><a href="/time_table_management/modify_tt">Modify Time Table</a></li>
                   <li><a href="/time_table_management/viewallrequests">Handle Requests</a></li>
+		  @if(Auth::user()->user_type=='faculty')
+			<li><a href="/time_table_management/viewmyrequests">View My Requests</a></li>
+		  @endif
             </ul>
           </div>
         </nav>

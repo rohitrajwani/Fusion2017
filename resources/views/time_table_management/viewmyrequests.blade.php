@@ -5,15 +5,22 @@
 @stop
 
 @section('content')
+
 <nav class="mynav">
-  <div class="nav-wrapper">
-    <ul>
-  <li><a href="/time_table_management/view_tt">View Time Table</a></li>
-  <li><a href="/time_table_management/scheduleanextraclass">Schedule an Extra Class</a></li>
-  <li><a href="#">View my requests</a></li>
-    </ul>
-  </div>
+        <div class="nav-wrapper">
+                <ul>
+                        <li><a href="/time_table_management/">Back To Dashboard</a></li>
+                        <li><a href="/time_table_management/view_tt/">View Time Table</a></li>
+                        <li><a href="/time_table_management/scheduleanextraclass">Schedule an Extra Class</a></li>
+                        @if(Auth::user()->hasRole('admin'))
+                                <li><a href="/time_table_management/modify_tt">Modify Time Table</a></li>
+                                <li><a href="/time_table_management/creatett">Create Time Table</a></li>
+				<li><a href="/time_table_management/viewallrequests">Handle Requests</a></li>
+                        @endif
+                </ul>
+        </div>
 </nav>
+
 <table class="bordered highlight centered"> 
 <thead>
  <tr> 
