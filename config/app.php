@@ -177,9 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-	
-	Illuminate\Html\HtmlServiceProvider::class,
+        App\Providers\RouteServiceProvider::class
     ],
 
     /*
@@ -227,10 +225,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
-        'MaterializeCSS' => Skydiver\LaravelMaterializeCSS\MaterializeCSS::class,
-	'Form'=> 'Illuminate\Html\FormFacade',
-	'HTML'=> 'Illuminate\Html\HtmlFacade'
-
+        'MaterializeCSS' => Skydiver\LaravelMaterializeCSS\MaterializeCSS::class
     ],
 
 ];
