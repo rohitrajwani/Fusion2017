@@ -51,7 +51,7 @@
         </select>
       </td>
 
-      <td><input type="button" id="btn{{$request->req_id}}" class="request waves-effect btn" value="Submit">
+      <td><input type="button" id="btn{{$request->req_id}}" class="request waves-effect btn" value="Submit" disabled>
       </td>
     </tr>
   @endforeach
@@ -82,6 +82,14 @@
               $(this).material_select();
             });
           @endforeach
+      });
+
+      $('select[id^="room_alotted"]').on('change', function(){
+        var rid = $(this).attr("id");
+        
+        rid = rid.slice(12);
+
+        $("#btn"+rid).attr('disabled', false);
       });
 
       $(".request").click(function(){

@@ -222,8 +222,20 @@ class PagesController extends BaseController
     }
 
     public function extra_classes(){
-	$extras = '';
+        $user_id = Auth::user()->username;
+        $courses = DB::table('Register_Course')->select('course_id')->where('student_id',$user_id)->get();
+        $all_extra_classes = DB::table('Room_Booking_Request')->where('status', 1)->get();
+        $extra_classes = array();
+        foreach ($courses as $course) {
+            foreach ($all_extra_classes as $extra) {
+                $c1 = $course->course_id;
+                $e1 = $extra->purpose;
+                if ($c1 == $e1) {
+                    $extra_classes[] = $extra;
+                }
+            }
+        }
 
-	return view('time_table_management/extra_classes', compact('extras'));
+    return view('time_table_management/extra_classes', compact('extra_classes'));
     }
 }

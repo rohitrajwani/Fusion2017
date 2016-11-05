@@ -25,10 +25,10 @@
 <label for="all">All</label>
 
 <input name="filters" type="radio" id="app" />
-<label for="approve">Approved</label>
+<label for="app">Approved</label>
 
 <input name="filters" type="radio" id="rej" />
-<label for="reject">Rejected</label>
+<label for="rej">Rejected</label>
 
 
 <table class="bordered highlight centered"> 
@@ -71,14 +71,14 @@
 			if(search_term){
 				var filter = search_term.split('=')[0];
 
-				$('#'+filter).attr('checked', 'true');
+				$('#'+filter).attr('checked', true);
 			}
 			else{
-				$('#all').attr('checked', 'true');
+				$('#all').attr('checked', true);
 			}
 		}
 		else{
-			$('#all').attr('checked', 'true');
+			$('#all').attr('checked', true);
 		}
 	});
 

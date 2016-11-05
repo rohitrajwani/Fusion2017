@@ -45,7 +45,7 @@ class AjaxController extends Controller {
           ->update(['room_id' => $dummy,'status' => '2']);
 
         }
-        else {
+        else{
             $approve::where('req_id', $req_id)
           ->update(['room_id' => $room_id,'status' => '1']);
         }
