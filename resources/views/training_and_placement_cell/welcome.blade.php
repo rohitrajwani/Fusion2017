@@ -17,9 +17,12 @@
           </div>
         </nav>
         
-    @if($alert = Session::get('message'))
-        <script type='text/javascript'>alert("{{$alert}}");</script>
-    @endif  
+        @if(session('alert'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+                
+                  {{ session('alert') }}. 
+            </div>
+        @endif 
                     <div class="row">
                                 <div class="col s12">
                                           <ul class="tabs">

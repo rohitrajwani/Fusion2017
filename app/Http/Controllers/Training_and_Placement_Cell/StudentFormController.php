@@ -26,7 +26,6 @@ use DB;
 use Auth;
 use Request as Request8;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class StudentFormController extends Controller
@@ -71,6 +70,9 @@ class StudentFormController extends Controller
             'objective'=>'required|max:255'
             ]);
 
+        $this->validate($request1, [
+            'interest1'=>'required'
+            ]);
         $counter10 = $request::input('dummy10');
         for($k = 1; $k <= $counter10; $k++){
             if($request::input('interest'.$k)){
@@ -79,6 +81,14 @@ class StudentFormController extends Controller
                     ]);
             }
         }
+
+        $this->validate($request1, [
+            'qualification1'=>'required',
+            'institute1'=>'required',
+            'performance1'=>'required|numeric',
+            'year1'=>'required|numeric|digits:4'
+            ]);
+   
         $counter = $request::input('dummy');
         for($a = 1; $a <= $counter; $a++){
             if($request::input('year'.$a)){
@@ -90,6 +100,10 @@ class StudentFormController extends Controller
                     ]);
             }
         }
+
+        $this->validate($request1, [
+            'skills1'=>'required'
+            ]);
         $counter11 = $request::input('dummy11');
         for($l = 1; $l <= $counter11; $l++){
             if($request::input('skills'.$l)){
@@ -103,7 +117,7 @@ class StudentFormController extends Controller
         for($b = 1; $b <= $counter1; $b++){
             if($request::input('projName'.$b)){
                 $this->validate($request1, [
-                    'projName'.$b=>'max:20',
+                    'projName'.$b=>'max:100',
                     'projUrl'.$b=>'active_url',
                     'projYear'.$b=>'numeric|digits:4',
                     'projDesc'.$b=>'max:150'
@@ -116,8 +130,8 @@ class StudentFormController extends Controller
         for($c = 1; $c <= $counter2; $c++){ 
             if($request::input('cname'.$c)){
                 $this->validate($request1, [
-                    'cname'.$c=>'max:20',
-                    'cauth'.$c=>'max:20',
+                    'cname'.$c=>'max:100',
+                    'cauth'.$c=>'max:100',
                     'lno'.$c=>'numeric',
                     'cYear'.$c=>'numeric|digits:4',
                     'curl'.$c=>'active_url'
@@ -128,22 +142,26 @@ class StudentFormController extends Controller
 
         $counter3 = $request::input('dummy3');
         for($d = 1; $d <= $counter3; $d++){
-            if($request::input('role'.$d)){
+            if($request::input('orgname'.$d)){
                 $this->validate($request1, [
-                    'orgname'.$d=>'max:20',
-                    'role'.$d=>'max:20',
+                    'orgname'.$d=>'max:100',
+                    'role'.$d=>'max:100',
                     'resYear'.$d=>'numeric|digits:4'
                     ]);
             }
                 
         }
 
+        $this->validate($request1, [
+            'coname1'=>'required|max:100',
+            'coauth1'=>'required|max:100'
+            ]);
         $counter4 = $request::input('dummy4');
         for($e = 1; $e <= $counter4; $e++){
             if($request::input('coname'.$e)){
                 $this->validate($request1, [
-                    'coname'.$e=>'required|max:20',
-                    'coauth'.$e=>'required|max:20'
+                    'coname'.$e=>'required|max:100',
+                    'coauth'.$e=>'required|max:100'
                     ]);
             }
         }
@@ -154,9 +172,9 @@ class StudentFormController extends Controller
         for($f = 1; $f <= $counter5; $f++){
             if($request::input('profile'.$f)){
                 $this->validate($request1, [
-                    'profile'.$f=>'max:50',
-                    'org'.$f=>'max:50',
-                    'loc'.$f=>'max:20',
+                    'profile'.$f=>'max:150',
+                    'org'.$f=>'max:150',
+                    'loc'.$f=>'max:120',
                     'stdate'.$f=>'date',
                     'enddate'.$f=>'date|after:stdate',
                     'indesc'.$f=>'max:150'
@@ -168,9 +186,9 @@ class StudentFormController extends Controller
         for($g = 1; $g <= $counter6; $g++){
             if($request::input('tname'.$g)){
                 $this->validate($request1, [
-                    'tname'.$g=>'max:20',
-                    'torg'.$g=>'max:20',
-                    'tloc'.$g=>'max:50',
+                    'tname'.$g=>'max:120',
+                    'torg'.$g=>'max:120',
+                    'tloc'.$g=>'max:150',
                     'tstdate'.$g=>'date',
                     'tenddate'.$g=>'date|after:tstdate',
                     'tdesc'.$g=>'max:150'
@@ -182,8 +200,8 @@ class StudentFormController extends Controller
         for($h = 1; $h <= $counter7; $h++){
             if($request::input('title'.$h)){
                 $this->validate($request1, [
-                    'title'.$h=>'max:20',
-                    'publisher'.$h=>'max:20',
+                    'title'.$h=>'max:120',
+                    'publisher'.$h=>'max:120',
                     'pdate'.$h=>'date',
                     'purl'.$h=>'active_url',
                     'pdesc'.$h=>'max:150'
@@ -195,11 +213,11 @@ class StudentFormController extends Controller
         for($i = 1; $i <= $counter8; $i++){
             if($request::input('pOffice'.$i)){
                 $this->validate($request1, [
-                    'pOffice'.$i=>'max:50',
+                    'pOffice'.$i=>'max:150',
                     'ptname'.$i=>'numeric',
-                    'ptitle'.$i=>'max:20',
+                    'ptitle'.$i=>'max:120',
                     'isdate'.$i=>'date',
-                    'inventors'.$i=>'max:20',
+                    'inventors'.$i=>'max:120',
                     'pturl'.$i=>'active_url',
                     'ptdesc'.$i=>'max:150'
                     ]);
@@ -208,12 +226,12 @@ class StudentFormController extends Controller
 
         $counter9 = $request::input('dummy9');
         for($j = 1; $j <= $counter9; $j++){
-            if($request::input('acres'.$j)){
+            if($request::input('acorgname'.$j)){
                 $this->validate($request1, [
-                    'acorgname'.$j=>'max:20',
-                    'acevname'.$j=>'max:20',
+                    'acorgname'.$j=>'max:120',
+                    'acevname'.$j=>'max:120',
                     'acevYear'.$j=>'numeric|digits:4',
-                    'acres'.$j=>'max:30'
+                    'acres'.$j=>'max:130'
                     ]);
             }
         }
@@ -460,6 +478,6 @@ class StudentFormController extends Controller
             }
         // }
         
-        return redirect('/training_and_placement_cell')->with('message', 'Form Submitted Successfully!');
+        return Redirect::to('/training_and_placement_cell/student')->with('alert', 'Form Submitted Successfully!');
     }
 }

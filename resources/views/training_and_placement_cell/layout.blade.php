@@ -22,7 +22,7 @@
                   <ul class="right hide-on-med-and-down">
                     <li><a href="#">Link</a></li>
                     <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
+                    <li><a href="/logout">Logout</a></li>
                   </ul>
                   <ul class="side-nav" id="mobile-demo">
                     <li><a href="#">Link</a></li>

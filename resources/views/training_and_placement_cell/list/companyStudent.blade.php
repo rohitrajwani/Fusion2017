@@ -15,7 +15,17 @@
                 </div>
             </a>
             
-      
+      		<div class="col s12 m12">
+              @if(count($errors) > 0)
+                <div class="alert alert-danger">
+              		
+              		    @foreach($errors->all() as $error)
+              		        <h6 style="color:red; display:inline;">{{ $error }}</h6> 
+              		    @endforeach
+              		
+                </div>
+              @endif
+            </div>
       
            	{!! Form::open(array('route' => 'companyStudent_store', 'class' => 'form')) !!}
            	<div class="dummy" style="display:none;">

@@ -30,15 +30,16 @@ class CompanyProfileController extends Controller
     }
 
     public function store(Request5 $request) {
+        
     	if($request::input('branch') == $request::input('eligibility')) {
     		CompanyStudent::create([
 				'company_id' => $request::input('company_id'),
 				'student_id' => $request::input('student_id')
     			]);
-            echo('Applied Successfully!');
+            return Redirect::to('/training_and_placement_cell/student')->with('alert', 'Applied Successfully!');
     	}
     	else {
-    		echo('Not eligible to apply!');
+    		return Redirect::to('/training_and_placement_cell/student')->with('alert', 'Not Eligible to Apply!');
     	}
     }
 }

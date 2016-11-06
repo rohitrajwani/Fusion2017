@@ -24,6 +24,9 @@ class PagesController extends Controller
 	        elseif(Auth::user()->user_type == 'others'){
 	            return Redirect::to('/training_and_placement_cell/tpo/page');
 	        }
+	        else{
+	        	return Redirect::to('/');
+	        }
 	    }
     }
 

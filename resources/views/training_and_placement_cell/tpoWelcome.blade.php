@@ -16,6 +16,13 @@
                 </div>
             </a>
             
+            @if(session('alert'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    
+                      {{ session('alert') }}. 
+                </div>
+            @endif
+            
             <div class="container col s11" style= "position:relative;box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);margin-left:50px;padding-right:50px;margin-top:30px;padding-top:50px;padding-bottom:50px;margin-bottom:60px;">
            
                 <div class="row">

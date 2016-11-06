@@ -95,6 +95,6 @@ class CompanyFormController extends Controller
             'package' => $request::input('sal'),
             'arrival_date' => $request::input('arrival')
             ]);
-        return redirect('/training_and_placement_cell')->with('message', 'Form Submitted Successfully!');
+        return redirect('/training_and_placement_cell/tpo/page')->with('alert', 'Form Submitted Successfully!');
     }
 }
