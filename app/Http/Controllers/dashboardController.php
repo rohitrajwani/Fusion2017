@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 
+
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Input;
@@ -15,7 +16,7 @@ use Illuminate\Routing\Controller;
 use Zizaco\Entrust\Traits\EntrustRoleTrait;
 
 use Auth;
-
+use DB;
 class dashboardController extends Controller
 {
     
@@ -29,10 +30,30 @@ class dashboardController extends Controller
         // attempt to do the login
         if (Auth::attempt($userdata)) {
 
-            $user = \App\User::where('username','=',$userdata['username'])->get()->first();
-            Auth::login($user);
-
-            return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
+            $user = \App\User::where('username','=',$userdata['username'])->first();
+			
+            Auth::login(Auth::user());
+            if(Auth::user()->user_type=='student')
+			{  
+		       
+		       $c = \DB::table('mess_registration')->where('student_id',Auth::user()->username)->pluck('mess_id');
+			   
+			  // return $c;
+			   if(sizeof($c)!=0){
+		       if($c[0] =="2"|| $c[0] == "1")
+				   
+			   return Redirect::to('mess_management/Student')->with('alert','Login Successful for '.Auth::user());}
+			   else if(sizeof($c)==0)
+				 return Redirect::to('mess_management/Register')->with('alert','Login Successful for '.Auth::user());
+			}
+		    else if(Auth::user()->user_type=='admin')
+				//return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
+				return Redirect::to('mess_management/Admin')->with('alert','Login Successful for '.Auth::user());
+				else if(Auth::user()->user_type=='committee')
+				//return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
+				return Redirect::to('mess_management/Committee')->with('alert','Login Successful for '.Auth::user());
+			else
+				return Redirect::to('mess_management/Faculty')->with('alert','Login Successful for '.Auth::user());
 
         } else {        
             return Redirect::to('/')->with('alert','Login Error!! Please check your Credentials');
@@ -55,12 +76,18 @@ class dashboardController extends Controller
 	}
 
 	public function dashboard(){
-		return view('dashboard');
-	}
+		/*if(Auth::user()->hasRole('mess_admin')){
+			return view('mess_management/Admin');
+		}
+		if(Auth::user()->hasRole('mess_Committee')){
+			return view('mess_management/Committee');*/
+			return view('/dashboard');
+		}
+	
 
 	public function logout(){
 		Auth::logout();
-
+        
 		return Redirect::to('/');
 	}
 
