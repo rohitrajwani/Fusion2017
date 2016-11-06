@@ -55,7 +55,8 @@ class dashboardController extends Controller
 	}
 
 	public function dashboard(){
-		return view('dashboard');
+		//return view('dashboard');
+		return redirect('TA/blade');
 	}
 
 	public function logout(){
