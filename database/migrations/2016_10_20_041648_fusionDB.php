@@ -218,7 +218,7 @@ class FusionDB extends Migration
             
             Schema::create('CC_Complaint', function (Blueprint $table)
                   {
-                  $table->string('complaint_id', 100);
+                  $table->increments('complaint_id');
                   $table->string('user_id', 100);
                   $table->string('user_type', 100);
                   $table->string('category', 100);
@@ -226,7 +226,6 @@ class FusionDB extends Migration
                   $table->string('pc_no', 100);
                   $table->integer('status');
                   $table->integer('cc_no');
-                  $table->primary('complaint_id');
                   $table->timestamps();
                   });
             Schema::create('Booking', function (Blueprint $table)
@@ -758,7 +757,7 @@ class FusionDB extends Migration
                   $table->string('club_name', 100);
                   $table->string('coordinator_student_id', 100);
                   $table->integer('budget');
-                  $table->string('description', 100);
+                  $table->string('description', 100)->nullable;
                   $table->string('type', 11);
                   $table->timestamps();
                   $table->primary('club_name');
