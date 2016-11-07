@@ -18,7 +18,7 @@ use Auth;
 
 class dashboardController extends Controller
 {
-    
+
 	public function login_check(){
 
 		$userdata = array(
@@ -32,9 +32,9 @@ class dashboardController extends Controller
             $user = \App\User::where('username','=',$userdata['username'])->get()->first();
             Auth::login($user);
 
-            return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
+            return Redirect::to('/health-centre')->with('alert','Login Successful for '.Auth::user());
 
-        } else {        
+        } else {
             return Redirect::to('/')->with('alert','Login Error!! Please check your Credentials');
 
         }

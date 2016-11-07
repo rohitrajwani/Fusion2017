@@ -1,0 +1,36 @@
+.card{
+
+	background: #333333;
+	color: #fff;
+	width: 25%;
+	padding: 1em 2em;
+	display: inline-block;
+	margin-bottom: 20px;
+	margin-right: 20px;
+	text-align: center;
+}
+.card h5 {
+font-size: 18px;
+font-weight: 400;
+font-family: 'Lato';
+color: white;
+margin: 10px;
+  }
+  .avatar{
+        margin-right: auto;
+        margin-left: auto;
+  	    border: 4px solid white;
+        border-radius: 100%;
+        display: block;
+        height: 150px;
+        width: 150px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+  }
+.card a{
+    font-size: 12px;
+    text-align: center;
+}
+  .row{
+  	display: block;
+  }
