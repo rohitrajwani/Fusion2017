@@ -155,6 +155,7 @@ header ul li a{
 th, td {
 	text-align:center;
     vertical-align: middle;
+    width: 40px;
 }
 
 .border2{	
@@ -226,7 +227,7 @@ p{
 }
 
 .main-container1{
-    margin: 40px 20px 10px 240px;
+    margin: 40px 20px 60px 240px;
     height: auto;
     background-color: white;
     border: 1px solid rgba(128, 128, 128, 0.22);
@@ -256,11 +257,12 @@ p{
     width:30px;
     overflow: hidden;
 }
-.btn{
-    height: 53.5px;
-    font-size: 17px;
-}
 
 .btn-floating{
     background-color: #ef5350;
 }
+
+/*.file-path-wrapper{
+    width: 150px;
+}
+*/

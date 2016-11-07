@@ -3,6 +3,7 @@
 @section('content')
 
 <!-- The segment below contains the main buttons used in the page-->
+
 <div class="main-container row">
   <div class="border2 col s12">
     <nav>
@@ -65,12 +66,11 @@
   </div>
 
 </div>
+
 <div class="fixed-action-btn horizontal">
-  <a class="btn-floating btn-large" href="#top">UP
-  </a>
-  
+  <a class="btn-floating btn-large" href="#top">UP</a> 
 </div>
-<section id="room"></section>
+
 
 </div>
 <!--This is for complaints sorted in descending order based on date and time -->
@@ -78,20 +78,21 @@
   <div class="titlebar2">Pending Complaints: {{$pendingcomplaints}}</div>
   
   <div class="row">
-   <form action ="Complaints" method="POST">
+    <form action ="Complaints" method="POST">
 
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">     
-    <div class="input-field col s10 ">
-      <input id="search" type="text" class="validate" name="search">     
-      <label for="search">Search by Student ID</label>
-    </div>
-    <div class="col s2">
-      <button type="submit" class="waves-effect btn col s12">Search</button>
-    </div>
-  </form>
-</div>
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">     
+      <div class="input-field col s10 ">
+        <input id="search" type="text" class="validate" name="search">     
+        <label for="search">Search by Student ID</label>
+      </div>
+      <div class="col s2">
+        <button type="submit" class="waves-effect btn col s12" data-target="">Search</button>
+      </div>
+    </form>
+  </div>
 
-<div class="titlebar">Searched Complaints</div>
+
+<!-- <div class="titlebar">Searched Complaints</div>
 <div class="border3">
   <table class="bordered highlight" text-align="center"> 
     <thead>
@@ -109,10 +110,10 @@
       </tr>
     </thead>
     <tbody>
-     <!-- using for loop to display all the entries of database -->
+     @if($searchcomp != NULL)
      @foreach($searchcomp as $complaint)
      <tr>
-      <col width="40px" />
+      <col width="120px" />
       <td>{{$complaint->student_id}}</td>              
       <td>{{$complaint->room_no}}</td>
       <td>{{$complaint->complaint_id}}</td>
@@ -142,13 +143,89 @@
           </form>
         </div>                
       </td>
+      <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+        <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
+      </td>
     </tr>
     @endforeach  
+    @endif
+
   </tbody>
 </table>
 
 </div>
+-->
+</div>
 
+<div id="modaal" class="modal bottom-sheet">
+  <div class="modal-content">
+    <table class="bordered highlight" text-align="center"> 
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>Room No.</th>             
+          <th>Complaint Id</th>
+          <th>Category</th>
+          <th>Sub-Category</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Created At</th>
+          <th>Updated At</th>
+          <th>Update Status</th>
+        </tr>
+      </thead>
+      <tbody>
+       @if($searchcomp != NULL)
+       @foreach($searchcomp as $complaint)
+       <tr>
+        <col width="120px" />
+        <td>{{$complaint->student_id}}</td>              
+        <td>{{$complaint->room_no}}</td>
+        <td>{{$complaint->complaint_id}}</td>
+        <td>{{$complaint->category}}</td>
+        <td>{{$complaint->sub_category}}</td>
+        <td>{{$complaint->description}}</td>
+        <td>{{$complaint->status}}</td>
+        <td>{{$complaint->created_at}}</td>
+        <td>{{$complaint->updated_at}}</td>
+        <td><button data-target="modal{{$complaint->complaint_id}}" class="waves-effect btn updater">Update</button>
+
+          <div id="modal{{$complaint->complaint_id}}" class="modal row">
+            <form action ="/hostelComplaints/{{$complaint->complaint_id}}" method="POST">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+              <div class="modal-content">
+                <h4>Update Status</h4>
+
+                <div class="input-field col s12">
+                  Is this complaint solved ?
+                </div>
+
+                <button name="status" value="Solved" type="submit" class="waves-effect btn col s2 offset-s5">Yes</button>
+                <button name="status" value="Unsolved" type="submit" class="waves-effect btn col s2 offset-s5">No</button>
+
+              </div>
+            </form>
+          </div>                
+        </td>
+        <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red viewer"><i class="fa fa-image"></i></a>
+          <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
+        </td>
+      </tr>
+      @endforeach
+      <script>
+      $(document).ready(function() {
+        $('select').material_select();
+        $('.updater').leanModal();  
+        $('.viewer').leanModal();
+        $('#modaal').openModal();
+      });  
+      </script>
+      @endif
+
+    </tbody>
+  </table>
+</div>
 </div>
 
 <div class="main-container1 row">
@@ -166,13 +243,109 @@
           <th>Status</th>
           <th>Created At</th>
           <th>Updated At</th>
+          <th>Options</th>
+<!--           <th>View Image</th>
+-->        </tr>
+</thead>
+<tbody>
+  @foreach($complaints as $complaint)
+  <tr>
+    <col width="150px" />
+    <td>{{$complaint->student_id}}</td>              
+    <td>{{$complaint->room_no}}</td>
+    <td>{{$complaint->complaint_id}}</td>
+    <td>{{$complaint->category}}</td>
+    <td>{{$complaint->sub_category}}</td>
+    <td>{{$complaint->description}}</td>
+    <td>{{$complaint->status}}</td>
+    <td>{{$complaint->created_at}}</td>
+    <td>{{$complaint->updated_at}}</td>
+    <td>
+
+      <!-- <div class="fixed-action-btn horizontal"> -->
+        <!-- <a class="btn-floating btn-large red">
+          <i class="fa fa-arrows"></i>
+        </a> -->
+        <ul display:"">
+          <li><a class="btn-floating yellow update" href="#modal{{$complaint->complaint_id}}"><i class="fa fa-pencil"></i></a><!-- </li> -->
+          <!-- <li> --><a href="#modall{{$complaint->complaint_id}}" class="btn-floating waves-effect waves-light blue view"><i class="fa fa-image"></i></a><!-- </li> -->
+          <!-- <li> --><a class="btn-floating green"><i class="fa fa-eye"></i></a></li>     
+        </ul>
+        <div id="modal{{$complaint->complaint_id}}" class="modal row">
+          <form action ="/hostelComplaints/{{$complaint->complaint_id}}" method="POST">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+            <div class="modal-content">
+              <h4>Update Status</h4>
+
+              <div class="input-field col s12">
+                Is this complaint solved ?
+              </div>
+
+              <button name="status" value="Solved" type="submit" class="waves-effect btn col s2 offset-s5">Yes</button>
+              <button name="status" value="Unsolved" type="submit" class="waves-effect btn col s2 offset-s5">No</button>
+
+            </div>
+          </form>
+        </div>
+        <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>                
+
+      <!-- </div> -->
+
+      <!-- <button data-target="modal{{$complaint->complaint_id}}" class="waves-effect btn update">Update</button> -->
+
+            <!-- <div id="modal{{$complaint->complaint_id}}" class="modal row">
+              <form action ="/hostelComplaints/{{$complaint->complaint_id}}" method="POST">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                <div class="modal-content">
+                  <h4>Update Status</h4>
+
+                  <div class="input-field col s12">
+                    Is this complaint solved ?
+                  </div>
+
+                  <button name="status" value="Solved" type="submit" class="waves-effect btn col s2 offset-s5">Yes</button>
+                  <button name="status" value="Unsolved" type="submit" class="waves-effect btn col s2 offset-s5">No</button>
+
+                </div>
+              </form>
+            </div>
+            <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>                 -->
+          </td>
+          <!-- <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+            <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
+          </td> -->
+        </tr>
+        @endforeach  
+      </tbody>
+    </table>
+    <section id="room"></section>
+  </div>
+</div>
+
+<div class="main-container1 row">
+  <div class="titlebar">Room Complaints</div>
+  <div class="border4">
+    <table class="bordered highlight" text-align="center"> 
+      <thead>
+        <tr>          
+          <th>Student ID</th>
+          <th>Room No.</th>
+          <th>Complaint Id</th>
+          <th>Category</th>
+          <th>Sub-Category</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Created At</th>
+          <th>Updated At</th>
           <th>Update Status</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($complaints as $complaint)
+        @foreach($roomcomplaints as $complaint)
         <tr>
-          <col width="40px" />
+          <col width="135px" />
           <td>{{$complaint->student_id}}</td>              
           <td>{{$complaint->room_no}}</td>
           <td>{{$complaint->complaint_id}}</td>
@@ -202,64 +375,8 @@
               </form>
             </div>                
           </td>
-        </tr>
-        @endforeach  
-      </tbody>
-    </table>
-  </div>
-  <section id="room"></section>
-</div>
-
-<div class="main-container1 row">
-  <div class="titlebar">Room Complaints</div>
-  <div class="border4">
-    <table class="bordered highlight" text-align="center"> 
-      <thead>
-        <tr>          
-          <th>Student ID</th>
-          <th>Room No.</th>
-          <th>Complaint Id</th>
-          <th>Category</th>
-          <th>Sub-Category</th>
-          <th>Description</th>
-          <th>Status</th>
-          <th>Created At</th>
-          <th>Updated At</th>
-          <th>Update Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach($roomcomplaints as $complaint)
-        <tr>
-          <col width="40px" />
-          <td>{{$complaint->student_id}}</td>              
-          <td>{{$complaint->room_no}}</td>
-          <td>{{$complaint->complaint_id}}</td>
-          <td>{{$complaint->category}}</td>
-          <td>{{$complaint->sub_category}}</td>
-          <td>{{$complaint->description}}</td>
-          <td>{{$complaint->status}}</td>
-          <td>{{$complaint->created_at}}</td>
-          <td>{{$complaint->updated_at}}</td>
-          <td><button data-target="modal{{$complaint->complaint_id}}" class="waves-effect btn update">Update</button>
-
-            <div id="modal{{$complaint->complaint_id}}" class="modal row">
-              <form action ="/hostelComplaints/{{$complaint->complaint_id}}" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                <div class="modal-content">
-                  <h4>Update Status</h4>
-
-                  <div class="input-field col s12">
-                    Is this complaint solved ?
-                  </div>
-
-                  <button name="status" value="Solved" type="submit" class="waves-effect btn col s2 offset-s5">Yes</button>
-                  <button name="status" value="Unsolved" type="submit" class="waves-effect btn col s2 offset-s5">No</button>
-
-                </div>
-              </form>
-            </div>                
+          <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+            <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
           </td>
         </tr>
         @endforeach  
@@ -291,7 +408,7 @@
       <tbody>
         @foreach($washroomcomplaints as $complaint)
         <tr>
-          <col width="40px" />
+          <col width="90px" />
           <td>{{$complaint->student_id}}</td>              
           <td>{{$complaint->room_no}}</td>
           <td>{{$complaint->complaint_id}}</td>
@@ -320,6 +437,9 @@
                 </div>
               </form>
             </div>                
+          </td>
+          <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+            <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
           </td>
         </tr>
         @endforeach  
@@ -352,7 +472,7 @@
         <!-- using for loop to display all the entries of database -->
         @foreach($tvroomcomplaints as $complaint)
         <tr>
-          <col width="40px" />
+          <col width="90px" />
           <td>{{$complaint->student_id}}</td>              
           <td>{{$complaint->room_no}}</td>
           <td>{{$complaint->complaint_id}}</td>
@@ -381,6 +501,9 @@
                 </div>
               </form>
             </div>                
+          </td>
+          <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+            <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
           </td>
         </tr>
         @endforeach  
@@ -413,7 +536,7 @@
        <!-- using for loop to display all the entries of database -->
        @foreach($readingroomcomplaints as $complaint)
        <tr>
-        <col width="40px" />
+        <col width="90px" />
         <td>{{$complaint->student_id}}</td>              
         <td>{{$complaint->room_no}}</td>
         <td>{{$complaint->complaint_id}}</td>
@@ -442,6 +565,9 @@
               </div>
             </form>
           </div>                
+        </td>
+        <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+          <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
         </td>
       </tr>
       @endforeach  
@@ -474,7 +600,7 @@
        <!-- using for loop to display all the entries of database -->
        @foreach($commonroomcomplaints as $complaint)
        <tr>
-        <col width="40px" />
+        <col width="90px" />
         <td>{{$complaint->student_id}}</td>              
         <td>{{$complaint->room_no}}</td>
         <td>{{$complaint->complaint_id}}</td>
@@ -503,6 +629,9 @@
               </div>
             </form>
           </div>                
+        </td>
+        <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+          <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
         </td>
       </tr>
       @endforeach  
@@ -537,7 +666,7 @@
        <!-- using for loop to display all the entries of database -->
        @foreach($othercomplaints as $complaint)
        <tr>
-        <col width="40px" />
+        <col width="90px" />
         <td>{{$complaint->student_id}}</td>              
         <td>{{$complaint->room_no}}</td>
         <td>{{$complaint->complaint_id}}</td>
@@ -567,6 +696,9 @@
             </form>
           </div>                
         </td>
+        <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+          <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
+        </td>
       </tr>
       @endforeach  
     </tbody>
@@ -574,15 +706,13 @@
 </div>
 </div>
 
-<script>
-<section id="home"></section>
-
 
 <script>
+
 $(document).ready(function() {
   $('select').material_select();
-  $('.update').leanModal();
-  $('.modal-trigger').leanModal();
+  $('.update').leanModal();  
+  $('.view').leanModal();  
 });
 $('#unsolved').click(function() {
   $('#modal{{$complaint->complaint_id}}').modal('hide');

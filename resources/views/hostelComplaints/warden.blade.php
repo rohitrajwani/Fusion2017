@@ -64,10 +64,10 @@
     </span>
   </div>
   <div class="fixed-action-btn horizontal">
-  <a class="btn-floating btn-large red" href="#top">UP
-  </a>
-  
-</div>
+    <a class="btn-floating btn-large red" href="#top">UP
+    </a>
+    
+  </div>
 
 </div>
 <div class="fixed-action-btn horizontal">
@@ -100,7 +100,7 @@
        <!-- using for loop to display all the entries of database -->
        @foreach($complaints as $complaint)
        <tr>
-        <col width="20px" />
+        <col width="150px" />
         <td>{{$complaint->student_id}}</td>              
         <td>{{$complaint->room_no}}</td>
         <td>{{$complaint->complaint_id}}</td>
@@ -110,6 +110,9 @@
         <td>{{$complaint->status}}</td>
         <td>{{$complaint->created_at}}</td>
         <td>{{$complaint->updated_at}}</td>        
+        <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+          <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
+        </td>
       </tr>
       @endforeach  
     </tbody>
@@ -140,7 +143,7 @@
       <tbody>
         @foreach($roomcomplaints as $complaint)
         <tr>
-          <col width="20px" />
+          <col width="150px" />
           <td>{{$complaint->student_id}}</td>              
           <td>{{$complaint->room_no}}</td>
           <td>{{$complaint->complaint_id}}</td>
@@ -150,6 +153,9 @@
           <td>{{$complaint->status}}</td>
           <td>{{$complaint->created_at}}</td>
           <td>{{$complaint->updated_at}}</td>          
+          <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+            <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
+          </td>
         </tr>
         @endforeach  
       </tbody>
@@ -180,7 +186,7 @@
       <tbody>
         @foreach($washroomcomplaints as $complaint)
         <tr>
-          <col width="20px" />
+          <col width="150px" />
           <td>{{$complaint->student_id}}</td>              
           <td>{{$complaint->room_no}}</td>
           <td>{{$complaint->complaint_id}}</td>
@@ -190,7 +196,10 @@
           <td>{{$complaint->status}}</td>
           <td>{{$complaint->created_at}}</td>
           <td>{{$complaint->updated_at}}</td>          
-        </tr>
+          <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+            <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
+          </td>
+        </tr>      
         @endforeach  
       </tbody>
     </table>
@@ -221,7 +230,7 @@
         <!-- using for loop to display all the entries of database -->
         @foreach($tvroomcomplaints as $complaint)
         <tr>
-          <col width="20px" />
+          <col width="150px" />
           <td>{{$complaint->student_id}}</td>              
           <td>{{$complaint->room_no}}</td>
           <td>{{$complaint->complaint_id}}</td>
@@ -231,6 +240,9 @@
           <td>{{$complaint->status}}</td>
           <td>{{$complaint->created_at}}</td>
           <td>{{$complaint->updated_at}}</td>          
+          <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+            <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
+          </td>
         </tr>
         @endforeach  
       </tbody>
@@ -262,7 +274,7 @@
        <!-- using for loop to display all the entries of database -->
        @foreach($readingroomcomplaints as $complaint)
        <tr>
-        <col width="20px" />
+        <col width="150px" />
         <td>{{$complaint->student_id}}</td>              
         <td>{{$complaint->room_no}}</td>
         <td>{{$complaint->complaint_id}}</td>
@@ -272,6 +284,9 @@
         <td>{{$complaint->status}}</td>
         <td>{{$complaint->created_at}}</td>
         <td>{{$complaint->updated_at}}</td>          
+        <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+          <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
+        </td>
       </tr>
       @endforeach  
     </tbody>
@@ -303,7 +318,7 @@
        <!-- using for loop to display all the entries of database -->
        @foreach($commonroomcomplaints as $complaint)
        <tr>
-        <col width="20px" />
+        <col width="150px" />
         <td>{{$complaint->student_id}}</td>              
         <td>{{$complaint->room_no}}</td>
         <td>{{$complaint->complaint_id}}</td>
@@ -313,6 +328,9 @@
         <td>{{$complaint->status}}</td>
         <td>{{$complaint->created_at}}</td>
         <td>{{$complaint->updated_at}}</td>        
+        <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+          <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
+        </td>
       </tr>
       @endforeach  
     </tbody>
@@ -346,7 +364,7 @@
        <!-- using for loop to display all the entries of database -->
        @foreach($othercomplaints as $complaint)
        <tr>
-        <col width="20px" />
+        <col width="150px" />
         <td>{{$complaint->student_id}}</td>              
         <td>{{$complaint->room_no}}</td>
         <td>{{$complaint->complaint_id}}</td>
@@ -356,6 +374,9 @@
         <td>{{$complaint->status}}</td>
         <td>{{$complaint->created_at}}</td>
         <td>{{$complaint->updated_at}}</td>          
+        <td><a href="#modall{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view"><i class="fa fa-image"></i></a>
+          <div id="modall{{$complaint->complaint_id}}" class="modal"><div class="modal-content"><img src="a.jpg" alt="complaint_img"></div></div>
+        </td>
       </tr>
       @endforeach  
     </tbody>
@@ -367,6 +388,7 @@
 <script>
 $(document).ready(function() {
   $('select').material_select();
+  $('.view').leanModal();
   
 });
 </script>

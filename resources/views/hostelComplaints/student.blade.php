@@ -23,33 +23,43 @@
       <div class="modal-content">
         <h4>Complaint Form</h4>
 
-        <div class="input-field col s6">
-          <select name="category" required>
-            <option value="" disabled selected>Category</option>
-            <option value="Room">Room</option>
-            <option value="Wash Room">Washroom</option>
-            <option value="Reading Room">Reading Room</option>
-            <option value="Common Room">Common Room</option>
-            <option value="TV Room">TV Room</option>
-            <option value="Others">Others</option>
-          </select>
-        </div>
+        <!-- <div class="file-field input-field">
+          <div class="btn">
+            <span>File</span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div> -->    
+        <div class="row">
+          <div class="input-field col s6">
+            <select name="category" required>
+              <option value="" disabled selected>Category</option>
+              <option value="Room">Room</option>
+              <option value="Wash Room">Washroom</option>
+              <option value="Reading Room">Reading Room</option>
+              <option value="Common Room">Common Room</option>
+              <option value="TV Room">TV Room</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
 
-        <div class="input-field col s6">
-          <select name ="sub_category" required>
-            <option value="" disabled selected>Subcategory</option>
-            <option value="Electrical">Electrical</option>
-            <option value="Plumbing">Plumbing</option>
-            <option value="Carpentary">Carpentary</option>
-            <option value="Janitor">Janitor</option>
-            <option value="Others">Others</option>
-          </select>
+          <div class="input-field col s6">
+            <select name ="sub_category" required>
+              <option value="" disabled selected>Subcategory</option>
+              <option value="Electrical">Electrical</option>
+              <option value="Plumbing">Plumbing</option>
+              <option value="Carpentary">Carpentary</option>
+              <option value="Janitor">Janitor</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>        
         </div>
-
         <div class="input-field col s12">
           <textarea id="textarea1" class="materialize-textarea" required name="description"></textarea>
           <label for="description">Description</label>
-        </div>                
+        </div>            
         <button type="submit" class="waves-effect btn col s2 offset-s5">Submit</button>
 
       </div>
@@ -86,7 +96,7 @@
       </a>
     </div>
     <div class="button-container col s3">
-      <a href="#modal2" class="button col s12 incharge-trigger">
+      <a href="#modall2" class="button col s12 incharge-trigger">
         <i class="fa fa-book"></i>
         <div class="divider col s12"></div>
         <h6 class="col s12">Incharge</h6>
@@ -101,7 +111,7 @@
 
 </div>
 </div>
-<div id="modal2" class="modal bottom-sheet">
+<div id="modall2" class="modal bottom-sheet">
   <div class="modal-content">
     <h4>Incharge</h4>
     <p>
@@ -138,6 +148,7 @@
               <th>Status</th>
               <th>Created At</th>
               <th>Updated At</th>
+              <th>Comments</th>
             </tr>
           </thead>
           <tbody>
@@ -145,7 +156,7 @@
             @foreach($solvedcomplaints as $complaint)
 
             <tr>      
-              <col width="40px" />
+              <col width="80px" />
               <td>{{$complaint->complaint_id}}</td>
               <td>{{$complaint->category}}</td>
               <td>{{$complaint->sub_category}}</td>
@@ -153,92 +164,137 @@
               <td>{{$complaint->status}}</td>
               <td>{{$complaint->created_at}}</td>
               <td>{{$complaint->updated_at}}</td>
-            </tr>
+              <td><a href="#modal{{$complaint->complaint_id}}" class="btn-floating btn-large waves-effect waves-light red view">
+                <i class="fa fa-comment"></i>
+              </a>
 
-            @endforeach  
-          </tbody>
-        </table>
-        <section id="unsolve"></section>
-      </div>
-      
-    </div>
+              <!-- <div id="modall{{$complaint->complaint_id}}" class="modal">
+                <div class="modal-content">
+                  <img src="a.jpg" alt="complaint_img">
+                </div>
+              </div> -->
 
+              <div id="modal{{$complaint->complaint_id}}" class="modal">
+                <form action ="/hostelComplaints/{{$complaint->complaint_id}}" method="POST">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+                  <div class="modal-content">
+                    <h4>Comments</h4>
 
-    <div class="main-container1 row">  
-     <div class="titlebar">Unsolved Complaints</div>
-     <div class="border4">          
+                    <div class="input-field col s12">
+                      Are you satisfied by the complaint?
+                    </div>
 
-      <table class="bordered highlight" text-align="center"> 
-        <thead>
-          <tr>
-            <th>Complaint Id</th>
-            <th>Category</th>
-            <th>Sub-Category</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Created At</th>
-            <th>Updated At</th>
-          </tr>
-        </thead>
-        <tbody>
+                    <div class="input-field col s12 ">
+                      <input id="comments" type="text" class="validate" name="comments">     
+                      <label for="comments">Comments (Optional)</label>
+                    </div>
 
-          @foreach($unsolvedcomplaints as $complaint)
+                    <!-- <div class="file-field input-field">
+                      <div class="btn col">
+                        <span>File</span>
+                        <input type="file">
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
+                    </div>
+                  -->
+                  <!-- <div class="row"> -->
+                    <button name="status" value="Solved" type="submit" class="waves-effect btn col s4 push-s2">Yes</button>
+                    <button name="status" value="Unsolved" type="submit" class="waves-effect btn col s4 push-s2">No</button>
+                  <!-- </div> -->
 
-          <tr>      
-            <col width="40px" />
-            <td>{{$complaint->complaint_id}}</td>
-            <td>{{$complaint->category}}</td>
-            <td>{{$complaint->sub_category}}</td>
-            <td>{{$complaint->description}}</td>
-            <td>{{$complaint->status}}</td>
-            <td>{{$complaint->created_at}}</td>
-            <td>{{$complaint->updated_at}}</td>
-          </tr>
-
-          @endforeach  
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <section id="mycom"></section>
-
-  <div class="main-container1 row">
-   <div class="titlebar">My Complaints</div>
-   <div class="border4">          
-
-    <table class="bordered highlight" text-align="center"> 
-      <thead>
-        <tr>
-          <th>Complaint Id</th>
-          <th>Category</th>
-          <th>Sub-Category</th>
-          <th>Description</th>
-          <th>Status</th>
-          <th>Created At</th>
-          <th>Updated At</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        @foreach($complaints as $complaint)
-
-        <tr>      
-          <col width="40px" />
-          <td>{{$complaint->complaint_id}}</td>
-          <td>{{$complaint->category}}</td>
-          <td>{{$complaint->sub_category}}</td>
-          <td>{{$complaint->description}}</td>
-          <td>{{$complaint->status}}</td>
-          <td>{{$complaint->created_at}}</td>
-          <td>{{$complaint->updated_at}}</td>
+                </div>
+              </form>
+            </div>    
+          </td>          
         </tr>
 
         @endforeach  
       </tbody>
     </table>
-  </div>
+    <section id="unsolve"></section>
+  </div>      
+</div>
+
+
+
+<div class="main-container1 row">  
+ <div class="titlebar">Unsolved Complaints</div>
+ <div class="border4">          
+
+  <table class="bordered highlight" text-align="center"> 
+    <thead>
+      <tr>
+        <th>Complaint Id</th>
+        <th>Category</th>
+        <th>Sub-Category</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      @foreach($unsolvedcomplaints as $complaint)
+
+      <tr>      
+        <col width="150px" />
+        <td>{{$complaint->complaint_id}}</td>
+        <td>{{$complaint->category}}</td>
+        <td>{{$complaint->sub_category}}</td>
+        <td>{{$complaint->description}}</td>
+        <td>{{$complaint->status}}</td>
+        <td>{{$complaint->created_at}}</td>
+        <td>{{$complaint->updated_at}}</td>
+      </tr>
+
+      @endforeach  
+    </tbody>        
+  </table>
+  <section id="mycom"></section>
+</div>
+</div>
+
+
+
+<div class="main-container1 row">
+ <div class="titlebar">My Complaints</div>
+ <div class="border4">          
+
+  <table class="bordered highlight" text-align="center"> 
+    <thead>
+      <tr>
+        <th>Complaint Id</th>
+        <th>Category</th>
+        <th>Sub-Category</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      @foreach($complaints as $complaint)
+
+      <tr>      
+        <col width="150px" />
+        <td>{{$complaint->complaint_id}}</td>
+        <td>{{$complaint->category}}</td>
+        <td>{{$complaint->sub_category}}</td>
+        <td>{{$complaint->description}}</td>
+        <td>{{$complaint->status}}</td>
+        <td>{{$complaint->created_at}}</td>
+        <td>{{$complaint->updated_at}}</td>
+      </tr>
+
+      @endforeach  
+    </tbody>
+  </table>
+</div>
 </div>
 
 <section id="rules"></section>
@@ -262,6 +318,10 @@ $(document).ready(function() {
   $('select').material_select();
   $('.modal-trigger').leanModal();
   $('.incharge-trigger').leanModal();
+  $('.view').leanModal();
+});
+$('#unsolved').click(function() {
+  $('#modal{{$complaint->complaint_id}}').modal('hide');
 });
 </script>                
 

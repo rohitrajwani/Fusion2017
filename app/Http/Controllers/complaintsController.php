@@ -79,7 +79,7 @@ class complaintsController extends Controller
 			$tvroomcomplaints=Complaint::where('category','=','tv room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
 			$othercomplaints=Complaint::where('category','=','others')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();								
 			$pendingcomplaints=Complaint::where('status','=','unsolved')->where('hall_no','=',$sub)->count();			
-			
+			$searchcomp=Null;
 		
 			// $searchcomp=show();
 			// return $searchcomp;
