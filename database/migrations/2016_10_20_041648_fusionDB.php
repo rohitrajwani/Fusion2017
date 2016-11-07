@@ -758,7 +758,7 @@ class FusionDB extends Migration
                   $table->string('club_name', 100);
                   $table->string('coordinator_student_id', 100);
                   $table->integer('budget');
-                  $table->string('website', 100);
+                  $table->string('description', 100);
                   $table->string('type', 11);
                   $table->timestamps();
                   $table->primary('club_name');
@@ -981,7 +981,8 @@ class FusionDB extends Migration
                   $table->string('student_id', 100);
                   $table->primary(['committee_name', 'student_id']);
                   $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
-                  $table->timestamps();
+                  $table->foreign('committee_name')->references('committee_name')->on('Student_Committee')->onDelete('cascade')->onUpdate('cascade');
+		  $table->timestamps();
                   });
             Schema::create('Student_Counselling', function (Blueprint $table)
                   {
