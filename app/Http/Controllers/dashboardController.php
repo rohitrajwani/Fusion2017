@@ -29,10 +29,14 @@ class dashboardController extends Controller
         // attempt to do the login
         if (Auth::attempt($userdata)) {
 
-            $user = \App\User::where('username','=',$userdata['username'])->get()->first();
+            $user = \App\User::where('username','=',$userdata['username'])->first();
             Auth::login($user);
-
-            return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
+            if(Auth::user()->user_type=='student')
+                return Redirect::to('/PBI/welcome_student')->with('alert','Login Successful for '.Auth::user());
+            else if(Auth::user()->user_type=='faculty')
+                 return Redirect::to('/PBI/welcome_faculty')->with('alert','Login Successful for '.Auth::user());
+            else if(Auth::user()->user_type=='others')
+                 return Redirect::to('/PBI/welcome_chairman')->with('alert','Login Successful for '.Auth::user());
 
         } else {        
             return Redirect::to('/')->with('alert','Login Error!! Please check your Credentials');

@@ -18,6 +18,7 @@
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         
         <link href="/css/style.css" type="text/css" rel="stylesheet">
+        
 
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -87,7 +88,7 @@
                             <option value="" disabled selected>Signup as</option>
                             <option value="student">Student</option>
                             <option value="faculty">Faculty</option>
-                            <option value="others">Others</option>
+                            <option value="others">Chairman</option>
                         </select>
                     </div>
                     <div class="input-field col s12">
