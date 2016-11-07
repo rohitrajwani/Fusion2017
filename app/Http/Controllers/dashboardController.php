@@ -18,21 +18,23 @@ use Auth;
 
 class dashboardController extends Controller
 {
-    
+
+	$us_na;
+
 	public function login_check(){
 
 		$userdata = array(
                 'username' => Input::get('login_username'),
                 'password' => Input::get('login_password')
         );
-
+        
         // attempt to do the login
         if (Auth::attempt($userdata)) {
 
             $user = \App\User::where('username','=',$userdata['username'])->get()->first();
             Auth::login($user);
 
-            return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
+            return view('home',['us_na'=>$us_na])->with('alert','Login Successful for '.Auth::user());
 
         } else {        
             return Redirect::to('/')->with('alert','Login Error!! Please check your Credentials');

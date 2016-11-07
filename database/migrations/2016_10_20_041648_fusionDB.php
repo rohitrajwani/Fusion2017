@@ -15,7 +15,6 @@ class FusionDB extends Migration
      */
     public function up()
     {
-
         Schema::create('Login',function (Blueprint $table)
         {
             $table->string('username', 100);
@@ -24,13 +23,59 @@ class FusionDB extends Migration
             $table->rememberToken();
             $table->primary('username');
             
-            $table->foreign('username')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('username')->references('faculty_id')->on('Faculty')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('username')->references('staff_id')->on('Staff')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('username')->references('admin_id')->on('Administrators')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('username')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('username')->references('faculty_id')->on('Faculty')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('username')->references('staff_id')->on('Staff')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('username')->references('admin_id')->on('Administrators')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });
+
+        Schema::create('role_user', function (Blueprint $table) {
+            $table->string('user_id',20);
+            $table->integer('role_id')->unsigned();
+
+            $table->foreign('user_id')->references('username')->on('login')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->primary(['user_id', 'role_id']);
+        });
+        
+        Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->unique();
+            $table->string('display_name')->nullable();
+            $table->string('description')->nullable();
+            $table->timestamps();
+        });
+
+        // Create table for associating roles to users (Many-to-Many)
+        
+
+        // Create table for storing permissions
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->unique();
+            $table->string('display_name')->nullable();
+            $table->string('description')->nullable();
+            $table->timestamps();
+        });
+
+        // Create table for associating permissions to roles (Many-to-Many)
+        Schema::create('permission_role', function (Blueprint $table) {
+            $table->integer('permission_id')->unsigned();
+            $table->integer('role_id')->unsigned();
+
+            $table->foreign('permission_id')->references('id')->on('permissions')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->primary(['permission_id', 'role_id']);
+        });
+        
 
         Schema::create('All_Student',function (Blueprint $table)
         {
@@ -183,7 +228,7 @@ class FusionDB extends Migration
             $table->string('club_name', 100);
             $table->integer('capacity');
             $table->timestamp('start_timestamp');
-            $table->timestamp('end_timestamp');
+            $table->timestamp('end_timestamp')->nullable();
             $table->timestamps();
         });
         Schema::create('Menu',function (Blueprint $table)
@@ -199,7 +244,7 @@ class FusionDB extends Migration
         Schema::create('Inventory',function (Blueprint $table)
         {
             $table->integer('item_id');
-            $table->integer('item_category');
+            $table->string('item_category',100);
             $table->string('item_name', 100);
             $table->string('item_description', 100);
             $table->string('supplier_id', 100);
@@ -354,7 +399,7 @@ class FusionDB extends Migration
             $table->integer('capacity');
             $table->string('result',200)->nullable();
             $table->timestamp('start_timestamp');
-            $table->timestamp('end_timestamp');
+            $table->timestamp('end_timestamp')->nullable();
             $table->timestamps();
         });
         Schema::create('Balance_leaves',function (Blueprint $table)
@@ -1089,7 +1134,7 @@ class FusionDB extends Migration
             $table->increments('assign_id');
             $table->string('course_id', 100);
             $table->timestamp('upload_time');
-            $table->timestamp('deadline');
+            $table->timestamp('deadline')->nullable();
             $table->string('url_assign', 100);
             $table->foreign('course_id')->references('course_id')->on('Course')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
@@ -1372,6 +1417,7 @@ class FusionDB extends Migration
             $table->integer('option_id');
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -1385,7 +1431,10 @@ class FusionDB extends Migration
     {
 
         //
-
+        Schema::drop('permission_role');
+        Schema::drop('permissions');
+        Schema::drop('role_user');
+        Schema::drop('roles');
         Schema::drop('Academic_Events');
         Schema::drop('Academic_Result');
         Schema::drop('Activity_Description');
