@@ -31,8 +31,17 @@ class dashboardController extends Controller
 
             $user = \App\User::where('username','=',$userdata['username'])->get()->first();
             Auth::login($user);
+            if(Auth::user()->user_type=="student"){
+
+            return view('SPACS.user.user_home');
+            }
+            
+            else{
 
             return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
+            }	
+
+
 
         } else {        
             return Redirect::to('/')->with('alert','Login Error!! Please check your Credentials');
@@ -55,7 +64,33 @@ class dashboardController extends Controller
 	}
 
 	public function dashboard(){
-		return view('dashboard');
+
+		if(Auth::user()->hasRole('spacs_convener')){
+			return view('SPACS.spacs.spacs_home');
+		}
+
+		if(Auth::user()->hasRole('spacscom_dir_gm')){
+			return view('SPACS.spacscom_dir_gm.spacscom_dir_gm_home');
+		}
+		if(Auth::user()->hasRole('spacscom_dir_sc')){
+			return view('SPACS.spacscom_dir_silver_cultural.spacscom_dir_silver_cultural_home');
+		}
+		if(Auth::user()->hasRole('spacscom_dir_sg')){
+			return view('SPACS.spacscom_dir_silver_games.spacs_dir_silver_games_home');
+		}
+		if(Auth::user()->hasRole('spacscom_dm_gm')){
+			return view('SPACS.spacscom_dm_prof_gm.spacscom_dm_prof_gm_home');
+		}
+		if(Auth::user()->hasRole('spacscom_iiitdmj_prof')){
+			return view('SPACS.spacscom_iiitdmj_prof.spacscom_iiitdmj_prof_home');
+		}
+		
+		if(Auth::user()->hasRole('awards_staff')){
+			return view('SPACS.staff.staff_home');
+		}
+		
+
+		
 	}
 
 	public function logout(){
