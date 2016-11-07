@@ -19,7 +19,6 @@ Route::post('/login','dashboardController@login_check');
 
 Route::post('/signup','dashboardController@signup');
 
-
 Route::group(['middleware' => ['auth']], function () {
     
     Route::get('/dashboard','dashboardController@dashboard');
@@ -28,36 +27,71 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Function to attach role
     Route::get('/attachRole/{role}','dashboardController@attachRole');
-	
-	Route::get('fac', 'fac\QualController@index');
-	Route::post('fac/add', 'fac\QualController@store');
-	Route::get('del/{id}',['as' => 'del', 'uses' => 'fac\QualController@destroy']);
-	Route::post('addexp','fac\expcontroller@addexperience');
-	Route::post('fac/achadd', 'fac\achcontroller@ach_store');
-	Route::get('acdel/{id}',['as' => 'acdel', 'uses' => 'fac\achController@destroy']);
-	Route::post('fac/rpdd', 'fac\reprojcontroller@rp_store');
-	Route::get('rpdel/{id}',['as' => 'rpdel', 'uses' => 'fac\reprojcontroller@destroy']);
-	Route::post('fac/rjadd', 'fac\rejourcontroller@rj_store');
-	Route::get('rjdel/{id}',['as' => 'rjdel', 'uses' => 'fac\rejourcontroller@destroy']);
-	Route::post('fac/cadd', 'fac\consulcontroller@c_store');
-	Route::get('cdel/{id}',['as' => 'cdel', 'uses' => 'fac\consulcontroller@destroy']);
-	Route::post('fac/padd', 'fac\patcontroller@p_store');
-	Route::get('pdel/{id}',['as' => 'pdel', 'uses' => 'fac\patcontroller@destroy']);
-	Route::post('fac/pubadd', 'fac\pubcontroller@pu_store');
-	Route::get('pubdel/{id}',['as' => 'pubdel', 'uses' => 'fac\pubcontroller@destroy']);
-	Route::post('fac/theadd', 'fac\thecontroller@t_store');
-	Route::get('thedel/{id}',['as' => 'thedel', 'uses' => 'fac\thecontroller@destroy']);
-	Route::post('fac/lecadd', 'fac\leccontroller@l_store');
-	Route::get('lecdel/{id}',['as' => 'lecdel', 'uses' => 'fac\leccontroller@destroy']);
-	Route::post('fac/vadd', 'fac\viscontroller@v_store');
-	Route::get('vdel/{id}',['as' => 'vdel', 'uses' => 'fac\viscontroller@destroy']);
 
+    
 
-	Route::post('fac/up', 'fac\QualController@update');
-
-	Route::get('upd/{id}','fac\QualController@update');
-
-	Route::get('/getPDF','fac\PDFController@getPDF');
-	
-	Route::post('/fac/upd', 'fac\faculty@update');
 });
+
+/*  routes from laravel 5.2*/
+
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested.
+|
+*/
+
+Route::get('acadaff/students','cardsController@first');
+Route::post('acadaff/bonafide','cardsController@bonafide');
+Route::post('acadaff/semirr','cardsController@s');
+Route::post('acadaff/semirr2','cardsController@s2');
+Route::get('acadaff/ug_student','cardsController@ug');
+
+
+Route::post('acadaff/cec','cardsController@cec');
+Route::post('acadaff/seminar_committee','cardsController@seminar_committee');
+Route::post('acadaff/seminar_report','cardsController@seminar_report');
+Route::post('acadaff/supervisor','cardsController@supervisor');
+Route::post('acadaff/leave','cardsController@leave');
+
+Route::get('acadaff/academic','cardsController@academic');
+Route::get('acadaff/faculty','cardsController@faculty');
+Route::get('acadaff/submission','cardsController@submission');
+
+Route::get('acadaff/ug_student_show','cardsController@submission2');
+Route::post('acadaff/branch_change','cardsController@branch_change');
+Route::post('acadaff/seminarrequest','cardsController@seminarnext');
+Route::post('acadaff/seminarrequest2','cardsController@seminarnext2');
+
+Route::post('acadaff/cec','cardsController@cec');
+Route::post('acadaff/cerequest','cardsController@cenext');
+Route::post('acadaff/cerequest2','cardsController@cenext2');
+
+Route::post('acadaff/bonafidenext','cardsController@bonafidenext');
+Route::post('acadaff/leaverequest','cardsController@leavenext');
+Route::post('acadaff/supervisorrequest','cardsController@supervisornext');
+Route::post('acadaff/branch_next','cardsController@branch_next');
+Route::get('acadaff/student_show','cardsController@show');
+
+//Route::get('/', 'PagesController@home');
+Route::get('acadaff/about','PagesController@about');
+
+Route::get('login',function(){
+    return view('portal.login');
+});
+
+Route::put('portal/login', 'Auth\AuthController@createUser');
+
+Route::get('auth/google', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/google/callback', 'Auth\AuthController@handleProviderCallback');
+
+Route::get('acadaff/admin','cardsController@admin');
+
+Route::post('acadaff/supervisornext2','cardsController@supervisornext2');
+
+Route::get('acadaff/index','cardsController@index');
