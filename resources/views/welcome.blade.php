@@ -87,7 +87,7 @@
                             <option value="" disabled selected>Signup as</option>
                             <option value="student">Student</option>
                             <option value="faculty">Faculty</option>
-                            <option value="others">Others</option>
+                            <option value="administrator">Admin</option>
                         </select>
                     </div>
                     <div class="input-field col s12">
