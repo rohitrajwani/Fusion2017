@@ -32,7 +32,7 @@ class dashboardController extends Controller
             $user = \App\User::where('username','=',$userdata['username'])->get()->first();
             Auth::login($user);
 
-            return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
+            return Redirect::to('/studentgymkhana')->with('alert','Login Successful for '.Auth::user());
 
         } else {        
             return Redirect::to('/')->with('alert','Login Error!! Please check your Credentials');
@@ -43,13 +43,11 @@ class dashboardController extends Controller
 	public function signup(Request $data){
 
 		$user = new \App\User;
-
 		$user->username = $data->username;
 		$user->user_type = $data->type;
 		$user->password = \Hash::make($data->password);
-
 		$user->save();
-
+		
 		return back()->with('alert','Signup Successful, login to continue!!');
 
 	}

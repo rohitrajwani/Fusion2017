@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
   <html>
     <head>
@@ -69,7 +68,6 @@
                 <form class="col s12" method="post" action="/signup">
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
                     <div class="input-field col s10 offset-s1 m8 offset-m2">
                           <input name="username" id="username" type="text" class="validate" placeholder="Username" required>
                     </div>
@@ -86,8 +84,8 @@
                         <select required name="type">
                             <option value="" disabled selected>Signup as</option>
                             <option value="student">Student</option>
-                            <option value="faculty">Faculty</option>
                             <option value="others">Others</option>
+                            <option value="faculty">Faculty</option>
                         </select>
                     </div>
                     <div class="input-field col s12">
@@ -114,4 +112,4 @@
             
         </script>
     </body>
-  </html>
+</html>
