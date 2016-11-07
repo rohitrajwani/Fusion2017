@@ -1372,14 +1372,14 @@ class FusionDB extends Migration
                   {
                   $table->increments('id');
                   $table->integer('quiz_id');
-                  $table->string('body');
+                  $table->string('body',1000);
                   $table->timestamps();
                   });
             Schema::create('options', function (Blueprint $table)
                   {
                   $table->increments('id');
                   $table->integer('question_id');
-                  $table->string('body');
+                  $table->string('body',200);
                   $table->integer('correctness');
                   $table->timestamps();
                   });
