@@ -20,7 +20,7 @@ class AjaxController extends Controller {
 
 
 		if(!empty($_GET['fcode'])){
-			$courses = DB::table('Course_Taken_By')->get()->where('faculty_id', $_GET['fcode']);
+			$courses = DB::table('Faculty_Takes_Course')->get()->where('faculty_id', $_GET['fcode']);
 		}
 
 		$slots = DB::table('Classroom_Slots')->orderByRaw(DB::raw('FIELD (day, "Monday", "Tuesday", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY")'))->orderBy('from_time')->get();

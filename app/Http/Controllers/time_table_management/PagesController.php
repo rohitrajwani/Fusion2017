@@ -294,7 +294,23 @@ class PagesController extends BaseController
     }
 
     public function view_tt(){
-	   return view ('time_table_management/view_tt');
+	   $info = array();
+	   $user = Auth::user()->username;
+
+	   if(Auth::user()->user_type=='student'){
+		$stu = DB::table('Student')->where('student_id', $user)->get()->first();
+
+		$info['sem'] = $stu->semester;
+		$info['dep'] = $stu->branch;
+		$info['prog'] = $stu->programme;
+		
+	   }
+
+	   if(Auth::user()->user_type=='faculty'){
+		$info['fcode'] = $user;
+           }
+
+	   return view ('time_table_management/view_tt', compact('info'));
     }
 
     public function extra_classes(){

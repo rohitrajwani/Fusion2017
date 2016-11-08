@@ -64,7 +64,7 @@
                 </div>
 
 		<div class="input-field col s2">
-			<input id="faculty_code" type="text" placeholder=" Your Code (eg. MKB)" class="validate">
+			<input id="faculty_code" type="text" placeholder="" class="validate">
                 	<label for="faculty_code">Faculty Code</label>
                 </div>
 
@@ -85,6 +85,41 @@
 	<script>
 		var tslots = ['Day/Time', 'Room No.', '09:00-09:55', '10:00-10:55', '11:00-11:55', '12:00-12:55', 'BREAK', '2:30-3:25', '3:30-4:25', '4:30-5:25'];
 		var dslots = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
+		$(document).ready(function(){
+			@if(Auth::user()->user_type=='student')
+				$('option:selected', 'select[id="sem"]').removeAttr('selected');
+				$('select[id="sem"]').find('option:contains("{{$info['sem']}}")').attr("selected",true);
+				$('#sem').trigger('contentChanged');
+
+				$('option:selected', 'select[id="dep"]').removeAttr('selected');
+                                $('select[id="dep"]').find('option:contains("{{$info['dep']}}")').attr("selected",true);
+                                $('#dep').trigger('contentChanged');
+
+				$('option:selected', 'select[id="prog"]').removeAttr('selected');
+                                $('select[id="prog"]').find('option:contains("{{$info['prog']}}")').attr("selected",true);
+                                $('#prog').trigger('contentChanged');
+			@endif
+
+			@if(Auth::user()->user_type=='faculty')
+				$('#faculty_code').val("{{$info['fcode']}}");
+			@endif
+
+			$('#change_tt').trigger('click');
+		});
+
+		$('#sem').on('contentChanged', function(){
+			$(this).material_select();
+		});
+
+		$('#dep').on('contentChanged', function(){
+                        $(this).material_select();
+                });
+
+		$('#prog').on('contentChanged', function(){
+                        $(this).material_select();
+                });
+
 
 		$(document).on("click", "#generate_pdf", function() {
 			var doc = new jsPDF('p', 'pt');
