@@ -571,14 +571,7 @@ class FusionDB extends Migration
                   $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   $table->timestamps();
                   });
-            Schema::create('Application_Student_Guide', function (Blueprint $table)
-                  {
-                  $table->string('student_id', 100);
-                  $table->string('reason', 100);
-                  $table->primary('student_id');
-                  $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
-                  $table->timestamps();
-                  });
+	     
             Schema::create('Applied_For_Company', function (Blueprint $table)
                   {
                   $table->string('student_id', 100);
@@ -600,15 +593,7 @@ class FusionDB extends Migration
                   $table->foreign('course_id')->references('course_id')->on('Course')->onDelete('cascade')->onUpdate('cascade');
                   $table->timestamps();
                   });
-            Schema::create('Assistant_Coordinator', function (Blueprint $table)
-                  {
-                  $table->string('stuguide_id', 100);
-                  $table->string('assist_id', 100);
-                  $table->primary('stuguide_id');
-                  $table->foreign('stuguide_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
-                  $table->foreign('assist_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
-                  $table->timestamps();
-                  });
+            
             Schema::create('Awards_Applications', function (Blueprint $table)
                   {
                   $table->string('scholarship_id', 100);
@@ -898,15 +883,7 @@ class FusionDB extends Migration
             $table->foreign('student_id')->references('student_id')->on('Student');
             $table->timestamps();
             });*/
-            Schema::create('Student_Guide_Assign', function (Blueprint $table)
-                  {
-                  $table->string('student_id', 100);
-                  $table->string('stuguide_id', 100);
-                  $table->primary(['student_id', 'stuguide_id']);
-                  $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
-                  $table->foreign('stuguide_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
-                  $table->timestamps();
-                  });
+            
             Schema::create('Problem', function (Blueprint $table)
                   {
                   $table->string('prob_id', 100)->unique();
@@ -920,14 +897,7 @@ class FusionDB extends Migration
                   $table->foreign('stuguide_id')->references('stuguide_id')->on('Student_Guide_Assign')->onDelete('cascade')->onUpdate('cascade');
                   $table->timestamps();
                   });
-            Schema::create('Public_Post', function (Blueprint $table)
-                  {
-                  $table->increments('id');
-                  $table->string('student_id', 100);
-                  $table->string('description', 500);
-                  $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
-                  $table->timestamps();
-                  });
+            
             Schema::create('Register_Course', function (Blueprint $table)
                   {
                   $table->string('course_id', 100);
@@ -1003,16 +973,7 @@ class FusionDB extends Migration
                   $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   $table->timestamps();
                   });
-            Schema::create('Study_Material', function (Blueprint $table)
-                  {
-                  $table->string('student_id', 100);
-                  $table->string('course_id', 100);
-                  $table->string('description', 500);
-                  $table->string('url', 500);
-                  $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
-                  $table->foreign('course_id')->references('course_id')->on('Course')->onDelete('cascade')->onUpdate('cascade');
-                  $table->timestamps();
-                  });
+            
             Schema::create('Suggestions_By_Students', function (Blueprint $table)
                   {
                   $table->increments('id');
@@ -1149,14 +1110,7 @@ class FusionDB extends Migration
                   $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
                   $table->timestamps();
                   });
-            Schema::create('Application_Assistant_Coordinator', function (Blueprint $table)
-                  {
-                  $table->string('student_id', 100);
-                  $table->string('reason', 100);
-                  $table->primary('student_id');
-                  $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
-                  $table->timestamps();
-                  });
+            
             Schema::create('Rules_and_Reg', function (Blueprint $table)
                   {
                   $table->increments('id');
@@ -1718,6 +1672,103 @@ class FusionDB extends Migration
 			$table->string('lgo_id', 100);
 			$table->timestamps();
 			});
+	      Schema::create('Assistant_Coordinator', function (Blueprint $table) {
+            
+            $table->string('assist_id', 100);
+            $table->foreign('assist_id')->references('student_id')->on('Student');
+            $table->timestamps();
+        });
+	      Schema::create('Assistant_Coordinator_Assign', function (Blueprint $table) {
+            $table->string('assist_id', 100);
+			$table->string('stuguide_id', 100);
+			$table->foreign('assist_id')->references('assist_id')->on('Assistant_Coordinator');
+			$table->foreign('stuguide_id')->references('student_id')->on('Student');
+			$table->timestamps();
+        });
+	      Schema::create('Application_Assistant_Coordinator', function (Blueprint $table) {
+             $table->string('student_id', 100);
+			$table->string('cpi', 100);
+			$table->string('name', 100);
+			$table->string('branch', 100);
+            $table->string('reason', 100);
+            $table->primary('student_id');
+            $table->foreign('student_id')->references('student_id')->on('Student');
+        
+            $table->timestamps();
+        });
+	   Schema::create('Student_Guide', function (Blueprint $table) {
+            $table->string('stuguide_id', 100);
+            $table->string('assist_id', 100);
+            $table->primary('stuguide_id');
+            $table->foreign('stuguide_id')->references('student_id')->on('Student');
+            $table->foreign('assist_id')->references('assist_id')->on('Assistant_Coordinator');
+            $table->timestamps();
+        });
+	    Schema::create('Student_Guide_Assign', function (Blueprint $table) {
+            $table->string('stuguide_id', 100);
+			$table->string('student_id', 100);
+			$table->foreign('stuguide_id')->references('stuguide_id')->on('Student_Guide');
+			$table->foreign('student_id')->references('student_id')->on('Student');
+			$table->timestamps();
+        });  
+	      Schema::create('Application_Student_Guide', function (Blueprint $table) {
+             $table->string('student_id', 100);
+			$table->string('cpi', 100);
+			$table->string('name', 100);
+			$table->string('branch', 100);
+            $table->string('reason', 100);
+            $table->primary('student_id');
+            $table->foreign('student_id')->references('student_id')->on('Student');
+        
+            $table->timestamps();
+        });
+	      Schema::create('Public_Post', function (Blueprint $table) {
+           $table->increments('id');
+            $table->string('student_id', 100);
+            $table->string('description', 500);
+            
+            $table->foreign('student_id')->references('student_id')->on('Student');
+            
+            $table->timestamps();
+        });
+	      Schema::create('Study_Material', function (Blueprint $table) {
+            $table->string('student_id', 100);
+			$table->string('course_id', 100);
+			$table->string('description', 500);
+			$table->string('url', 500);
+			$table->foreign('student_id')->references('student_id')->on('Student');
+			$table->foreign('course_id')->references('course_id')->on('Course');
+			$table->timestamps();
+        });
+	      Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token')->index();
+            $table->timestamp('created_at')->nullable();
+        });
+	      Schema::create('private_post', function (Blueprint $table) {
+           $table->increments('id');
+            $table->string('student_id', 100);
+            $table->string('question', 500);
+            $table->string('sg_id', 11)->references('stuguide_id')->on('student_guide');
+			$table->string('ac_id', 11)->references('assist_id')->on('assistant_coordinator');
+            $table->foreign('student_id')->references('student_id')->on('Student');
+            
+            $table->timestamps();
+        });
+	      Schema::create('answers', function (Blueprint $table) {
+			$table->increments('ans_id');
+            $table->string('des_ans', 500);
+            $table->integer('pid');
+            $table->foreign('pid')->references('id')->on('public_post');
+            $table->timestamps();
+        });
+	      Schema::create('private_ans', function (Blueprint $table) {
+            $table->string('answer_desc', 500);
+			$table->increments('ans_id');
+			$table->integer('pid');
+            $table->foreign('pid')->references('id')->on('private_post');
+            $table->timestamps();
+        });
             }
       /**
        * Reverse the
@@ -1738,13 +1789,13 @@ class FusionDB extends Migration
             Schema::drop('Application_Assistant_Coordinator');
             Schema::drop('Application_Counselling');
             Schema::drop('Application_documents');
-            Schema::drop('Application_Student_Guide');
+           
             Schema::drop('Applied_For_Company');
             Schema::drop('Applied_For_TA');
             Schema::drop('Appointment_Doctor');
             Schema::drop('Assessment');
             Schema::drop('Assignment');
-            Schema::drop('Assistant_Coordinator');
+            
             Schema::drop('Awards_Achievement');
             Schema::drop('Awards_Applications');
             Schema::drop('Balance_leaves');
@@ -1815,7 +1866,7 @@ class FusionDB extends Migration
             Schema::drop('Procurement_item');
             Schema::drop('Project_by_Gymkhana');
             Schema::drop('Publications');
-            Schema::drop('Public_Post');
+           
             Schema::drop('Purchase_dept');
             Schema::drop('Qualification_Details');
             Schema::drop('Question');
@@ -1852,9 +1903,9 @@ class FusionDB extends Migration
             Schema::drop('Student_Committee');
             Schema::drop('Student_Committee_Members');
             Schema::drop('Student_Counselling');
-            Schema::drop('Student_Guide_Assign');
+           
             Schema::drop('Student_Leave_Application');
-            Schema::drop('Study_Material');
+           
             Schema::drop('St_Achievement');
             Schema::drop('St_Cert');
             Schema::drop('St_Courses');
@@ -1884,6 +1935,17 @@ class FusionDB extends Migration
             Schema::drop('VH_Rooms');
             Schema::drop('Visitors_Complaint');
             Schema::drop('Ward');
-            
+            Schema::drop('Assistant_Coordinator');
+	    Schema::drop('Assistant_Coordinator_Assign');
+	    Schema::drop('Application_Assistant_Coordinator');
+	    Schema::drop('Student_Guide');
+	    Schema::drop('Student_Guide_Assign'); 
+	    Schema::drop('Application_Student_Guide');
+	    Schema::drop('Public_Post');
+	    Schema::drop('Study_Material');
+	    Schema::drop('password_resets');
+	    Schema::drop('private_post');
+	    Schema::drop('answers');
+	    Schema::drop('private_ans');
             }
       }
