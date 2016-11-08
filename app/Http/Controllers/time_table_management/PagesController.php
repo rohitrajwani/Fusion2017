@@ -75,7 +75,7 @@ class PagesController extends BaseController
 			}
 
 			if($clash!=-1){
-				$rqs = DB::table('Room_Booking_Request')->get()->where('purpose', $sdc->course_id+'Q')->where('purpose', $sdc->course_id+'E')->where('status', '1')->where('date', $date);
+				$rqs = DB::table('Room_Booking_Request')->get()->where('purpose', $sdc->course_id.'Q')->where('purpose', $sdc->course_id.'E')->where('status', '1')->where('date', $date);
 				    
 				foreach($rqs as $cl){
 					$ftime = $cl->from_time;
@@ -314,4 +314,24 @@ class PagesController extends BaseController
 
     return view('time_table_management/extra_classes', compact('extra_classes'));
     }
+
+    public function quizzes(){
+	$user_id = Auth::user()->username;
+        $courses = DB::table('Register_Course')->select('course_id')->where('student_id',$user_id)->get();
+        $all_extra_classes = DB::table('Room_Booking_Request')->where('status', 1)->where('purpose', 'LIKE', '%Q')->get();
+        $extra_classes = array();
+        foreach ($courses as $course) {
+            foreach ($all_extra_classes as $extra) {
+                $c1 = $course->course_id;
+                $e1 = $extra->purpose;
+                if ($c1 == substr($e1,0,count($e1)-2)) {
+                    $extra_classes[] = $extra;
+                }
+            }
+        }
+
+    return view('time_table_management/extra_classes', compact('extra_classes'));
+
+    }
 }
+

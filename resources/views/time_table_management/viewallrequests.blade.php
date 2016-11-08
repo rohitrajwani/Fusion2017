@@ -82,7 +82,7 @@
             $('#room_alotted{{$request->req_id}}').on('contentChanged', function() {
               $(this).material_select();
             });
-
+	   
 	    var purp = "{{$request->purpose}}", type = "";
 	    if(purp[purp.length - 1] === 'E'){
 		type = "Extra Class";
@@ -91,7 +91,8 @@
 		type = "Quiz";
 	    }
 
-	    purp = purp.slice(0, purp.length-1);
+	    if(type==='Extra Class' || type==='Quiz')
+	    	purp = purp.slice(0, purp.length-1);
 
             $('#purpose{{$request->req_id}}').html(purp);
             $('#type{{$request->req_id}}').html(type);

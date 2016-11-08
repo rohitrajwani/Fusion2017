@@ -51,4 +51,5 @@ Route::group(['middleware' => ['auth']], function () {
 
 	// Related to Extra Classes
 	Route::get('time_table_management/extra_classes', 'time_table_management\PagesController@extra_classes');
+	Route::get('time_table_management/quizzes', 'time_table_management\PagesController@quizzes');
 });
