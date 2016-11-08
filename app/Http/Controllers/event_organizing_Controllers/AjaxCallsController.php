@@ -50,7 +50,7 @@ class AjaxCallsController extends Controller
         $class_rooms = DB::table('Class_Rooms')->where('strength','>=' , $capacity)->get();
 
         $booked_rooms_on_day = DB::table('Classroom_Slots')->where('day', $rday)->get();
-        $booked_requests = Room_Booking_Request::where('date', $rdate)->get();
+        $booked_requests = Room_Booking_Request::where('date', date("Y-m-d",$rdate))->get();
 
         $clash_rooms = array();
 
