@@ -36,12 +36,82 @@ class PagesController extends BaseController
         	    return Redirect::to('time_table_management');
  	       	}
 
+		$course = $_GET['CourseCode'];
+		$date = $_GET['bookingdate'];
+		$stime = $_GET['StartTime'];
+		$etime = $_GET['EndTime'];
+		$ts = strtotime('date');
+		$day = date('l', $ts);	// BUG
+
+		$sd = DB::table('Course')->where('course_id', $course)->get()->first();
+
+		$sd_courses='';
+		
+		$sd_courses = DB::table('Course')->get()->where('sem', $sd->sem)->where('programme', $sd->programme);
+
+		$clash = 0;
+		foreach($sd_courses as $sdc){
+
+			// change this code
+			$cls = DB::table('Classroom_Slots')->get()->where('course_id', $sdc->course_id)->where('day', "Monday");
+			
+			foreach($cls as $cl){
+				$ftime = $cl->from_time;
+			    	$to_time = $cl->to_time;
+
+				    if($ftime >= $stime && $ftime < $etime){
+					$clash = -1;
+				    }
+
+				    if($to_time > $stime && $to_time <= $etime){
+					$clash = -1;
+				    }
+
+				    if($ftime <= $stime && $to_time >= $etime){
+					$clash = -1;
+				    }
+
+				    if($ftime >= $stime && $to_time <= $etime){
+					$clash = -1;
+				    }
+			}
+
+			if($clash!=-1){
+				$rqs = DB::table('Room_Booking_Request')->get()->where('purpose', $sdc->course_id+'Q')->where('purpose', $sdc->course_id+'E')->where('status', '1')->where('date', $date);
+				    
+				foreach($rqs as $cl){
+					$ftime = $cl->from_time;
+                                	$to_time = $cl->to_time;
+
+				    if($ftime >= $stime && $ftime < $etime){
+                                        $clash = -1;
+                                    }
+
+                                    if($to_time > $stime && $to_time <= $etime){
+                                        $clash = -1;
+                                    }
+
+                                    if($ftime <= $stime && $to_time >= $etime){
+                                        $clash = -1;
+                                    }
+
+                                    if($ftime >= $stime && $to_time <= $etime){
+                                        $clash = -1;
+                                    }
+				}
+			}
+		}
+
+		if($clash == -1){
+			return back()->with('alert', 'This slot cannot be accepted. Please choose another one.');
+		}
+
 		$t = '';
 
-		if($_GET['req_type']=='Quiz')
+		if($_GET['req_type']=='Q')
 			$t = 'Q';
 
-		else if($_GET['req_type']=='Extra Class')
+		else if($_GET['req_type']=='EC')
 			$t = 'E';
 
 		$schedule = new Room_booking_request;
@@ -52,7 +122,7 @@ class PagesController extends BaseController
 		$schedule->requester_id=$username;
 		$schedule->requester_type="faculty";
 		$schedule->status=0;
-		$schedule->purpose=$_GET['CourseCode'] + $t;
+		$schedule->purpose=$_GET['CourseCode'].$t;
 		$schedule->expected_no_of_students=$_GET['Strength'];
 		$schedule->date=$_GET['bookingdate'];
 		$schedule->start_time=$_GET['StartTime'];
@@ -108,11 +178,6 @@ class PagesController extends BaseController
 	}
 
 	foreach($requests as $request){
-		$created_at = $request->created_at;
-		$for_date = $request->date;
-		$start_time = $request->start_time;
-		$end_time = $request->end_time;
-		$purpose = $request->purpose;
 		$stat = $request->status;
 		$room_id = $request->room_id;
 
@@ -237,13 +302,13 @@ class PagesController extends BaseController
     public function extra_classes(){
         $user_id = Auth::user()->username;
         $courses = DB::table('Register_Course')->select('course_id')->where('student_id',$user_id)->get();
-        $all_extra_classes = DB::table('Room_Booking_Request')->where('status', 1)->get();
+        $all_extra_classes = DB::table('Room_Booking_Request')->where('status', 1)->where('purpose', 'LIKE', '%E')->get();
         $extra_classes = array();
         foreach ($courses as $course) {
             foreach ($all_extra_classes as $extra) {
                 $c1 = $course->course_id;
                 $e1 = $extra->purpose;
-                if ($c1 == $e1) {
+                if ($c1 == substr($e1,0,count($e1)-2)) {
                     $extra_classes[] = $extra;
                 }
             }

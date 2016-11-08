@@ -29,6 +29,7 @@
  <th>End Time</th>
  <th>Strength</th>
  <th>Course Code</th> 
+ <th>Type</th>
   <th>Room Alotted</th> 
   <th>Action</th>
  </tr> 
@@ -42,8 +43,8 @@
       <td>{{ $request->start_time }}</td>
       <td>{{ $request->end_time }}</td>
       <td>{{$request->expected_no_of_students }}</td>
-      <td>{{ $request->purpose }}</td>
-      
+      <td id="purpose{{$request->req_id}}"></td>
+      <td id="type{{$request->req_id}}"></td>
       <td>
         <select name='room_alotted' id='room_alotted{{$request->req_id}}'>
           <option value="Choose Room" disabled selected>Choose Room</option>
@@ -76,11 +77,25 @@
 
                 $('#room_alotted{{$request->req_id}}').trigger('contentChanged');
               }
-            })
+            });
 
             $('#room_alotted{{$request->req_id}}').on('contentChanged', function() {
               $(this).material_select();
             });
+
+	    var purp = "{{$request->purpose}}", type = "";
+	    if(purp[purp.length - 1] === 'E'){
+		type = "Extra Class";
+	    }
+            else if (purp[purp.length-1] === 'Q'){
+		type = "Quiz";
+	    }
+
+	    purp = purp.slice(0, purp.length-1);
+
+            $('#purpose{{$request->req_id}}').html(purp);
+            $('#type{{$request->req_id}}').html(type);
+	    	    
           @endforeach
       });
 

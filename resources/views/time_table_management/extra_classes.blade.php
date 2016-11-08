@@ -39,17 +39,11 @@
       <td>{{ $class->date }}</td>
       <td>{{ $class->start_time }}</td>
       <td>{{ $class->end_time }}</td>
-      <td>{{ $class->purpose }}</td>
+      <td><?php echo substr($class->purpose, 0, count($class->purpose)-2); ?></td>
       <td>{{ $class->room_id }}</td>
     </tr>
   @endforeach
     </tbody> 
     </table>
-
-   <script>
-  $(document).on('click', '#filter', function(){
-    
-  });
-   </script>    
 @stop
 	

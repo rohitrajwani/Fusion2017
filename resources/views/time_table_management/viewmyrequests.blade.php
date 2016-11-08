@@ -39,6 +39,7 @@
  <th>Start Time</th>
  <th>End Time</th>
  <th>Course Code</th>
+ <th>Type</th>
  <th>Strength</th> 
   <th>Status</th> 
   <th>Room Alotted</th>
@@ -51,7 +52,8 @@
       <td>{{ $request->date }}</td>
       <td>{{ $request->start_time }}</td>
       <td>{{ $request->end_time }}</td>
-      <td>{{ $request->purpose }}</td>
+      <td id="purpose{{$request->req_id}}"></td>
+      <td id="type{{$request->req_id}}"></td>
       <td>{{$request->expected_no_of_students }}</td>
       <td>{{ $request->status }}</td>
       <td>{{ $request->room_id }}</td>
@@ -62,6 +64,23 @@
 
    <script>
 	$(document).ready(function(){
+		@foreach($requests as $request)
+			var purp = "{{$request->purpose}}", type = "";
+		        if(purp[purp.length - 1] === 'E'){
+			    type = "Extra Class";
+		        }
+		        else if (purp[purp.length-1] === 'Q'){
+		   	    type = "Quiz";
+		        }
+
+		        purp = purp.slice(0, purp.length-1);
+
+		        $('#purpose{{$request->req_id}}').html(purp);
+		        $('#type{{$request->req_id}}').html(type);
+
+		@endforeach
+
+
 		var loc = window.location.search;
 		
 		if(loc){

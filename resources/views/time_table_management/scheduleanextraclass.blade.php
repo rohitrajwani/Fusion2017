@@ -61,7 +61,7 @@
 		
 		<div class="col s3 l2 m2">
 		      <label for='CourseCode'>Course List</label>
-		      <select name="EndTime" id="EndTime" required>
+		      <select name="CourseCode" id="CourseCode" required>
 				@foreach($fac_courses as $fc)
 					<option value="{{ $fc->course_id }}">{{$fc->course_id}}</option>
 				@endforeach
