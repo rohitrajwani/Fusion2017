@@ -2023,16 +2023,14 @@ class FusionDB extends Migration
 	    Schema::drop('password_resets');
 	    Schema::drop('private_post');
 	    Schema::drop('answers');
-	    Schema::drop('Pbi');
-	    Schema::drop('Pbi_Reports');
-	    Schema::drop('Pbi_Applied_For');
 	    Schema::drop('change_pbi');
 	    Schema::drop('faculty_floats_pbi');
-	    Schema::drop('feedback');
+	    //Schema::drop('feedback');
 	    Schema::drop('grades');
 	    Schema::drop('marks');
 	    Schema::drop('pbi_reports');
 	    Schema::drop('pbi_status');
 	    Schema::drop('pbi_topics');
+	    Schema::drop('student_applies_pbi');
             }
       }
