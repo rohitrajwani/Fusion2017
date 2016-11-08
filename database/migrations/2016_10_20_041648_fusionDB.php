@@ -2022,7 +2022,6 @@ Schema::create('Assistant_Coordinator', function (Blueprint $table) {
 	    Schema::drop('answers');
 	    Schema::drop('change_pbi');
 	    Schema::drop('faculty_floats_pbi');
-	    //Schema::drop('feedback');
 	    Schema::drop('grades');
 	    Schema::drop('marks');
 	    Schema::drop('pbi_reports');
