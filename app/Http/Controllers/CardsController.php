@@ -102,14 +102,11 @@ class CardsController extends Controller
 
         $id=$_SESSION['id'];
 
-        $taapplyfor = DB::table('Applied_For_TA')->where('student_id',$id)->orderby('preference_no')->get();
+        $taapplyfor = DB::table('Applied_For_TA')->where('student_id',$id)->orderby('preference_no')->get();//already aplied courses
         
         $aa=[''];
-        foreach ($taapplyfor as $key )
-        {
-
+        foreach ($taapplyfor as $key){
             array_push($aa, $key->course_id);
-            
         }
 
 
@@ -117,7 +114,41 @@ class CardsController extends Controller
         $course=DB::table('Course')->where('department',$DEPT)->pluck('course_id');
         
 
-        $taopening=DB::table('Ta_Post_Openings')->whereIn('course_id',$course)->whereNotIn('course_id', $aa)->get();
+        $taopening=DB::table('Ta_Post_Openings')->whereIn('course_id',$course)->whereNotIn('course_id', $aa)->get();//ccourses for which he can apply --- time may clash
+
+        $reg_courses = DB::table('Register_Course')->where('student_id',$id)->pluck('course_id');//registered courses by the PG student
+        /*print_r($taopening);*/
+        $busy_time1 = DB::table('Classroom_Slots')->whereIn('course_id',$reg_courses)->get();//Scheduled classes of the PG Student
+        //print_r($busy_time1);
+        $courses_free = [''];
+        foreach($taopening as $row){
+            //echo $row->course_id;
+            $duty_time = DB::table('Classroom_Slots')->where('course_id',$row->course_id)->first();
+            $flag=0;
+           
+            foreach($busy_time1 as $busy_time){
+                if($busy_time->day != $duty_time->day){
+                    continue;
+                }
+                if($duty_time->to_time >= $busy_time->from_time && $duty_time->from_time <= $busy_time->to_time){
+                    $flag=1;break;
+                }
+                elseif($duty_time->to_time >= $busy_time->from_time && $duty_time->to_time <= $busy_time->to_time){
+                    $flag=1;break;
+                }
+                elseif($busy_time->from_time >= $duty_time->from_time && $busy_time->from_time <= $duty_time->to_time){
+                    $flag=1;break;
+                }
+                elseif($busy_time->to_time >= $duty_time->from_time && $busy_time->to_time <= $duty_time->to_time){
+                    $flag=1;break;
+                }
+            }
+
+            if($flag==0){
+                array_push($courses_free,$row->course_id);
+            }
+        }
+        $taopening = DB::table('Ta_Post_Openings')->whereIn('course_id',$courses_free)->get();
         //print_r($taopening);
        return view('ta.taapplyfor', compact('taapplyfor' ,'taopening'));
 
@@ -270,7 +301,8 @@ class CardsController extends Controller
         $course=DB::table('course')->whereIn('department',$dept)->get();
         $courseid=DB::table('course')->where('department',$dept)->pluck('course_id');//courses of the department
         $already_applied = DB::table('Ta_Post_Openings')->whereIn('course_id',$courseid)->pluck('course_id');//courses for which openings already created
-        $course = DB::table('course')->whereIn('department',$dept)->whereNotIn('course_id',$already_applied)->get();
+        $course = DB::table('course')->whereIn('department',$dept)->whereNotIn('course_id',$already_applied)->where('programme','B.TECH')
+        ->get();
         
         if(count($course)==0){
             $aa = ['All Posts Are Already Created'];
@@ -282,9 +314,10 @@ class CardsController extends Controller
 
             $n=DB::table('Register_Course')->where('course_id',$c->course_id)->pluck('student_id');
             $p=DB::table('Student')->whereIn('student_id',$n)->where('programme','B.TECH')->get();
-            array_push($no, count($p));
+            array_push($no, count($p));//no of students registered in each course in the department.
        
         }
+      
 
             return view('ta.post_opening',compact('course','already_applied','no','aa'));
     }

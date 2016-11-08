@@ -52,7 +52,7 @@
                         <thead>
                           <tr>
                               <th>Course</th>
-                              <th>Registered Students(UG)</th>
+                              <th>Registered Students</th>
                               <th>Required Posts</th>
                               <th>Batches</th>
                           </tr>
