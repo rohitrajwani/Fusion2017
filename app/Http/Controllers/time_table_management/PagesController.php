@@ -40,8 +40,8 @@ class PagesController extends BaseController
 		$date = $_GET['bookingdate'];
 		$stime = $_GET['StartTime'];
 		$etime = $_GET['EndTime'];
-		$ts = strtotime('date');
-		$day = date('l', $ts);	// BUG
+		$ts = strtotime($date);
+		$day = date('l', $ts);
 
 		$sd = DB::table('Course')->where('course_id', $course)->get()->first();
 
@@ -51,9 +51,7 @@ class PagesController extends BaseController
 
 		$clash = 0;
 		foreach($sd_courses as $sdc){
-
-			// change this code
-			$cls = DB::table('Classroom_Slots')->get()->where('course_id', $sdc->course_id)->where('day', "Monday");
+			$cls = DB::table('Classroom_Slots')->get()->where('course_id', $sdc->course_id)->where('day', $day);
 			
 			foreach($cls as $cl){
 				$ftime = $cl->from_time;

@@ -57,7 +57,7 @@ class AjaxController extends Controller {
         $stime = $_GET['stime'];
         $etime = $_GET['etime'];
         $rdate = $_GET['date'];
-        $timestamp = strtotime('rdate');
+        $timestamp = strtotime($rdate);
         $rday = date('l', $timestamp);
 
         $class_rooms = DB::table('Class_Rooms')->get();
