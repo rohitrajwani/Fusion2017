@@ -20,16 +20,23 @@
 
 <center>
   	<form method="get" action='/time_table_management/scheduleanextraclass/schedule'>
-		<div class="col s6 l2 m4">
+		<div class="col s6 l2 m2">
+                      <label for='req_type'>Request Type</label>
+                      <select name="req_type" id="req_type">
+                                <option value="Q">Quiz</option>
+                                <option value="EC" selected>Extra Class</option>
+                      </select>
+                </div>
+
+		<div class="col s6 l2 m2">
 		      <label for='bookingdate'>Booking For</label>
-		      <input type='date' data-date-inline-picker="true" name="bookingdate" id='bookingdate' class='validate'>
+		      <input type='date' data-date-inline-picker="true" name="bookingdate" id='bookingdate' class='validate' required>
 		</div>
 		
-		<div class="col s6 l2 m4">
+		<div class="col s6 l2 m2">
 		      <label for='StartTime'>Start Time</label>
 		      <select name="StartTime" id="StartTime">
-				<option value="" disabled selected>Start Time</option>
-				<option value="09:00:00">9:00</option>
+				<option value="09:00:00" selected>9:00</option>
 				<option value="10:00:00">10:00</option>
 				<option value="11:00:00">11:00</option>
 				<option value="12:00:00">12:00</option>
@@ -39,11 +46,10 @@
 			</select>
 		</div>
 		
-		<div class="col s6 l2 m4">
+		<div class="col s6 l2 m2">
 			<label for='EndTime'>End Time</label>
-			<select name="EndTime" id="EndTime">
-				<option value="" disabled selected>End Time</option>
-				<option value="10:00:00">10:00</option>
+			<select name="EndTime" id="EndTime" required>
+				<option value="10:00:00" selected>10:00</option>
 				<option value="11:00:00">11:00</option>
 				<option value="12:00:00">12:00</option>
 				<option value="13:00:00">13:00</option>
@@ -53,17 +59,23 @@
 			</select>
 		</div>
 		
-		<div class="col s6 l3 m4">
-		      <label for='CourseCode'>Course Code</label>
-		      <input type="text" name="CourseCode" id='CourseCode' class='validate'>
+		<div class="col s3 l2 m2">
+		      <label for='CourseCode'>Course List</label>
+		      <select name="EndTime" id="EndTime" required>
+				@foreach($fac_courses as $fc)
+					<option value="{{ $fc->course_id }}">{{$fc->course_id}}</option>
+				@endforeach
+
+		     </select>
 		</div>
 		
-		<div class="col s6 l3 m4">
+		<div class="col s6 l1 m2">
 		      <label for='Strength'>Strength</label>
-		      <input type='number' name='Strength' class='validate'>
+		      <input type='number' name='Strength' value="0" class='validate'>
+		</div><br>
+		<div>
+			<input type='submit' id="req" value='Submit' class='waves-effect btn'>
 		</div>
-	
-		<input type='submit' value='Submit' class='waves-effect btn'>
 	</form>
 </center>
 

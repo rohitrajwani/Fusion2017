@@ -15,21 +15,34 @@ use App\Room_booking_request;
 
 class PagesController extends BaseController
 {
-	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-	public function scheduleanextraclass(){
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function scheduleanextraclass(){
         if(Auth::user()->user_type != 'faculty' && !Auth::user()->hasRole('admin')){
             return Redirect::to('time_table_management');
         }
 
     	$stat = 0;
 
-    	return view('time_table_management/scheduleanextraclass', compact('stat'));
+	$fac_courses = '';
+	if(Auth::user()->user_type=='faculty'){
+		$fac_courses = DB::table('Faculty_Takes_Course')->get()->where('faculty_id', Auth::user()->username);
+	}
+
+    	return view('time_table_management/scheduleanextraclass', compact('stat', 'fac_courses'));
     }
 
 	public function schedule(){
 		if(Auth::user()->user_type!= 'faculty' && !Auth::user()->hasRole('admin')){
         	    return Redirect::to('time_table_management');
  	       	}
+
+		$t = '';
+
+		if($_GET['req_type']=='Quiz')
+			$t = 'Q';
+
+		else if($_GET['req_type']=='Extra Class')
+			$t = 'E';
 
 		$schedule = new Room_booking_request;
 
@@ -39,7 +52,7 @@ class PagesController extends BaseController
 		$schedule->requester_id=$username;
 		$schedule->requester_type="faculty";
 		$schedule->status=0;
-		$schedule->purpose=$_GET['CourseCode'];
+		$schedule->purpose=$_GET['CourseCode'] + $t;
 		$schedule->expected_no_of_students=$_GET['Strength'];
 		$schedule->date=$_GET['bookingdate'];
 		$schedule->start_time=$_GET['StartTime'];
