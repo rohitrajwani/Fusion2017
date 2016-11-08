@@ -1772,7 +1772,7 @@ class FusionDB extends Migration
             }
       /**
        * Reverse the
-       migrations.
+       *migrations.
        *
        * @return void
        */
