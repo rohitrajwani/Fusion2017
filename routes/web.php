@@ -11,23 +11,51 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','feedback_system\HomeController@home1');   
 
-Route::post('/login','dashboardController@login_check');
 
-Route::post('/signup','dashboardController@signup');
+Route::get('/home/{type1}',[
+	'uses'=>'feedback_system\HomeController@home',
+	'as'=>'/home/{type1}']);
 
-Route::group(['middleware' => ['auth']], function () {
-    
-    Route::get('/dashboard','dashboardController@dashboard');
 
-    Route::get('/logout','dashboardController@logout');
+Route::get('admin','feedback_system\HomeController@admin'); 
 
-    //Function to attach role
-    Route::get('/attachRole/{role}','dashboardController@attachRole');
 
-    
+Route::get('/feed/{cour}/{facid}/{id}/{type1}',[
+'uses'=>'feedback_system\HomeController@feedback',
+'as'=>'/feedback/{cour}/{facid}/{id}/{type1}'
+	]);
 
-});
+
+Route::get('/sem',[
+	'uses'=>'feedback_system\HomeController@sem',
+	'as'=>'/sem']);
+
+
+
+Route::get('/view/{type}',[
+	'uses'=>'feedback_system\HomeController@view',
+	'as'=>'/view/{type}']);
+
+Route::post('/feedinsert',[
+	'uses'=>'feedback_system\HomeController@feedbackinsert',
+	'as'=>'feedinsert'
+	]);
+
+Route::get('/faculty/{fid}/{type}',[
+	'uses'=>'feedback_system\HomeController@courses',
+	'as'=>'/faculty/{fid}/{type}'
+]);
+
+
+Route::get('course{cid}',[
+	'uses'=>'feedback_system\HomeController@review',
+	'as'=>'course{cid}']);
+
+Route::get('/review/{fid}/{cid}/{type}',[
+	'uses'=>'feedback_system\HomeController@review1',
+	'as'=>'/review/{fid}/{cid}/{type}'
+	]);
+Route::post('/admin/add','feedback_system\HomeController@add');
+Route::post('/admin/delete','feedback_system\HomeController@destroy');
