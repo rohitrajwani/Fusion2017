@@ -41,5 +41,7 @@ class StudentListController extends Controller
 	    	$students = DB::table('All_Student')->where([['branch', $request::input('branch')]])->get();
 	    	return view ('training_and_placement_cell.list.studentList', compact('students'));
     	}
+
+        // return redirect->back();
     }
 }

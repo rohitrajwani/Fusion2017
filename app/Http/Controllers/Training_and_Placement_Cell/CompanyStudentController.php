@@ -58,7 +58,7 @@ class CompanyStudentController extends Controller
 						->update(['status_of_placement' => 0]);
 			}
 		}
-		return Redirect::back()->withStatus('Form submitted!');
+		return Redirect::to('/training_and_placement_cell/tpo/page')->with('alert', 'Selection Status Updated Successfully!');
 			
 	}
 }

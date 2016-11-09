@@ -3,12 +3,12 @@
 }
 
 ::-webkit-scrollbar-track {
-    background-color: white;
+	background-color: white;
     border-radius: 1px;
 }
  
 ::-webkit-scrollbar-thumb {
-    background-color: #076392;
+	background-color: #076392;
     border-radius: 3px;
 }
 
@@ -248,3 +248,106 @@ header.landing a{
     letter-spacing: 1px;
     word-spacing: 1.25px;
 }
+
+.ob{
+    position:relative;
+    box-shadow: 0 0 15px black;
+    margin:0 auto;
+}
+
+
+.col.s4,.col.s8,.col.s1{
+    padding:20px;
+}
+h5{
+    color:#076392;
+}
+
+/*tokens for skills,interests etc */
+
+
+
+.tknz-token { /* An individual token */
+    background: #076392;
+    color:white;
+    padding: 2px 2px 2px 5px; 
+    margin: 2px; 
+    float: left;
+    border-radius: 2px;
+    max-width: 340px;
+    cursor: pointer;
+}
+
+.tknz-token-label { /* Token's label */
+   
+   
+}
+
+.tknz-token-x { /* Delete button for token */
+    color: rgba(255,255,255, 0.5);
+    padding-left: 7px;
+    position: relative;
+    top: 1px;
+}
+.tknz-token-x:hover {
+    text-shadow: 0px 0px 3px #eee;
+    color: #fff;
+}
+
+.tknz-suggest { /* Autosuggest modal */
+    position: absolute;
+    top: 27px;
+    left: 5px;
+    background-color: #fff;
+    box-shadow: 1px 1px 3px rgba(120,120,120, 0.3);
+}
+
+.tknz-suggest ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+}
+
+.tknz-suggest-li {
+   color: #000;
+   padding: 0px 5px;
+}
+
+.tknz-suggest-li:nth-child(2n) {
+    background-color: #f0f0f0;
+}
+
+.tknz-suggest-li.tknz-sel {
+    color: #fff;
+    background-color: #5c7db7;
+}
+
+/** MEDIA **/
+
+@media screen and (max-width: 480px) {
+    .tknz-input {
+        width: 90%;
+    }
+}
+.e{
+  display:none;  
+}
+.obj:hover > .e{
+    display:inline;
+}
+.tabs .tab a{
+    color:#076392;
+}
+
+
+.tabs .tab a:hover {
+    color: #333;
+}
+
+.tabs .indicator {
+  
+    background-color: #333;
+    
+}
+

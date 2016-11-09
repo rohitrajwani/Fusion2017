@@ -230,12 +230,10 @@
                       <div class="col s12">
                       {{ $int->location }}
                       </div>
-                        <div class="col s12">
-                      {{ $int->start_date }}
+                        <div class="col s12"> 
+                      {{ $int->start_date }} to {{ $int->end_date }}
                       </div>
-                      <div class="col s12">
-                      {{ $int->end_date }}
-                      </div>
+                      
                        <div class="col s12">
                      <p>{{ $int->description }}</p>
                       </div>
@@ -259,11 +257,9 @@
                       {{ $train->location }}
                       </div>
                         <div class="col s12">
-                      {{ $train->start_date }}
+                      {{ $train->start_date }} to {{ $train->end_date }}
                       </div>
-                      <div class="col s12">
-                      {{ $train->end_date }}
-                      </div>
+                     
                        <div class="col s12">
                            <p>{{ $train->description }}</p>
                       </div>

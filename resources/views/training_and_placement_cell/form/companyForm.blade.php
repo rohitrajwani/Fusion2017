@@ -85,10 +85,7 @@
                               </div>
                                       
             
-                    
-                
-                          
-                 <div class="col s12" style="padding-top:30px;">
+                <div class="col s12">
                            Salary Offered
                         </div>
                    <div class="input-field col s12">
@@ -109,6 +106,41 @@
                                           'class'=>'dat',
                                             'placeholder'=>'Arrival date...')) !!}
                               </div>
+
+
+                <div class="col s12">Rounds*</div>
+                    <!-- <div class="collapsible-body container"> -->
+                        <div class="row">
+                            <div class="input-field col m10">
+                               {!! Form::text('round1', null, 
+                                  array('id' => 'round', 
+                                        'class'=>'validate', 'placeholder'=>'Name of Round')) !!}
+
+                              
+                            </div>
+                        </div>
+
+                        <div id="roundsClone">
+                        <div style="display: none;">
+                        
+                          {!! Form::text('dummy', 1, 
+                              array('id' => 'dummy', 
+                                    'class'=>'validate')) !!} 
+                                  </div>
+                          <div class="row interests" style="display: none;">
+                            <div class="input-field col m10">
+                              {!! Form::text('', null, 
+                                    array('id' => 'round', 
+                                          'class'=>'validate', 'placeholder'=>'Name of Round
+
+                            </div>
+                            <a class="waves-effect btn" id="removeInterest">Remove</a> 
+                          </div>
+                          
+                         
+                        </div>
+                        <a class="waves-effect btn add_btn" id="addInterest">Add</a>
+                    </div>
                 
                <a>
                   {!! Form::submit('Submit', 

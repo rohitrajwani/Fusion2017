@@ -7,7 +7,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="/css/materialize.min.css">
         <link rel="stylesheet" href="/css/fusion_style.css">
-        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/training_and_placement_cell_style.css">
 
     </head>
 

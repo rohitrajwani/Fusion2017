@@ -30,8 +30,7 @@ class CompanyProfileController extends Controller
     }
 
     public function store(Request5 $request) {
-        
-    	if($request::input('branch') == $request::input('eligibility')) {
+        if($request::input('branch') == $request::input('eligibility')) {
     		CompanyStudent::create([
 				'company_id' => $request::input('company_id'),
 				'student_id' => $request::input('student_id')

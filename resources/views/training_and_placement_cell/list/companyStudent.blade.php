@@ -63,10 +63,10 @@
 						                
 				                	</div>
 		                          <div class="col s6 offset-s1">
-		                          	<input name="group{{$stud->student_id}}" type="radio" id="test1{{$stud->student_id}}" value="Selected" />
+		                          	<input name="group{{$stud->student_id}}" type="radio" id="test1{{$stud->student_id}}" value="Selected" required="required" />
 		                            <label for="test1{{$stud->student_id}}">Selected</label>
                 		           	
-                		           	<input name="group{{$stud->student_id}}" type="radio" id="test2{{$stud->student_id}}" value="Not Selected" />
+                		           	<input name="group{{$stud->student_id}}" type="radio" id="test2{{$stud->student_id}}" value="Not Selected"  required="required"/>
 	                	            <label for="test2{{$stud->student_id}}">Not Selected</label>
 		                          </div>
 		                       	</div>

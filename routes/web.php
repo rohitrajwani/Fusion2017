@@ -59,7 +59,7 @@ Route::get('/training_and_placement_cell/tpo/profile/student/{student_id}', 'Tra
 
 Route::get('/training_and_placement_cell/tpo/studentList1', 'Training_and_Placement_Cell\StudentListController@show');
 
-Route::post('/training_and_placement_cell/studentList', ['as' => 'studentList_store', 'uses' => 'Training_and_Placement_Cell\StudentListController@store']);
+Route::post('/training_and_placement_cell/tpo/studentList1', ['as' => 'studentList_store', 'uses' => 'Training_and_Placement_Cell\StudentListController@store']);
 
 Route::post('/training_and_placement_cell/companyStudent', ['as' => 'companyStudent_store', 'uses' => 'Training_and_Placement_Cell\CompanyStudentController@store']);
 
