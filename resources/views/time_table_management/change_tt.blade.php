@@ -21,84 +21,53 @@
 	$tt = array();
 
 	for($i=0,$l=0,$m=1,$n=2; $i<count($days); $i++,$l+=3,$m+=3,$n+=3)
-		for($j=0; $j<count($times)+1; $j++){
-			$tt[$l][$j] = '';
-			$tt[$n][$j] = '';
-			$tt[$m][$j] = '';
-		}
+                for($j=0; $j<count($times)+1; $j++){
+                        $tt[$l][$j] = '';
+                        $tt[$n][$j] = '';
+                        $tt[$m][$j] = '';
+                }
 
-	for($i=0,$l=0,$m=1,$n=2; $i<count($days); $i++,$l+=3,$m+=3,$n+=3){
-		$tt[$l][0] = '';
-		$tt[$m][0] = '';
-		$tt[$n][0] = '';
-		for($k=1; $k<count($times)+1; $k++){
-			for($j=0; $j<count($crslots); $j++){
-				if(strcmp($crslots[$j]->day, $days[$i])==0 && strcmp($crslots[$j]->from_time,$times[$k-1])==0){
-					if (!empty($tt[$m][$k]) || (!empty($tt[$m][0]) && $crslots[$j]->room_id != $tt[$m][0] && $crslots[$j]->room_id != $tt[$l][0])){
-						
-						if(empty($tt[$n][0]))
-							$tt[$n][0] = $crslots[$j]->room_id;
+	for($i=0; $i<15; $i+=3){
+		$tt[$i][0] = $rooms[0]->room_id;
+		$tt[$i+1][0] = $rooms[1]->room_id;
 
-						$tt[$n][$k] = $crslots[$j]->course_id;
+		if(count($rooms) > 2)
+			$tt[$i+2][0] = $rooms[2]->room_id;
+	}
+	
+	for($i=0, $a=0, $b=1, $c=2; $i<count($days); $i++, $a+=3, $b+=3, $c+=3){
+		for($k=0; $k<count($crslots); $k++){
+			$ftime = $crslots[$k]->from_time;
+			$to_time = $crslots[$k]->to_time;
+			$hrs = floor((strtotime($crslots[$k]->to_time)-strtotime($crslots[$k]->from_time))/3600) + 1;
 
-						if($tt[$n][$k][strlen($tt[$n][$k])-1] == 'L'){
-							$hrs = floor((strtotime($crslots[$j]->to_time)-strtotime($crslots[$j]->from_time))/3600) + 1;
-							$tt[$n][$k] = $tt[$n][$k].$hrs;
-						}
-
-						if(empty($tt[$m][$k])){
-							$tt[$m][$k] = '';
-						}
-						if(empty($tt[$l][$k])){
-							$tt[$l][$k] = '';
-						}
+			if($crslots[$k]->day == $days[$i]){
+				if($crslots[$k]->room_id == $tt[$a][0]){
+					$j = array_search($ftime, $times);
+					if($j>=0){
+						$tt[$a][$j+1] = $crslots[$k]->course_id;
+						if($hrs>1)
+							$tt[$a][$j+1]= $tt[$a][$j+1].$hrs;
 					}
-					else if (!empty($tt[$l][$k]) || (!empty($tt[$l][0]) && $crslots[$j]->room_id != $tt[$l][0])){
-						
-						if(empty($tt[$m][0]))
-							$tt[$m][0] = $crslots[$j]->room_id;
-						
-						$tt[$m][$k] = $crslots[$j]->course_id;
-
-						if($tt[$m][$k][strlen($tt[$m][$k])-1] == 'L'){
-							$hrs = floor((strtotime($crslots[$j]->to_time)-strtotime($crslots[$j]->from_time))/3600) + 1;
-							$tt[$m][$k] = $tt[$m][$k].$hrs;
-						}
-
-						if(empty($tt[$l][$k]))
-							$tt[$l][$k] = '';
-						if(empty($tt[$n][$k]))
-							$tt[$n][$k] = '';
-					}
-					else{
-						if(empty($tt[$l][0]))
-							$tt[$l][0] = $crslots[$j]->room_id;
-						$tt[$l][$k] = $crslots[$j]->course_id;
-
-
-						if($tt[$l][$k][strlen($tt[$l][$k])-1] == 'L'){
-							$hrs = floor((strtotime($crslots[$j]->to_time)-strtotime($crslots[$j]->from_time))/3600) + 1;
-							$tt[$l][$k] = $tt[$l][$k].$hrs;
-						}
-
-						if(empty($tt[$m][$k]))
-							$tt[$m][$k] = '';
-						if(empty($tt[$n][$k]))
-							$tt[$n][$k] = '';
-					}
-					
 				}
-				else{
-					if(empty($tt[$l][$k]))
-						$tt[$l][$k] = '';
-					if(empty($tt[$m][$k]))
-						$tt[$m][$k] = '';
-					if(empty($tt[$n][$k]))
-						$tt[$n][$k] = '';
+				else if($crslots[$k]->room_id == $tt[$b][0]){
+					$j = array_search($ftime, $times);
+					if($j>=0){
+						$tt[$b][$j+1] = $crslots[$k]->course_id;
+						if($hrs>1)
+							$tt[$b][$j+1]= $tt[$b][$j+1].$hrs;
+					}
+				}
+				else if($crslots[$k]->room_id == $tt[$c][0]){
+					$j = array_search($ftime, $times);
+					if($j>=0){
+						$tt[$c][$j+1] = $crslots[$k]->course_id;
+						if($hrs>1)
+							$tt[$c][$j+1]= $tt[$c][$j+1].$hrs;
+					}
 				}
 			}
 		}
 	}
-
 	echo json_encode($tt);
 ?>

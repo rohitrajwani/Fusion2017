@@ -189,6 +189,7 @@
 				type: "get",
 				success: function(data) {
 					var d = $.parseJSON(data);
+					
 					var c=1;
 					$('#tt').html('<thead>');	
 					for(var i=0; i<tslots.length; i++)

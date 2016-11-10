@@ -23,9 +23,11 @@ class AjaxController extends Controller {
 			$courses = DB::table('Faculty_Takes_Course')->get()->where('faculty_id', $_GET['fcode']);
 		}
 
+		$rooms = DB::table('Classroom_Slots')->select('room_id')->distinct()->get();
+
 		$slots = DB::table('Classroom_Slots')->orderByRaw(DB::raw('FIELD (day, "Monday", "Tuesday", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY")'))->orderBy('from_time')->get();
 
-		return view('time_table_management/change_tt', compact('courses'), compact('slots'));
+		return view('time_table_management/change_tt', compact('courses','slots','rooms'));
 	}
 
 	public function allot_room(){
