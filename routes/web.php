@@ -21,7 +21,7 @@ Route::post('/signup','dashboardController@signup');
 
 Route::group(['middleware' => ['auth']], function () {
     
-			Route::get('/main','counsellingcontroller@main');
+			Route::get('/main','counselling_cell/counsellingcontroller@main');
 
 			Route::get('/logout','dashboardController@logout');
 
@@ -49,36 +49,36 @@ Route::group(['middleware' => ['auth']], function () {
 			return view('/cou/Asst_Coord_form');
 				});
 
-			Route::post('studymaterial', 'counsellingcontroller@studymaterial');//post study material 
+			Route::post('studymaterial', 'counselling_cell/counsellingcontroller@studymaterial');//post study material 
 			
-			Route::post('form_asstcoor', 'counsellingcontroller@asst_coor_form'); //assistant_coordinator form
+			Route::post('form_asstcoor', 'counselling_cell/counsellingcontroller@asst_coor_form'); //assistant_coordinator form
 			
-			Route::post('form_stu_guide', 'counsellingcontroller@stu_guide_form'); //assistant_coordinator form
+			Route::post('form_stu_guide', 'counselling_cell/counsellingcontroller@stu_guide_form'); //assistant_coordinator form
 			
-			Route::get('/study_material', 'counsellingcontroller@studyymaterial');//study portal view
+			Route::get('/study_material', 'counselling_cell/counsellingcontroller@studyymaterial');//study portal view
 			// problem portal
 
-			Route::get('/problemportal','counsellingcontroller@problemmportal');//problem portal view
+			Route::get('/problemportal','counselling_cell/counsellingcontroller@problemmportal');//problem portal view
 			
-			Route::post('{cc}/answer', 'counsellingcontroller@answers'); //assistant_coordinator form
+			Route::post('{cc}/answer', 'counselling_cell/counsellingcontroller@answers'); //assistant_coordinator form
 			
-			Route::post('question', 'counsellingcontroller@problem'); //assistant_coordinator form
+			Route::post('question', 'counselling_cell/counsellingcontroller@problem'); //assistant_coordinator form
 			
-			Route::get('/student_guides_list','counsellingcontroller@stuguide');//view student guide list
+			Route::get('/student_guides_list','counselling_cell/counsellingcontroller@stuguide');//view student guide list
 			
-			Route::get('/assistant_coordinator_list','counsellingcontroller@assistcoord');//assistant_coordinator list
+			Route::get('/assistant_coordinator_list','counselling_cell/counsellingcontroller@assistcoord');//assistant_coordinator list
 			
-			Route::get('/student_guides_application','counsellingcontroller@stuguideapp');//application of assistant_coordinator list
+			Route::get('/student_guides_application','counselling_cell/counsellingcontroller@stuguideapp');//application of assistant_coordinator list
 			
-			Route::get('/assistant_coordinator_application','counsellingcontroller@assistcoordapp');//application of stu_guide_form
+			Route::get('/assistant_coordinator_application','counselling_cell/counsellingcontroller@assistcoordapp');//application of stu_guide_form
 			
-			Route::get('/privateportal','counsellingcontroller@privateportal');//private portal view
+			Route::get('/privateportal','counselling_cell/counsellingcontroller@privateportal');//private portal view
 
-			Route::post('privatequestion', 'counsellingcontroller@privatequestion'); //private problem post
+			Route::post('privatequestion', 'counselling_cell/counsellingcontroller@privatequestion'); //private problem post
 			
-			Route::post('{cc}/privateanswer', 'counsellingcontroller@privateanswer'); //private answer post
+			Route::post('{cc}/privateanswer', 'counselling_cell/counsellingcontroller@privateanswer'); //private answer post
 			
-			Route::get('/faculty_access','counsellingcontroller@adminportal');//faculty admin access portal
+			Route::get('/faculty_access','counselling_cell/counsellingcontroller@adminportal');//faculty admin access portal
 			
 			
 			// application page where links to the forms of student guide and assistant coordinators are present
