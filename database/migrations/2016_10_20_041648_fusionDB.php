@@ -3,7 +3,6 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 class FusionDB extends Migration
-
       {
       /**
        * Run the migrations.
@@ -228,6 +227,7 @@ class FusionDB extends Migration
                   $table->integer('cc_no');
 	          $table->string('user_input',1000);
 	          $table->string('cc_worker_input',1000);
+		  $table->string('cc_worker_id', 100)->nullable();
                   $table->timestamps();
                   });
             Schema::create('Booking', function (Blueprint $table)
