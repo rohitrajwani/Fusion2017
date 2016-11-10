@@ -226,6 +226,8 @@ class FusionDB extends Migration
                   $table->string('pc_no', 100);
                   $table->integer('status');
                   $table->integer('cc_no');
+	          $table->string('user_input',1000);
+	          $table->string('cc_worker_input',1000);
                   $table->timestamps();
                   });
             Schema::create('Booking', function (Blueprint $table)
