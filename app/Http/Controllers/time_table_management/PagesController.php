@@ -151,48 +151,49 @@ class PagesController extends BaseController
 
         $user_id = Auth::user()->username;
 
-	$app = '';
-	$rej = '';
-	$status = '-1';
+    	$app = '';
+    	$rej = '';
+    	$status = '-1';
 
-	if(!empty($_GET['app']))
-		$app = $_GET['app'];
+    	if(!empty($_GET['app']))
+    		$app = $_GET['app'];
 
-	if(!empty($_GET['rej']))
-		$rej = $_GET['rej'];
+    	if(!empty($_GET['rej']))
+    		$rej = $_GET['rej'];
 
-	if($app!='' && $rej=='')
-		$status = '1';
+    	if($app!='' && $rej=='')
+    		$status = '1';
 
-	if($app=='' && $rej!='')
-		$status = '2';
+    	if($app=='' && $rej!='')
+    		$status = '2';
 
-	$requests = '';
-	if($status=='-1')
-	    	$requests = DB::table('Room_Booking_Request')->where('requester_id',$user_id)->get();
+    	$requests = '';
+    	if($status=='-1')
+    	    	$requests = DB::table('Room_Booking_Request')->where('requester_id',$user_id)->get();
 
-	else{
-		$requests = DB::table('Room_Booking_Request')->where('requester_id', $user_id)->where('status', $status)->get();
-	}
+    	else{
+    		$requests = DB::table('Room_Booking_Request')->where('requester_id', $user_id)->where('status', $status)->get();
+    	}
 
-	foreach($requests as $request){
-		$stat = $request->status;
-		$room_id = $request->room_id;
+    	foreach($requests as $request){
+    		$stat = $request->status;
+    		$room_id = $request->room_id;
 
-		if($request->status == '0'){
-			$request->status = "Not Approved";
-			$request->room_id = 'N/A';
-		}
-		else if($request->status == '1')
-			$request->status = "Approved";
+    		if($request->status == '0'){
+    			$request->status = "Yet To Decide";
+    			$request->room_id = 'N/A';
+    		}
+    		else if($request->status == '1')
+    			$request->status = "Approved";
 
-		else if($request->status == '2'){
-			$request->status = "Rejected";
-			$request->room_id = 'N/A';
-		}
-	}
-	
-    	return view('time_table_management/viewmyrequests',compact('requests'));
+    		else if($request->status == '2'){
+    			$request->status = "Rejected";
+    			$request->room_id = 'N/A';
+    		}
+    	}
+        
+	    $fac_mode = 1;
+        return view('time_table_management/viewallrequests',compact('requests', 'fac_mode'));
     }
     
     public function viewallrequests(){
@@ -200,11 +201,12 @@ class PagesController extends BaseController
             return Redirect::to('time_table_management');
         }
 
-	DB::table('Room_Booking_Request')->where('date','<', date('Y-m-d'))->delete();
+	    DB::table('Room_Booking_Request')->where('date','<', date('Y-m-d'))->delete();
 
     	$requests = DB::table('Room_Booking_Request')->where('status', 0)->get();
 
-    	return view('time_table_management/viewallrequests',compact('requests'));
+        $fac_mode = 0;
+    	return view('time_table_management/viewallrequests',compact('requests', 'fac_mode'));
     }
 
     public function creatett(){
