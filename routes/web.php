@@ -28,9 +28,8 @@ Route::group(['middleware' => ['auth']], function () {
     //Function to attach role
     Route::get('/attachRole/{role}','stock@attachRole');
 
-    
-
 });
+
 Route::get('/stockhome', [
     'uses'=>'stock@stockhome',
 ]);

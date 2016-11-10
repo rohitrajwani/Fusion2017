@@ -1,5 +1,11 @@
 <?php
+
 use Illuminate\Database\Seeder;
+
+
+use Illuminate\Database\Seeder;
+
+
 class RolesTableSeeder extends Seeder
 {
     /**
@@ -169,5 +175,14 @@ class RolesTableSeeder extends Seeder
             'name' => 'spacscom_iiitdmj_prof',
             'display_name' => 'Spacscom IIITDMJ Prof'
         ]);
+<<<<<<< HEAD
     }
 }
+=======
+         DB::table('roles')->insert([
+            'name' => 'cc_admin',
+            'display_name' => 'CC Admin'
+        ]);
+    }
+}
+>>>>>>> dev
