@@ -14,15 +14,17 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Redirect;
 
+use Auth;
+
 class CreateController extends Controller
 {
     
 public function insert(Request $request)
 {
 
-$users = Cc_complaint::where('user_id', session('user_id'));
+$users = Cc_complaint::where('user_id', Auth::user()->username);
 //dd('$users');
-	$cc_complaint=new Cc_complaint;
+	$cc_complaint = new Cc_complaint;
 
 	
 		$cc_complaint->category= $request->input('category');
@@ -31,6 +33,9 @@ $users = Cc_complaint::where('user_id', session('user_id'));
 		$cc_complaint->pc_no= $request->input('pc_no');
 		$cc_complaint->user_id= $request->input('user_id');
 		$cc_complaint->user_type= $request->input('user_type');
+		$cc_complaint->user_input= 'default';
+		$cc_complaint->cc_worker_input= 'default';
+		$cc_complaint->cc_worker_id= 'default';
 		$cc_complaint->status= $request->input('status');
 
 		if($cc_complaint->save())

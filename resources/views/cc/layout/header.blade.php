@@ -153,8 +153,8 @@
           <!-- <label for="pc_no">Pc Number</label>-->
           </div>
           </div>     
-          <input type="hidden" name="user_id" value="{{ session('user_id') }}">
-          <input type="hidden" name="user_type" value="{{ session('user_type') }}">
+          <input type="hidden" name="user_id" value="{{ Auth::user()->username }}">
+          <input type="hidden" name="user_type" value="{{ Auth::user()->user_type }}">
           <input type="hidden" name="status" value="0">
           <div class="row">
           <div class="col s12 l5 offset-l5">       
@@ -354,18 +354,7 @@
 
       </div>
 	<hr>
-        <footer class="page-footer #1565c0 blue darken-3" id="footer_div">
-           
-                
-              
-          
-            <div class="footer-copyright #1565c0 blue darken-3 right-align" id="footer_copy">
-                <div id="foot_cont" class="left #000000 black-text" >
-                    
-                    © 2016 iiitdmj.com. All rights reserved.
-                </div>
-            </div>
-        </footer>
+        
 <!--</div>
 </div>-->
         @push('js')

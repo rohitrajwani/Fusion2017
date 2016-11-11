@@ -1,4 +1,4 @@
-s@extends('cc.layout.header')
+@extends('cc.layout.header')
 @section('index_content')
 	
 

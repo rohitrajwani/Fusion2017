@@ -46,9 +46,3 @@ Route::post('cc-complaint/updateAll', 'UpdateAllController@updateAll');
 //Route::post('/updateStudent', 'UpdateStudentController@updateStudent');
 
 Route::post('cc-complaint/sort', 'SortController@sort');
-
-Route::put('portal/login', 'Auth\AuthController@createUser');
-
-Route::get('auth/google', 'Auth\AuthController@redirectToProvider');
-
-Route::get('auth/google/callback', 'Auth\AuthController@handleProviderCallback'); 

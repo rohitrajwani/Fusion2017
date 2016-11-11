@@ -446,7 +446,7 @@ ul #nav_tab a:hover{
 
 .tabs .tab a:hover{
     color: #2E3336 ;
-    background-color: #c8e6c9;
+    background-color: #fff;
     transition: 300ms;
 }
 
