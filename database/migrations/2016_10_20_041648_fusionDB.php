@@ -1881,9 +1881,9 @@ Schema::create('Assistant_Coordinator', function (Blueprint $table) {
 	   Schema::create('Event_teams', function (Blueprint $table)
 	   {
 		  $table->integer('event_id')->unsigned();
-		  $table->string('team_name',100);
-		  $table->string('captain_id');
-		  $table->string('student_id');
+		  $table->string('team_name',50);
+		  $table->string('captain_id',20);
+		  $table->string('student_id',20);
 		  $table->primary(['event_id', 'student_id','captain_id']);
 		  $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
 		  $table->foreign('captain_id')->references('captain_id')->on('Competition_Registrations')->onDelete('cascade')->onUpdate('cascade');
