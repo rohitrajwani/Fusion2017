@@ -17,6 +17,8 @@ use Auth;
 
 class stock extends Controller{
 
+	
+
 	public function stockhome(){
 		
 		$un = Auth::user()->username;
@@ -133,61 +135,7 @@ $un = Auth::user()->username;
 		return Redirect::to('/stockhome');
 	}
 
-	public function login_check(){
-
-		$userdata = array(
-                'username' => Input::get('login_username'),
-                'password' => Input::get('login_password')
-        );
-        // attempt to do the login
-        if (Auth::attempt($userdata)) {
-
-            $user = \App\User::where('username','=',$userdata['username'])->get()->first();
-            Auth::login($user);
-
-            return Redirect::to('/stockhome');
-
-        } else {        
-            return Redirect::to('/')->with('alert','Login Error!! Please check your Credentials');
-
-        }
-	}
-
-	public function signup(Request $data){
-
-		$user = new \App\User;
-
-		$user->username = $data->username;
-		$user->user_type = $data->type;
-		$user->password = \Hash::make($data->password);
-
-		$user->save();
-
-		return back()->with('alert','Signup Successful, login to continue!!');
-
-	}
-
-	public function dashboard(){
-		return view('dashboard');
-	}
-
-	public function logout(){
-		Auth::logout();
-
-		return Redirect::to('/');
-	}
-
-
-	public function attachRole($role){
-
-		$user = \App\users::where('username',Auth::user()->username)->first();
-
-        $admin = \App\Role::where('name','=',$role)->get()->first();
-
-		$user->attachRole($admin);
-
-        return back()->with('role-attached','Role Successfully attached to '.Auth::user()->username);
-	}
+	
 
 	 
 
