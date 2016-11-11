@@ -8,12 +8,12 @@
    
         
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-         
+         <link href="css/stylemain.css" rel="stylesheet">
         <link href="css/fusion_style.css" type="text/css" rel="stylesheet">
         
         <link href="css/style.css" type="text/css" rel="stylesheet">
 
-        <link href="css/stylemain.css" rel="stylesheet">
+        
         
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
