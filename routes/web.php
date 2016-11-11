@@ -28,13 +28,13 @@ Route::group(['middleware' => ['auth']], function () {
     //Function to attach role
 	Route::get('/attachRole/{role}','dashboardController@attachRole');
 
-	Route::get('/hostelComplaints','hostel_complaints/ComplaintsController@display');
+	Route::get('/hostelComplaints','ComplaintsController@display');
 
-	Route::post('/hostelComplaints','hostel_complaints/ComplaintsController@store');
+	Route::post('/hostelComplaints','ComplaintsController@store');
 
-	Route::post('/hostelComplaints/{complaint}','hostel_complaints/ComplaintsController@update');	  
+	Route::post('/hostelComplaints/{complaint}','ComplaintsController@update');	  
 
-	Route::post('/Complaints','hostel_complaints/ComplaintsController@show');
+	Route::post('/Complaints','ComplaintsController@show');
 
 });
 

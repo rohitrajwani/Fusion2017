@@ -152,9 +152,9 @@
             </tr>
           </thead>
           <tbody>
-
+            
             @foreach($solvedcomplaints as $complaint)
-
+            
             <tr>      
               <col width="80px" />
               <td>{{$complaint->complaint_id}}</td>

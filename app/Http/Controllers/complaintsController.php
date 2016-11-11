@@ -35,6 +35,8 @@ class complaintsController extends Controller
 			$cnt=DB::table('staff')->where('post','caretaker')->count();
 			$caretaker=DB::table('staff')->where('post','caretaker')->pluck('name');
 			$caretakeremail=DB::table('staff')->where('post','caretaker')->pluck('email');
+
+			
 			// $roleidw=Role::where('description','=',$hallno)->where('display_name','=','Warden')->value('id');
 			// $facid=DB::table('role_user')->where('role_id',$roleidw)->value('user_id');
 			// $facname=DB::table('faculty')->where('faculty_id',$facid)->value('name');
