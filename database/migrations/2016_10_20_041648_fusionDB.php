@@ -1847,7 +1847,69 @@ Schema::create('Assistant_Coordinator', function (Blueprint $table) {
 	     $table->foreign('student_id')->references('student_id')->on('All_Student')->onDelete('cascade')->onUpdate('cascade');
              $table->timestamps();
         });
+	Schema::create('Competitions', function (Blueprint $table)
+			   {
+				  $table->increments('event_id');
+				  $table->string('event_name',100);
+				  $table->string('club_name',100);
+				  $table->integer('student_max_limit')->default(1);
+				  $table->integer('student_min_limit')->default(1);
+				  $table->timestamp('start_timestamp');
+				  $table->timestamp('end_timestamp');
+				  $table->string('venue',200);
+				  $table->string('instruction',1000);
+				  $table->string('reg_fee',40)->nullable();
+				  $table->string('description',500);
+				  $table->date('last_date');
+				  $table->foreign('club_name')->references('club_name')->on('Gymkhana_Club_Coordinator')->onDelete('cascade')->onUpdate('cascade');
+				  $table->timestamps();
+			   });
 
+	   Schema::create('Competition_Registrations', function (Blueprint $table)
+	   {
+		  $table->integer('event_id')->unsigned();
+		  $table->string('captain_id');
+		  $table->integer('fees_paid');
+		  $table->primary(['event_id', 'captain_id']);
+		  $table->foreign('captain_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
+		  $table->foreign('event_id')->references('event_id')->on('Competitions')->onDelete('cascade')->onUpdate('cascade');
+		  
+
+		  $table->timestamps();
+	   });
+
+	   Schema::create('Event_teams', function (Blueprint $table)
+	   {
+		  $table->integer('event_id')->unsigned();
+		  $table->string('team_name',100);
+		  $table->string('captain_id');
+		  $table->string('student_id');
+		  $table->primary(['event_id', 'student_id','captain_id']);
+		  $table->foreign('student_id')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');
+		  $table->foreign('captain_id')->references('captain_id')->on('Competition_Registrations')->onDelete('cascade')->onUpdate('cascade');
+		  $table->foreign('event_id')->references('event_id')->on('Competitions')->onDelete('cascade')->onUpdate('cascade');
+		  
+		  $table->timestamps();
+	   });
+
+	   Schema::create('Other_venues', function (Blueprint $table)
+	   {
+		  $table->string('venue_name');
+		  $table->primary('venue_name');
+		  $table->timestamps();
+		   });
+
+	   Schema::create('Other_venues_slots', function (Blueprint $table)
+	   {
+		  $table->increments('slot_id');
+		  $table->string('venue_name');
+		  $table->date('comp_date')->nullable();
+		  $table->time('start_time')->nullable();
+		  $table->time('end_time')->nullable();
+		  // $table->primary(['venue_name','comp_date','start_time','end_time']);
+		  $table->foreign('venue_name')->references('venue_name')->on('Other_venues')->onDelete('cascade')->onUpdate('cascade');
+		  $table->timestamps();
+		   });
             }
       /**
        * Reverse the
@@ -2030,5 +2092,10 @@ Schema::create('Assistant_Coordinator', function (Blueprint $table) {
 	    Schema::drop('pbi_status');
 	    Schema::drop('pbi_topics');
 	    Schema::drop('student_applies_pbi');
+	      Schema::drop('Other_venues_slots');
+		Schema::drop('Other_venues');
+		Schema::drop('Event_teams');
+		Schema::drop('Competition_Registrations');
+		Schema::drop('Competitions');
             }
       }
