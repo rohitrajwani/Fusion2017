@@ -58,7 +58,7 @@ h1.heading{
     height: 48px;
 }
 
-.nav-wrapper{
+#mynav .nav-wrapper{
     background: #076392;
     
     border-bottom: 5px solid #333333;
@@ -71,18 +71,19 @@ h1.heading{
     text-align: center;
 }
 
-.hide-on-med-and-down a{
+#mynav .hide-on-med-and-down a{
     margin: auto;
     font-size: 1rem;
     line-height: 3;
     text-align: center;
     box-shadow:  0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    transition: 300ms;
 }
 
-.hide-on-med-and-down a:hover{
+#mynav .hide-on-med-and-down a:hover{
     background: #333333;
     color: white;
-    transition: 300ms;
+    
 }
 
 @media only screen and (min-width : 993px) {
