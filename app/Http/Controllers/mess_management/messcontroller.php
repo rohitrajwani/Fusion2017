@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use Redirect;
 use DB;
 use Auth;
 
@@ -18,33 +19,29 @@ class messcontroller extends Controller
 	
 	
 	
-	/*public function index(){
-        if(Auth::user()->hasRole('admin')){
-            return view('/mess_management/Admin');
-        }
-        else if(Auth::user()->user_type == 'faculty'){
-            return view('/mess_management/Faculty');
-        }
-		else if(Auth::user()->user_type == 'student'){
-			$s=\DB::table('mess_order')->select('student_id')->get();
-			@foreach($s)
-			   if($user_id==$s){
-				   $count=1;
-			   }
-			  @endforeach
-			  if($count==1)
-				  return view('/mess_management/Student');
-			  else
-				  return view('/mess_management/Register');  
-           
-        }
-		if(Auth::user()->hasRole('committee')){
-            return view('/mess_management/Committee');
-        }
-        else{
-            return Redirect::to('/mess_management/Faculty');
-        }
-    }*/
+	public function index(){
+        if(Auth::user()->user_type=='student')
+		{  
+		       
+	       $c = \DB::table('mess_registration')->where('student_id',Auth::user()->username)->pluck('mess_id');
+		   
+		  // return $c;
+		   if(sizeof($c)!=0){
+	       if($c[0] =="2"|| $c[0] == "1")
+			   
+		   return Redirect::to('mess_management/Student')->with('alert','Login Successful for '.Auth::user());}
+		   else if(sizeof($c)==0)
+			 return Redirect::to('mess_management/Register')->with('alert','Login Successful for '.Auth::user());
+		}
+	    else if(Auth::user()->user_type=='admin')
+			//return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
+			return Redirect::to('mess_management/Admin')->with('alert','Login Successful for '.Auth::user());
+			else if(Auth::user()->user_type=='committee')
+			//return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
+			return Redirect::to('mess_management/Committee')->with('alert','Login Successful for '.Auth::user());
+		else
+			return Redirect::to('mess_management/Faculty')->with('alert','Login Successful for '.Auth::user());
+    }
 	
 	public function giveorder(){
 		return view('/mess_management/COrder');
