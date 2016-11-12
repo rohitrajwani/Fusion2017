@@ -2,6 +2,9 @@
 @section('title','Primary Medical Care - PDPM IIITDM Jabalpur')
 
 @section('content')
+  <?php 
+    use Html;
+  ?>
   <div class="mar">
   <div id="id" class="section ">
     <h2 class="primary-text center-align">About Us</h2>
