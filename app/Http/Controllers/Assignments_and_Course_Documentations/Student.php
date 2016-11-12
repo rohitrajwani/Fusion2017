@@ -8,16 +8,18 @@ use App\Assessment;
 use Request as Request1;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 use DB;
 use Auth;
 
 class Student extends Controller
 {
 	public function check(){
+		
 		if(Auth::user()->user_type == 'student')
-                	return view('/Assignments_and_Course_Documentations/student');
-        	else if (Auth::user()->user_type == 'faculty')
-	                return view('/Assignments_and_Course_Documentations/faculty');
+                	return Redirect::to('/Assignments_and_Course_Documentation/student');
+        else if(Auth::user()->user_type == 'faculty')
+	                return Redirect::to('/Assignments_and_Course_Documentation/faculty');
 	}
 
 	public function home() {
