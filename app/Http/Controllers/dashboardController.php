@@ -32,14 +32,7 @@ class dashboardController extends Controller
             $user = \App\User::where('username','=',$userdata['username'])->get()->first();
             Auth::login($user);
 	
-			if(Auth::user()->user_type=='student')
-				return Redirect::to('/CAMS/student')->with('alert','Login Successful for '.Auth::user()->username);
-			if(Auth::user()->user_type=='faculty')
-				return Redirect::to('/CAMS/faculty')->with('alert','Login Successful for '.Auth::user()->username); 
-			else
-				{
-					return Redirect::to('/')->with('alert','Page not found for user type: '.Auth::user()->user_type);
-				}			
+			return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());			
 
         } else {        
             return Redirect::to('/')->with('alert','Login Error!! Please check your Credentials');

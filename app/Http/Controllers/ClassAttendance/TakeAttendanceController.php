@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ClassAttendance;
 
+use App\Http\Controllers\Controller as Controller1;
 use App\Http\Requests;
 
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ use Carbon\Carbon;
 
 use Auth;
 
-class TakeAttendanceController extends Controller
+class TakeAttendanceController extends Controller1
 {
     public function take_attendance($coursename)
 	{

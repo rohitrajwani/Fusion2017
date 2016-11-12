@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ClassAttendance;
 
+use App\Http\Controllers\Controller as Controller1;
 use DB;
 
 use App\Http\Requests;
@@ -20,7 +21,7 @@ use Carbon\Carbon;
 
 use Auth;
 
-class LeaveFormController extends Controller
+class LeaveFormController extends Controller1
 {
     	
 	public function fill_leaveform(Request $request,$coursename)

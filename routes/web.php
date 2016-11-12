@@ -15,12 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/rt', function () {
-    return back()->with('alert','Signup Successful, login to continue!!');
-});
-
-
-
 Route::post('/login','dashboardController@login_check');
 
 Route::post('/signup','dashboardController@signup');
@@ -34,24 +28,22 @@ Route::group(['middleware' => ['auth']], function () {
     //Function to attach role
     Route::get('/attachRole/{role}','dashboardController@attachRole');
 
-    
+	//Project part Class attendance management system
+	Route::get('/CAMS/', 'ClassAttendance\ClassAttendanceController@index');
+	Route::get('/CAMS/faculty','ClassAttendance\HomePageController@facHome');
+	Route::get('/CAMS/student','ClassAttendance\HomePageController@stuHome');
+	Route::post('/CAMS/choose_date/{coursename}','ClassAttendance\ViewAttendanceController@student_status');	
+	Route::get('/CAMS/faculty/{course}','ClassAttendance\FacultyCoursePageController@view_course');
+	Route::get('/CAMS/student/course/{course_name}','ClassAttendance\StudentCoursePageController@student_course');
+	Route::get('/CAMS/take-attendance/{coursename}','ClassAttendance\TakeAttendanceController@take_attendance');
+	Route::post('/CAMS/store-attendance_offline/{coursename}','ClassAttendance\TakeAttendanceController@store_attendance_offline');
+	Route::post('/CAMS/store-attendance_online/{coursename}','ClassAttendance\TakeAttendanceController@store_attendance_online');
+	Route::post('/CAMS/send-notification/{coursename}','ClassAttendance\SendMessageController@send');
+	Route::get('/CAMS/fill_leave-form/{coursename}','ClassAttendance\LeaveFormController@fill_leaveform');
+	Route::post('/CAMS/leave_form/{coursename}','ClassAttendance\LeaveFormController@store_leaveform');
+	Route::get('/CAMS/take-attendance/online/{coursename}','ClassAttendance\TakeAttendanceController@online_mode');
+	Route::get('/CAMS/take-attendance/offline/{coursename}','ClassAttendance\TakeAttendanceController@offline_mode');
 
 });
-//Project part Class attendance management system
-Route::get('/CAMS/faculty','HomePageController@facHome');
-Route::get('/CAMS/student','HomePageController@stuHome');
-Route::post('/CAMS/choose_date/{coursename}','ViewAttendanceController@student_status');	
-Route::get('/CAMS/faculty/{course}','FacultyCoursePageController@view_course');
-Route::get('/CAMS/student/course/{course_name}','StudentCoursePageController@student_course');
-Route::get('/CAMS/take-attendance/{coursename}','TakeAttendanceController@take_attendance');
-Route::post('/CAMS/store-attendance_offline/{coursename}','TakeAttendanceController@store_attendance_offline');
-Route::post('/CAMS/store-attendance_online/{coursename}','TakeAttendanceController@store_attendance_online');
-Route::post('/CAMS/send-notification/{coursename}','SendMessageController@send');
-Route::get('/CAMS/fill_leave-form/{coursename}','LeaveFormController@fill_leaveform');
-Route::post('/CAMS/leave_form/{coursename}','LeaveFormController@store_leaveform');
-Route::get('/CAMS/take-attendance/online/{coursename}','TakeAttendanceController@online_mode');
-Route::get('/CAMS/take-attendance/offline/{coursename}','TakeAttendanceController@offline_mode');
-
-
 
 
