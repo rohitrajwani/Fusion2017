@@ -128,7 +128,7 @@ class FusionDB extends Migration
                   $table->string('scholarship_id', 100);
                   $table->string('title', 100);
                   $table->string('type', 50);
-                  $table->string('description', 100);
+                  $table->string('description', 1000);
                   $table->date('start_date');
                   $table->date('end_date');
                   $table->primary('scholarship_id');
