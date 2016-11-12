@@ -16,7 +16,7 @@ use App\bookRooms;
 use Auth;
 use Validator;
 
-class PagesController extends Controller
+class VH_PagesController extends Controller
 {
     public function portalCheck(){
         $user = Auth::user();        

@@ -9,7 +9,7 @@ use App\Book;
 use Auth;
 use Validator;
 
-class FormController extends Controller
+class VH_FormController extends Controller
 {
     /**
      * Display a listing of the resource.
