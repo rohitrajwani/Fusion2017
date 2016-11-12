@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/logout','dashboardController@logout');
 
+    Route::get('/bus_management', 'bus_management@index');
+
    Route::get('home','Bus_management\HomeController@home');
 Route::get('schedule','Bus_management\PagesController@schedule');
 Route::post('schedule/achadd', 'Bus_management\PagesController@feed_store');

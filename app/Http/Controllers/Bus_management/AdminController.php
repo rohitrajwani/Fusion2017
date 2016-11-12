@@ -32,7 +32,8 @@ class AdminController extends Controller
 
     public function addsp()
     {
-        return view('pages.addsp');
+        $feed = DB::table('Bus_Feedback')->get();
+        return view('pages.addsp',compact('feed'));
     }
 
     public function delsp()
@@ -47,14 +48,17 @@ class AdminController extends Controller
         DB::table('Bus')->insert(['bus_id'=>$req['bus_id'],'status'=>$req['status'],'capacity'=>$req['capacity'],'ticket_price'=>$req['ticket_price']]);
         DB::table('Bus_Schedule')->insert(['timestamp'=>$req['timing'],'source'=>$req['source'],'destination'=>$req['destination'],'bus_id'=>$req['bus_id']]);
 
-        return view('pages.admin');
+        $feed = DB::table('Bus_Feedback')->get();
+
+        return view('pages.admin',compact('feed'));
     }
 
     public function delete(Request $req)
     {
         DB::table('Bus')->where('bus_id','=',$req['bus_id'])->delete();
         DB::table('Bus_Schedule')->where('bus_id','=',$req['bus_id'])->delete();
-        return view('pages.admin');
+        $feed = DB::table('Bus_Feedback')->get();
+        return view('pages.admin',compact('feed'));
     }
 
     public function post_not(Request $req)

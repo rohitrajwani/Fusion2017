@@ -94,15 +94,19 @@
         <td>{{ $sch->timestamp}}</td>
         <td>{{ $sch->source }}</td>
         <td>{{ $sch->destination }}</td>
-        <td>
         @foreach($fare as $f)
         @if ($f->bus_id == $sch->bus_id)
+        <td>
+        
+        
         {{$f->capacity}}
-        @endif
-        @endforeach
+        
+        
 
         </td>
         <td>{{$f->ticket_price}}</td>
+        @endif
+        @endforeach
       </tr>
     @endforeach
       
