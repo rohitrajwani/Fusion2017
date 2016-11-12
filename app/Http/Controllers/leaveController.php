@@ -33,7 +33,7 @@ class leaveController extends Controller
         }
         else if($user->user_type == 'faculty')
         {
-            $Faculty = \DB::table('faculty')->where('faculty_id','=',$user->username)->get()->first();
+            $Faculty = \DB::table('faculty')->where('faculty_id','=',$user->username)->first();
             $designation = $Faculty->designation;
 
             if($designation == 'hod')
