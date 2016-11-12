@@ -4,6 +4,7 @@ $user_id=Auth::user()->username;
 ?>
 <html>
 <head>
+
 <title>MCM</title>
 <style type="text/css">
 h3{font-family: Calibri; font-size: 22pt; font-style: normal; font-weight: bold; color:black;
@@ -44,7 +45,7 @@ $student=DB::table('student')->where('student_id',$user_id)->get();
 </head>
  
 <body>
-<h3>APPLICATION FO MCM</h3>
+<h3>APPLICATION FORM MCM</h3>
 <form action="/SPACS/mcm_form/{{$scholarship_id}}/{{$user_id}}" method="POST">
     <input type="hidden" name="_token" value="{{csrf_token()}} ">
  
@@ -162,10 +163,28 @@ $student=DB::table('student')->where('student_id',$user_id)->get();
  <tr>
 <td>&nbsp&nbsp&nbsp A)IN SERVICE(OR)
 </td>
-<td><input type="radio" name="service_type" value="Public"  />Public
-<input type="radio" name="service_type" value="Governmet" />Government
-<input type="radio" name="service_type" value="Private" />Private
+<td><input type="radio" name="service_type" value="Public" id="public" onclick="upload_file()"  />Public
+<input type="radio" name="service_type" value="Government" id="govt" onclick="upload_file()"/>Government
+<input type="radio" name="service_type" value="Private" id="private" onclick="upload_file()"/>Private
 </td>
+</tr>
+<tr style="display: block;" id="public_upload">
+  <td>
+      <label for="affidavit"> Upload Affidavit</label>
+      <input type="file" id="affidavit" name="affidavit" placeholder="Upload Affidavit" />
+  </td>
+</tr>
+<tr style="display: none" id="govt_upload">
+  <td>
+      <label for="form_A"> Upload Form A</label>
+      <input type="file" id="form_A" name="form_A" placeholder="Upload Form A" />
+  </td>
+</tr>
+<tr style="display: none" id="private_upload">
+  <td>
+      <label for="form_B"> Upload Form B</label>
+      <input type="file" id="form_B" name="form_b" placeholder="Upload Form B" />
+  </td>
 </tr>
  <tr>
 <td>&nbsp&nbsp&nbsp B)PENSIONERS/FAMILY PENSIONERS<br>
@@ -363,9 +382,35 @@ B.A
 <input type="reset" value="Reset">
 </td>
 </tr>
+-->
 </table>
  
 </form>
  
+  <script type="text/javascript">
+      function upload_file(){
+
+        var public = document.getElementById("public");
+        var govt = document.getElementById("govt");
+        var private = document.getElementById("private");
+
+        if(public.checked){
+            document.getElementById("govt_upload").style.display = "none";
+            document.getElementById("private_upload").style.display = "none";
+        }
+
+        if(govt.checked){
+            document.getElementById("govt_upload").style.display = "block";
+            document.getElementById("private_upload").style.display = "none";
+        }
+        if(private.checked){
+            document.getElementById("govt_upload").style.display = "none";
+            document.getElementById("private_upload").style.display = "block";
+        }
+
+      }
+
+  </script>
+
 </body>
 </html>
