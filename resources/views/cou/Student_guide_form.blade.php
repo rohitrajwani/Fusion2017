@@ -1,9 +1,9 @@
-@extends('cou/layout')
+@extends('layout')
 @section('content')
 
 <h4 class="col s12 m6 offset-m4">Student Guide Application </h4>
 <div class="container">
-<form class="s12" method="post" action="form_stu_guide">
+<form class="s12" method="post" action="/counselling_cell/form_stu_guide">
 
  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

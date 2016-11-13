@@ -1,4 +1,4 @@
-@extends('cou/layout')
+@extends('layout')
 @section('content')
 <br><br>
              <div class="center-align row">
@@ -9,7 +9,7 @@
               <p>Click Below to apply for Student Guide</p>
             </div>
             <div class="card-action">
-              <a href="/student_guide_form">View</a>
+              <a href="/counselling_cell/student_guide_form">View</a>
               
             </div>
           </div>
@@ -21,7 +21,7 @@
               <p>Click Below to apply for Assistant Coordinator</p>
             </div>
             <div class="card-action">
-              <a href="/assistant_coordinator_form">View</a>
+              <a href="/counselling_cell/assistant_coordinator_form">View</a>
               
             </div>
           </div>

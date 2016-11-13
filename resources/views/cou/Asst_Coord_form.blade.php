@@ -1,9 +1,9 @@
-@extends('cou/layout')
+@extends('layout')
 @section('content')
 <h4 class="col s12 m6 offset-m3">Assistant Coordinator Application</h4>
 <div class="container">
 
-<form class="s12" method="post" action="form_asstcoor">
+<form class="s12" method="post" action="/counselling_cell/form_asstcoor">
 
  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

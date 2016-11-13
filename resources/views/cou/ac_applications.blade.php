@@ -1,4 +1,4 @@
-@extends('cou/layout')
+@extends('layout')
 @section('content')
 <br>
              <h4 class="center-align">Review Assistant Coordinator Applications</h4><hr>

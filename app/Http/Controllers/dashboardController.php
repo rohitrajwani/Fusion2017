@@ -32,27 +32,14 @@ class dashboardController extends Controller
             $user = \App\User::where('username','=',$userdata['username'])->get()->first();
             Auth::login($user);
 
-            return Redirect::to('/main')->with('alert','Login Successful for '.Auth::user());
-		
-			/*Route::get('/', function () {
-				return view('index');
-					});
-					*/
+            return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
 
-		
-		
         } else {        
             return Redirect::to('/')->with('alert','Login Error!! Please check your Credentials');
 
         }
 	}
-	
-	public function logout(){
-		Auth::logout();
 
-		return Redirect::to('/');
-	}
-	
 	public function signup(Request $data){
 
 		$user = new \App\User;
@@ -67,8 +54,26 @@ class dashboardController extends Controller
 
 	}
 
-	
+	public function dashboard(){
+		return view('dashboard');
+	}
 
-	
-	
+	public function logout(){
+		Auth::logout();
+
+		return Redirect::to('/');
+	}
+
+
+	public function attachRole($role){
+
+		$user = \App\users::where('username',Auth::user()->username)->first();
+
+        $admin = \App\Role::where('name','=',$role)->get()->first();
+
+		$user->attachRole($admin);
+
+        return back()->with('role-attached','Role Successfully attached to '.Auth::user()->username);
+	}
+
 }

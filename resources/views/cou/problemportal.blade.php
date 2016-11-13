@@ -1,4 +1,4 @@
-@extends('cou/layout')
+@extends('layout')
 @section('content')        		
 <!-- Modal Trigger -->
 	<div class ="center-align">
@@ -10,7 +10,7 @@
 	
 <h4 class="col s12 m12">Welcome to Problem Portal</h4>
       <div class="row">
-    <form class="col s12" method="post" action="question">
+    <form class="col s12" method="post" action="/counselling_cell/question">
 	 <input type="hidden" name="_token" value="{{ csrf_token() }}">
       
      <div class="row">
@@ -56,7 +56,7 @@
 	
 <h4 class="col s12 m12">Submit Your Answer Here</h4>
       <div class="row">
-    <form class="col s12"  method="post" action="{{$cc->id}}/answer">
+    <form class="col s12"  method="post" action="/counselling_cell/{{$cc->id}}/answer">
 	 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
       

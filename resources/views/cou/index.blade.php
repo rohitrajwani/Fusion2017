@@ -1,4 +1,4 @@
-@extends('cou/layout')
+@extends('layout')
 @section('content')
         <div class="image-slider">
                         <img src="images/counsel.jpg" width="100%"> 

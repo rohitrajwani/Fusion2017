@@ -1,4 +1,4 @@
-@extends('cou/layout')
+@extends('layout')
 @section('content')
 <div class ="center-align">
   <a class="waves-effect waves-light btn modal-trigger " href="#modal12">Add Assistant</a>
@@ -9,7 +9,7 @@
 	
 <h4 class="col s12 m12">Assign Students Guides To Assistant Coordinators</h4>
       <div class="row">
-    <form class="col s12" method="post" action="studymaterial">
+    <form class="col s12" method="post" action="/counselling_cell/studymaterial">
 	 <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="row">
         

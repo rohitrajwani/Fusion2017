@@ -58,26 +58,26 @@
             	<nav id="mynav">
                     <div class="nav-wrapper">
                         <ul class="hide-on-med-and-down">
-                            <li><a href="/main">Home</a></li>
-                            <li><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share Public Posts and Announcements Here!" href="/problemportal" >Forum</a></li>
+                            <li><a href="/counselling_cell/">Home</a></li>
+                            <li><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share Public Posts and Announcements Here!" href="/counselling_cell/problemportal" >Forum</a></li>
 							@if (Auth::user()->user_type != 'faculty' AND Auth::user()->username != 'coordinator')
-                            <li><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Personal Conversation Portal!" href="/privateportal" >Problems</a></li>
+                            <li><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Personal Conversation Portal!" href="/counselling_cell/privateportal" >Problems</a></li>
 						  @endif
                             
-                            <li><a href="/study_material">StudyPosts</a></li>
+                            <li><a href="/counselling_cell/study_material">StudyPosts</a></li>
                             
                             @if (Auth::user()->user_type != 'faculty' AND Auth::user()->username != 'coordinator')
 							<li><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Application Process will be active from month of February."  href="/formfill">Applications</a></li>
                             @endif
 						
 							@if (Auth::user()->user_type == 'faculty' AND Auth::user()->username == 'counsellinghead')
-									<li><a  href="/faculty_access" >Admin</a></li>	
+									<li><a  href="/counselling_cell/faculty_access" >Admin</a></li>	
                             @endif
                             @if (Auth::user()->user_type == 'student' AND Auth::user()->username == 'coordinator')
-									<li><a  href="/assign_guides" >Assign Guides</a></li>
-                                    <li><a  href="/student_guides_list" >View Guides</a></li>
+									<li><a  href="/counselling_cell/assign_guides" >Assign Guides</a></li>
+                                    <li><a  href="/counselling_cell/student_guides_list" >View Guides</a></li>
                             @endif
-							<li><a href="/main#faq">FAQ</a></li>
+							<li><a href="/counselling_cell#faq">FAQ</a></li>
                             
                         </ul>
 					                      </div>

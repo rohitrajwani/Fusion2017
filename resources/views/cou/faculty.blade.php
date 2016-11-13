@@ -1,4 +1,4 @@
-@extends('cou/layout')
+@extends('layout')
 @section('content')
 <br><br>
              <div class="center-align row">
@@ -9,7 +9,7 @@
               <p>Details of Student Guides from BTech 2015</p>
             </div>
             <div class="card-action">
-              <a href="/student_guides_list">View</a>
+              <a href="/counselling_cell/student_guides_list">View</a>
               
             </div>
           </div>
@@ -21,7 +21,7 @@
               <p>Details of Ast-Coordinators, BTech 2014</p>
             </div>
             <div class="card-action">
-              <a href="/assistant_coordinator_list">View</a>
+              <a href="/counselling_cell/assistant_coordinator_list">View</a>
               
             </div>
           </div>
@@ -36,7 +36,7 @@
               <p>Review applications submitted By BTech 2016</p>
             </div>
             <div class="card-action">
-              <a href="/student_guides_application">View</a>
+              <a href="/counselling_cell/student_guides_application">View</a>
              
             </div>
           </div>
@@ -49,7 +49,7 @@
             </div>
             <div class="card-action">
              
-              <a href="/assistant_coordinator_application">View</a>
+              <a href="/counselling_cell/assistant_coordinator_application">View</a>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@
               <p>Assign Assistant Coordinators Here!</p>
             </div>
             <div class="card-action">
-              <a href="/assign_assistant">View</a>
+              <a href="/counselling_cell/assign_assistant">View</a>
               
             </div>
           </div>

@@ -1,4 +1,4 @@
-@extends('cou/layout')
+@extends('layout')
 @section('content')
 <div class ="center-align">
   <a class="waves-effect waves-light btn modal-trigger " href="#modal12">Add</a>
@@ -9,7 +9,7 @@
 	
 <h4 class="col s12 m12">Welcome to Downloads Section</h4>
       <div class="row">
-    <form class="col s12" method="post" action="studymaterial">
+    <form class="col s12" method="post" action="/counselling_cell/studymaterial">
 	 <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="row">
         
@@ -22,7 +22,7 @@
           <label for="url">URL</label>
         </div>
       </div>
-     <div class="row">
+     
       <div class="row">
         <div class="input-field col s12">
           <textarea id="textarea1" name="description" class="materialize-textarea"></textarea>
@@ -40,8 +40,7 @@
     </div>
     
       
-  </div>
-    </form>
+  
    @foreach($c as $cc)
 	<div class="col s12 m12">
     <!--<h2 class="header">Horizontal Card</h2>-->
