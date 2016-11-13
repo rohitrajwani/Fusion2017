@@ -64,7 +64,6 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('acadaff/branch_next','acadaff\cardsController@branch_next');
 	Route::get('acadaff/student_show','acadaff\cardsController@show');
 
-	//Route::get('/', 'PagesController@home');
 	Route::get('acadaff/about','acadaff\PagesController@about');
 
 	Route::get('login',function(){

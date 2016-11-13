@@ -43,7 +43,7 @@ class cardsController extends Controller1
     }
     
     public function first(){
-        return view('students');
+        return view('acadaff/students');
     }
     
     public function branch_change(Request $request)
@@ -127,7 +127,7 @@ class cardsController extends Controller1
     }
     public function ug()
     {
-        return view('ug_student');
+        return view('acadaff/ug_student');
     }
      public function seminar_committee(Request $request)
     {
@@ -311,7 +311,7 @@ $user->status=0;
 }
 
     public function academic(){
-        return view('academic');
+        return view('acadaff/academic');
     }
    
     public function bonafidenext(Request $request){
@@ -444,16 +444,16 @@ $user->status=0;
      public function show(){
          
        
-        return view('student_show');
+        return view('acadaff/student_show');
     }
     public function faculty(){
-        return view('faculty');
+        return view('acadaff/faculty');
     }
     public function submission(){
-        return view('student_show');
+        return view('acadaff/student_show');
     }
     public function submission2(){
-        return view('ug_student_show');
+        return view('acadaff/ug_student_show');
     }
     public function seminarnext2(Request $request){
         
@@ -523,7 +523,7 @@ $user->status=0;
     }
     public function admin()
     {
-        return view('admin');
+        return view('acadaff/admin');
     }
     
 }
