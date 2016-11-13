@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function home()
     {
-    	return view('pages.home');
+    	return view('bus_management.home');
     }
 
     public function logout(){

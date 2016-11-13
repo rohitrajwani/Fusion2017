@@ -18,7 +18,7 @@ class PagesController extends Controller
         $schedule = DB::table('Bus_Schedule')->get();
         $fare = DB::table('Bus')->get();
         $not = DB::table('Notification')->get();
-        return view('pages.schedule',['schedule'=>$schedule,'fare'=>$fare,'not'=>$not]);
+        return view('bus_management.schedule',['schedule'=>$schedule,'fare'=>$fare,'not'=>$not]);
     }
 
     public function feed_store(Request $request)

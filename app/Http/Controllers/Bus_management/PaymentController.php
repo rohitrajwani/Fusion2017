@@ -16,7 +16,7 @@ class PaymentController extends Controller
     	DB::table('Bus')->where('bus_id','=',$request['group1'])->update(['capacity'=>$capacity-1]);
     	$receipt = DB::table('Bus_Booking')->orderBy('booking_id','desc')->first();
 
-    	return view('pages.payment',['receipt'=>$receipt]);
+    	return view('bus_management.payment',['receipt'=>$receipt]);
     }
 
     public function logout(){

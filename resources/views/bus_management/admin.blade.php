@@ -1,60 +1,5 @@
-<!DOCTYPE html> 
-  <html>
-    <head>
-        
-        <title>Fusion - UI Documentation</title>
-        
-      <!--Import Google Icon Font-->
-<!--      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-      <!--Import materialize.css-->
-        
-        <!-- <link rel="stylesheet" href="fonts/font-awesome-4.6.3/css/font-awesome.min.css"> -->
-          <link href="fonts/materialfont/material-icons.css" rel="stylesheet">
-
-          <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-        
-          <link href="css/fusion_style.css" type="text/css" rel="stylesheet">
-        
-          <link href="css/style.css" type="text/css" rel="stylesheet">
-
-        <!--Let browser know website is optimized for mobile-->
-          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-
-      <body>
-        
-        <header> 
-            <nav>
-                <div class="nav-wrapper">
-                  <a href="#!" class="brand-logo">Fusion</a>
-                  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                    <ul class="right hide-on-med-and-down">
-                      <li><a href="#">Link</a></li>
-                      <li><a href="#">Link</a></li>
-                      <li><a href="/logout">Logout</a></li>
-                    </ul>
-                    <ul class="side-nav" id="mobile-demo">
-                      <li><a href="#">Link</a></li>
-                      <li><a href="#">Link</a></li>
-                      <li><a href="/logout">Logout</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        
-        <div class="sidebar">
-            <ul id="slide-out" class="side-nav fixed">
-                <li><a href="#!" class="waves-effect">Bus management</a></li>
-                <li><a href="#!" class="waves-effect">Second Link</a></li>
-                <li><div class="divider"></div></li>
-                <li><a class="subheader">Subheader</a></li>
-                <li><a class="waves-effect" href="#!">Third Link</a></li>
-            </ul>
-        </div>
-
-        
-        
-        <div class="main-container row">
+@extends('layout')
+@section('content')
         <nav>
           <div class="nav-wrapper">
           <span style="margin-left: 50px">
@@ -125,7 +70,7 @@
 
       <div class="code col s12">
       <h5>Post Notifications :</h5>
-      <form method="POST" action="/post_not">
+      <form method="POST" action="/bus_management/post_not">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="input-field col s6"> 
               <textarea name="notification" class="materialize-textarea" required="true"></textarea>
@@ -159,7 +104,4 @@
       @endforeach
       </table>
 
-      </div>
-
-      </body>
-  </html>
+@stop

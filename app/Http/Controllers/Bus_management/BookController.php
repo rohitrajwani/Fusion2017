@@ -12,7 +12,7 @@ class BookController extends Controller
     {
     	$schedule = DB::table('Bus_Schedule')->get();
         $fare = DB::table('Bus')->get();
-        return view('pages.booknow',['schedule'=>$schedule,'fare'=>$fare]);
+        return view('bus_management.booknow',['schedule'=>$schedule,'fare'=>$fare]);
     }
 
     public function logout(){
