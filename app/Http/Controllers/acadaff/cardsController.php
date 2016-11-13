@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\acadaff;
 
+use App\Http\Controllers\Controller as Controller1;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,7 +18,7 @@ use Auth;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
-class cardsController extends Controller
+class cardsController extends Controller1
 {
     public function index(){
         $user = Auth::user()->username;
@@ -27,7 +28,7 @@ class cardsController extends Controller
         if(Auth::user()->hasRole('pg_student')){
             return redirect('/acadaff/students')->with('id',$user);
         }
-        if(Auth::user()->hasRole('faculty')){
+        if(Auth::user()->user_type=='faculty'){
             return redirect('/acadaff/faculty')->with('id',$user);
         }
         if(Auth::user()->hasRole('hod_cse')){
@@ -37,7 +38,7 @@ class cardsController extends Controller
             return redirect('/acadaff/academic')->with('id',$user);
         }
         else{
-            return redirect('/');
+            return redirect('/dashboard');
         }
     }
     
