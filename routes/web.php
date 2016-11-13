@@ -33,11 +33,11 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
-Route::get('cc-complaint/', 'PagesController@index');
+Route::get('cc-complaint/', 'cc\PagesController@index');
 
-Route::post('cc-complaint/create', 'CreateController@insert');
+Route::post('cc-complaint/create', 'cc\CreateController@insert');
 
-Route::post('cc-complaint/updateAll', 'UpdateAllController@updateAll');
+Route::post('cc-complaint/updateAll', 'cc\UpdateAllController@updateAll');
 
 //Route::post('/updateFaculty', 'UpdateFacultyController@updateFaculty');
 
@@ -45,4 +45,4 @@ Route::post('cc-complaint/updateAll', 'UpdateAllController@updateAll');
 
 //Route::post('/updateStudent', 'UpdateStudentController@updateStudent');
 
-Route::post('cc-complaint/sort', 'SortController@sort');
+Route::post('cc-complaint/sort', 'cc\SortController@sort');

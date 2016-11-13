@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\cc;
 
 use Illuminate\Http\Request;
 
@@ -30,7 +30,7 @@ class PagesController extends Controller
 								$faculty = Cc_complaint::where('user_type','faculty')->get();	
 								$staff = Cc_complaint::where('user_type','staff')->get();
 								$student = Cc_complaint::where('user_type','student')->get();
-								return view('cc\layout\admin_header',compact('all','faculty','staff','student'));
+								return view('cc/layout/admin_header',compact('all','faculty','staff','student'));
 							/*$all = DB::table('cc_complaint')->get();
 							$faculty = DB::table('cc_complaint')->where('user_type','=','faculty')->get();
 							$staff = DB::table('cc_complaint')->where('user_type','=','staff')->get();
@@ -53,7 +53,7 @@ class PagesController extends Controller
 
 							//return view('cc.layout.header',compact('users'));
 								//dd($users);
-								return view('cc\layout\header',compact('users'));
+								return view('cc/layout/header',compact('users'));
     					}
     					
 	}

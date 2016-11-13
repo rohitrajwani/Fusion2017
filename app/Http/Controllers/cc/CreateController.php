@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\cc;
 
 use Illuminate\Http\Request;
 
@@ -52,7 +52,7 @@ $users = Cc_complaint::where('user_id', Auth::user()->username);
 			session(['success_type' =>0]);
 				echo "<script type='text/javascript'>alert('Complaint Registered UnSuccessfully !!!! Please Try Again');</script>";
 			//return view('cc\layout\header',compact('users'))->with('alert-success','Registered UnSuccessfully!!');
-			return view('cc\layout\header',compact('users'));
+			return view('cc/layout/header',compact('users'));
 		}
 	
 

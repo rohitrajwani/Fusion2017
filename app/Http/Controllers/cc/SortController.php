@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\cc;
 
 use Illuminate\Http\Request;
 
@@ -40,7 +40,7 @@ public function  sort(Request $request)
 							$staff = DB::table('cc_complaint')->where('user_type','=','staff')->get();
 							$student = DB::table('cc_complaint')->where('user_type','=','student')->get();*/
 
-									return view('cc\layout\admin_header',compact(['all','faculty','staff','student']));
+									return view('cc/layout/admin_header',compact(['all','faculty','staff','student']));
 												//return Redirect::to('/');
 
 								}
@@ -55,7 +55,7 @@ public function  sort(Request $request)
 							$staff = DB::table('cc_complaint')->where('user_type','=','staff')->orderBy('created_at','ASC')->get();
 							$student = DB::table('cc_complaint')->where('user_type','=','student')->orderBy('created_at','ASC')->get();*/
 
-									return view('cc\layout\admin_header',compact(['all','faculty','staff','student']));
+									return view('cc/layout/admin_header',compact(['all','faculty','staff','student']));
 												//return Redirect::to('/');
 
 
@@ -71,7 +71,7 @@ public function  sort(Request $request)
 							$staff = DB::table('cc_complaint')->where('user_type','=','staff')->orderBy('created_at','DESC')->get();
 							$student = DB::table('cc_complaint')->where('user_type','=','student')->orderBy('created_at','DESC')->get();*/
 
-								return view('cc\layout\admin_header',compact(['all','faculty','staff','student']));
+								return view('cc/layout/admin_header',compact(['all','faculty','staff','student']));
 														//return Redirect::to('/');
 
 							}

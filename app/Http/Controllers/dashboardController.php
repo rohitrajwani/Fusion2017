@@ -55,7 +55,7 @@ class dashboardController extends Controller
 	}
 
 	public function dashboard(){
-		return redirect('cc-complaint/');
+		return view('dashboard');
 	}
 
 	public function logout(){

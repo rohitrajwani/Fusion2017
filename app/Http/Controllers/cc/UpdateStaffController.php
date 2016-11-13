@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\cc;
 
 use Illuminate\Http\Request;
 
@@ -33,7 +33,7 @@ $cc_complaintS->status = $status;
 
 $cc_complaintS->save();
 
-return view('cc\layout\admin_header',compact(['all','faculty','staff','student']));
+return view('cc/layout/admin_header',compact(['all','faculty','staff','student']));
 }
 
     }
