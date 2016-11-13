@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\vhbooking;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 
 //This are the classes imported for using functions of these classes
