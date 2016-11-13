@@ -47,7 +47,7 @@
                 <p>Know your attendance of  every month.</p>
             </div>
             <div class="card-action">
-                <a href="./attendance_student">Click Here</a>
+                <a href="TA/attendance_student">Click Here</a>
             </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                 <p>Claim your assistance ship here and can check the status of applied form</p>
             </div>
             <div class="card-action">
-                <a href="./claims">Click Here</a>
+                <a href="TA/claims">Click Here</a>
             </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
                 <p>If you are not a TA ,then know the opening and apply for it.</p>
             </div>
             <div class="card-action">
-                <a href="./taapplication">Click here</a>
+                <a href="TA/taapplication">Click here</a>
             </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
                 <p>Send a Mail</p>
             </div>
             <div class="card-action">
-                <a href="./mail">Click Here</a>
+                <a href="TA/mail">Click Here</a>
             </div>
             </div>
         </div>
@@ -112,7 +112,7 @@
                 <p>If you are not a TA ,then know the opening and apply for it.</p>
             </div>
             <div class="card-action">
-                <a href="./taapplication">Click here</a>
+                <a href="TA/taapplication">Click here</a>
             </div>
             </div>
             </div>

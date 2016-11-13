@@ -30,11 +30,11 @@
 <nav class="mynav blue">
   <div class="nav-wrapper">
     <ul>
-      <li><a href="./blade">Home</a></li>
-      <li><a href="./attendance">Attendance</a></li>
-      <li class="active"><a href="./mnl_batch_assgn">Batch-Assign</a></li>
-      <li><a href="./show_claims">Assistance-Ship</a></li>
-      <li><a href="./mail">Mail</a></li>
+      <li><a href="TA">Home</a></li>
+      <li><a href="TA/attendance">Attendance</a></li>
+      <li class="active"><a href="TA/mnl_batch_assgn">Batch-Assign</a></li>
+      <li><a href="TA/show_claims">Assistance-Ship</a></li>
+      <li><a href="TA/mail">Mail</a></li>
     </ul>
   </div>
 </nav>

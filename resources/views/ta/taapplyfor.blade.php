@@ -6,11 +6,11 @@
 <nav class="mynav blue">
   <div class="nav-wrapper">
     <ul>
-      <li><a href="./blade">Home</a></li>
-      <li><a href="./attendance_student">Attendance</a></li>
-      <li class="active"><a href="./taapplication">TA-Form</a></li>
-      <li><a href="./claims">Assistanceship</a></li>
-      <li><a href="./mail">Mail</a></li>
+      <li><a href="TA">Home</a></li>
+      <li><a href="TA/attendance_student">Attendance</a></li>
+      <li class="active"><a href="TA/taapplication">TA-Form</a></li>
+      <li><a href="TA/claims">Assistanceship</a></li>
+      <li><a href="TA/mail">Mail</a></li>
     </ul>
   </div>
 </nav>

@@ -28,11 +28,11 @@
         <nav class="mynav blue">
           <div class="nav-wrapper">
             <ul>
-              <li><a href="./blade">Home</a></li>
-              <li><a href="./attendance">Attendance</a></li>
-              <li><a href="./mnl_batch_assgn">Batch-Assign</a></li>
-              <li><a href="./show_claims">Assistance-Ship</a></li>
-              <li><a href="./mail">Mail</a></li>
+              <li><a href="TA">Home</a></li>
+              <li><a href="TA/attendance">Attendance</a></li>
+              <li><a href="TA/mnl_batch_assgn">Batch-Assign</a></li>
+              <li><a href="TA/show_claims">Assistance-Ship</a></li>
+              <li><a href="TA/mail">Mail</a></li>
             </ul>
           </div>
         </nav>
@@ -75,7 +75,7 @@
 		</tbody>
 	</table><br>
   @if($i!=0)
-	<a href='./mnl_batch_assgn' class="waves-effect waves-light btn" style="width:50%">Edit Batches</a></center>
+	<a href='TA/mnl_batch_assgn' class="waves-effect waves-light btn" style="width:50%">Edit Batches</a></center>
   @else
     <h5 class="center red-text"><i>NO TAs</i></h5>
   @endif

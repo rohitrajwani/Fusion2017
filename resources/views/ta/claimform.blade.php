@@ -23,11 +23,11 @@
 <nav class="mynav blue">
   <div class="nav-wrapper">
     <ul>
-      <li><a href="./blade">Home</a></li>
-      <li><a href="./taapplication" >TA-form</a></li>
-      <li><a href="./attendance_student">Attendance</a></li>
-      <li><a href="./claims" class="active">Assistanceship</a></li>
-      <li><a href="./mail">Mail</a></li>
+      <li><a href="TA">Home</a></li>
+      <li><a href="TA/taapplication" >TA-form</a></li>
+      <li><a href="TA/attendance_student">Attendance</a></li>
+      <li><a href="TA/claims" class="active">Assistanceship</a></li>
+      <li><a href="TA/mail">Mail</a></li>
     </ul>
   </div>
 </nav>

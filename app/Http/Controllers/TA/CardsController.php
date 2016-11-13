@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\TA;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Customer;
 use App\Ta_Attendance;
@@ -24,16 +24,16 @@ class CardsController extends Controller
         
         $id = Auth::user()->username;//'H1';//assumed id retrieved from the session. This id will be passed throughout the module.
         $_SESSION['id']=$id;
-        $check_student=DB::table('Student')->where('student_id',$id)->where('programme','M.TECH')->get();//check if the id belongs to a PG Student
-        $check_faculty=DB::table('Faculty')->where('faculty_id',$id)->get();//check if the id belongs to a Faculty
+        $check_student=DB::table('student')->where('student_id',$id)->where('programme','M.TECH')->get();//check if the id belongs to a PG Student
+        $check_faculty=DB::table('faculty')->where('faculty_id',$id)->get();//check if the id belongs to a Faculty
         $faculty_name = ['NA'];
 
         if(count($check_student)==1){//if the id belongs to a TA
 
-            $ta_of_course=DB::table('Ta')->where('student_id',$id)->pluck('course_id');//retrive the details of the Student from Ta table
+            $ta_of_course=DB::table('ta')->where('student_id',$id)->pluck('course_id');//retrive the details of the Student from Ta table
             if(count($ta_of_course)>0)//if the PG student is a Ta
             {   
-                $ta_of_faculty=DB::table('Course_Taken_By')->whereIn('course_id',$ta_of_course)->pluck('faculty_id');
+                $ta_of_faculty=DB::table('course_taken_by')->whereIn('course_id',$ta_of_course)->pluck('faculty_id');
 
                 $faculty_name=DB::table('faculty')->where('faculty_id',$ta_of_faculty[0])->pluck('name');
                 $_SESSION['student_ta']=1;
@@ -57,9 +57,9 @@ class CardsController extends Controller
             //unset($_SESSION['faculty']);
             unset($_SESSION['student_ta']);
             unset($_SESSION['student_not_ta']);
-            $courses = DB::table('Course')->where('department',$dept)->pluck('course_id');//pluck the courses under the department
-            $as1 = DB::table('Ta')->whereIn('course_id',$courses)->pluck('student_id');//get the tas under the department's courses
-            $tas1 = DB::table('Student')->whereIn('student_id',$as1)->get();//get the datails of the ta
+            $courses = DB::table('course')->where('department',$dept)->pluck('course_id');//pluck the courses under the department
+            $as1 = DB::table('ta')->whereIn('course_id',$courses)->pluck('student_id');//get the tas under the department's courses
+            $tas1 = DB::table('student')->whereIn('student_id',$as1)->get();//get the datails of the ta
        
             return view('ta.admin',compact('check_faculty','tas1'));
         }
@@ -69,9 +69,9 @@ class CardsController extends Controller
             unset($_SESSION['hod']);
             unset($_SESSION['student_ta']);
             unset($_SESSION['student_not_ta']);
-            $course1 = \DB::table('Course_Taken_By')->where('faculty_id',$id)->pluck('course_id');//curse taken by faculty
-            $as1 = DB::table('Ta')->whereIn('course_id',$course1)->pluck('student_id');//tas in the courses under the faculty
-            $tas1 = DB::table('Student')->whereIn('student_id',$as1)->get();//get ta details from students table
+            $course1 = \DB::table('course_taken_by')->where('faculty_id',$id)->pluck('course_id');//curse taken by faculty
+            $as1 = DB::table('ta')->whereIn('course_id',$course1)->pluck('student_id');//tas in the courses under the faculty
+            $tas1 = DB::table('student')->whereIn('student_id',$as1)->get();//get ta details from students table
        
             return view('ta.faculty',compact('check_faculty','tas1'));
         }
@@ -102,7 +102,7 @@ class CardsController extends Controller
 
         $id=$_SESSION['id'];
 
-        $taapplyfor = DB::table('Applied_For_TA')->where('student_id',$id)->orderby('preference_no')->get();//already aplied courses
+        $taapplyfor = DB::table('applied_for_ta')->where('student_id',$id)->orderby('preference_no')->get();//already aplied courses
         
         $aa=[''];
         foreach ($taapplyfor as $key){
@@ -110,20 +110,20 @@ class CardsController extends Controller
         }
 
 
-        $DEPT=DB::table('Student')->where('student_id',$id)->first()->branch;
-        $course=DB::table('Course')->where('department',$DEPT)->pluck('course_id');
+        $DEPT=DB::table('student')->where('student_id',$id)->first()->branch;
+        $course=DB::table('course')->where('department',$DEPT)->pluck('course_id');
         
 
-        $taopening=DB::table('Ta_Post_Openings')->whereIn('course_id',$course)->whereNotIn('course_id', $aa)->get();//ccourses for which he can apply --- time may clash
+        $taopening=DB::table('ta_post_openings')->whereIn('course_id',$course)->whereNotIn('course_id', $aa)->get();//ccourses for which he can apply --- time may clash
 
-        $reg_courses = DB::table('Register_Course')->where('student_id',$id)->pluck('course_id');//registered courses by the PG student
+        $reg_courses = DB::table('register_course')->where('student_id',$id)->pluck('course_id');//registered courses by the PG student
         /*print_r($taopening);*/
-        $busy_time1 = DB::table('Classroom_Slots')->whereIn('course_id',$reg_courses)->get();//Scheduled classes of the PG Student
+        $busy_time1 = DB::table('classroom_slots')->whereIn('course_id',$reg_courses)->get();//Scheduled classes of the PG Student
         //print_r($busy_time1);
         $courses_free = [''];
         foreach($taopening as $row){
             //echo $row->course_id;
-            $duty_time = DB::table('Classroom_Slots')->where('course_id',$row->course_id)->first();
+            $duty_time = DB::table('classroom_slots')->where('course_id',$row->course_id)->first();
             $flag=0;
            
             foreach($busy_time1 as $busy_time){
@@ -148,7 +148,7 @@ class CardsController extends Controller
                 array_push($courses_free,$row->course_id);
             }
         }
-        $taopening = DB::table('Ta_Post_Openings')->whereIn('course_id',$courses_free)->get();
+        $taopening = DB::table('ta_post_openings')->whereIn('course_id',$courses_free)->get();
         //print_r($taopening);
        return view('ta.taapplyfor', compact('taapplyfor' ,'taopening'));
 
@@ -162,10 +162,10 @@ class CardsController extends Controller
     {
 
         $id=$_SESSION['id'];
-        $course = \DB::table('Course_Taken_By')->where('faculty_id',$id)->pluck('course_id');
+        $course = \DB::table('course_taken_by')->where('faculty_id',$id)->pluck('course_id');
         //print_r($course);
-        $as = DB::table('Ta')->whereIn('course_id',$course)->pluck('student_id');
-        $tas=DB::table('Student')->whereIn('student_id',$as)->get();
+        $as = DB::table('ta')->whereIn('course_id',$course)->pluck('student_id');
+        $tas=DB::table('student')->whereIn('student_id',$as)->get();
 
         return view('ta.attendance',['tas'=>$tas]);
     
@@ -177,7 +177,7 @@ class CardsController extends Controller
     public function attendance_student()
     {
         $id=$_SESSION['id'];
-        $Ta_Attendance_student = DB::table('Ta_Attendance')->where('student_id',$id)->get();
+        $Ta_Attendance_student = DB::table('ta_attendance')->where('student_id',$id)->get();
         return view('ta.attendance_student',['Ta_Attendance_student' => $Ta_Attendance_student]);
     
     }
@@ -193,7 +193,7 @@ class CardsController extends Controller
         $user=new Applied_For_TA;
         $user->course_id=Input::get('course_id');
 
-        $data=DB::table('Applied_For_TA')->where('student_id',$id)->pluck('preference_no');
+        $data=DB::table('applied_for_ta')->where('student_id',$id)->pluck('preference_no');
         $n=count($data);
 
         //checking fro input validation
@@ -219,7 +219,7 @@ class CardsController extends Controller
     
         //entering prerfernce number out of bound
 
-        $taapplyfor = DB::table('Applied_For_TA')->where('student_id',$id)->get();
+        $taapplyfor = DB::table('applied_for_ta')->where('student_id',$id)->get();
         
         $aa=[''];
         foreach ($taapplyfor as $key )
@@ -231,11 +231,11 @@ class CardsController extends Controller
 
 
 
-        $DEPT=DB::table('Student')->where('student_id',$id)->first()->branch;
-        $course=DB::table('Course')->where('department',$DEPT)->pluck('course_id');
+        $DEPT=DB::table('student')->where('student_id',$id)->first()->branch;
+        $course=DB::table('course')->where('department',$DEPT)->pluck('course_id');
         
 
-        $taopening=DB::table('Ta_Post_Openings')->whereIn('course_id',$course)->get();
+        $taopening=DB::table('ta_post_openings')->whereIn('course_id',$course)->get();
         
         if(Input::get('preference_no')<0 || count($taopening)<Input::get('preference_no'))
         {
@@ -260,14 +260,14 @@ class CardsController extends Controller
   public function attendance_store_faculty(Request $request)
     {
      $id=$_SESSION['id'];
-     $course1 = \DB::table('Course_Taken_By')->where('faculty_id',$id)->pluck('course_id');
-     $as1 = DB::table('Ta')->whereIn('course_id',$course1)->pluck('student_id');
-     $tas1=DB::table('Student')->whereIn('student_id',$as1)->get();
+     $course1 = \DB::table('course_taken_by')->where('faculty_id',$id)->pluck('course_id');
+     $as1 = DB::table('ta')->whereIn('course_id',$course1)->pluck('student_id');
+     $tas1=DB::table('student')->whereIn('student_id',$as1)->get();
 
      //print_r($tas1);
 
      $date1=(Input::get('attendance_mark'));
-     $alreadymarked=DB::table('Ta_Attendance')->where('date',$date1)->where('student_id',$tas1[0]->student_id)->get();
+     $alreadymarked=DB::table('ta_attendance')->where('date',$date1)->where('student_id',$tas1[0]->student_id)->get();
      if(count($alreadymarked)>0)
      {
         $error='Attendace Already Marked';
@@ -288,7 +288,7 @@ class CardsController extends Controller
 
      }
      $success='Attendace Has Been Marked Successfully';
-     return redirect('TA/blade')->withErrors(array('f' => $success));
+     return redirect('TA/')->withErrors(array('f' => $success));
 
     }
 
@@ -297,10 +297,10 @@ class CardsController extends Controller
     public function post_opening()
     {
         $id=$_SESSION['id'];
-        $dept=DB::table('Faculty')->where('faculty_id',$id)->pluck('department');
+        $dept=DB::table('faculty')->where('faculty_id',$id)->pluck('department');
         $course=DB::table('course')->whereIn('department',$dept)->get();
         $courseid=DB::table('course')->where('department',$dept)->pluck('course_id');//courses of the department
-        $already_applied = DB::table('Ta_Post_Openings')->whereIn('course_id',$courseid)->pluck('course_id');//courses for which openings already created
+        $already_applied = DB::table('ta_post_openings')->whereIn('course_id',$courseid)->pluck('course_id');//courses for which openings already created
         $course = DB::table('course')->whereIn('department',$dept)->whereNotIn('course_id',$already_applied)->where('programme','B.TECH')
         ->get();
         
@@ -312,8 +312,8 @@ class CardsController extends Controller
         foreach($course as $c)
         {
 
-            $n=DB::table('Register_Course')->where('course_id',$c->course_id)->pluck('student_id');
-            $p=DB::table('Student')->whereIn('student_id',$n)->where('programme','B.TECH')->get();
+            $n=DB::table('register_course')->where('course_id',$c->course_id)->pluck('student_id');
+            $p=DB::table('student')->whereIn('student_id',$n)->where('programme','B.TECH')->get();
             array_push($no, count($p));//no of students registered in each course in the department.
        
         }
@@ -328,7 +328,7 @@ class CardsController extends Controller
       {
         
         $id=$_SESSION['id'];
-        $dept=DB::table('Faculty')->where('faculty_id',$id)->pluck('department');
+        $dept=DB::table('faculty')->where('faculty_id',$id)->pluck('department');
         $course=DB::table('course')->where('department',$dept)->get();
 
 
@@ -371,16 +371,16 @@ class CardsController extends Controller
 
         }
         $success='Post Has Been Created Successfully';
-        return redirect('TA/blade')->withErrors(array('f' => $success));;
+        return redirect('TA/')->withErrors(array('f' => $success));;
 
       }
 
       public function attendance_view()
       {
         $id=$_SESSION['id'];
-        $course1 = \DB::table('Course_Taken_By')->where('faculty_id',$id)->pluck('course_id');
-        $as1 = DB::table('Ta')->whereIn('course_id',$course1)->pluck('student_id');
-        $tas1=DB::table('Student')->whereIn('student_id',$as1)->get();
+        $course1 = \DB::table('course_taken_by')->where('faculty_id',$id)->pluck('course_id');
+        $as1 = DB::table('ta')->whereIn('course_id',$course1)->pluck('student_id');
+        $tas1=DB::table('student')->whereIn('student_id',$as1)->get();
         //print_r($tas1);
         return view('ta.attendance_view',compact('tas1'));
       }

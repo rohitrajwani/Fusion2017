@@ -29,11 +29,11 @@
 <nav class="mynav blue">
   <div class="nav-wrapper">
     <ul>
-      <li><a href="./blade">Home</a></li>
-      <li><a href="./attendance_student">Attendance</a></li>
-      <li><a href="./taapplication">TA-Form</a></li>
-      <li class="active"><a href="./claims" >Assistanceship</a></li>
-      <li><a href="./mail">Mail</a></li>
+      <li><a href="TA">Home</a></li>
+      <li><a href="TA/attendance_student">Attendance</a></li>
+      <li><a href="TA/taapplication">TA-Form</a></li>
+      <li class="active"><a href="TA/claims" >Assistanceship</a></li>
+      <li><a href="TA/mail">Mail</a></li>
     </ul>
   </div>
 </nav>
@@ -114,7 +114,7 @@
       @endif
 <br><br><br>
     <!--Link to apply for TA Assistantship claim-->
-        <center><a class="waves-effect waves-light btn" style="width:50%" href="./claimform" >Apply For Assistanceship Claim</a></center>
+        <center><a class="waves-effect waves-light btn" style="width:50%" href="TA/claimform" >Apply For Assistanceship Claim</a></center>
     <br><br>
 @endsection
 

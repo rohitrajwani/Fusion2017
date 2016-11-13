@@ -31,10 +31,10 @@
 <nav class="mynav blue">
   <div class="nav-wrapper">
     <ul>
-      <li><a href="./blade">Home</a></li>
-      <li><a href="./approve_claims">Approve-Calims</a></li>
-      <li><a href="./post_opening">Post-Opening</a></li>
-      <li><a href="./mail">Mail</a></li>
+      <li><a href="TA">Home</a></li>
+      <li><a href="TA/approve_claims">Approve-Calims</a></li>
+      <li><a href="TA/post_opening">Post-Opening</a></li>
+      <li><a href="TA/mail">Mail</a></li>
     </ul>
   </div>
 </nav>

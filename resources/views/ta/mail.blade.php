@@ -14,7 +14,7 @@
 <nav class="mynav blue">
   <div class="nav-wrapper">
     <ul>
-      <li><a href="./blade">Home</a></li>
+      <li><a href="TA">Home</a></li>
     </ul>
   </div>
 </nav>

@@ -62,8 +62,8 @@
                 <p>Mark the attendance TA</p>
             </div>
             <div class="card-action">
-                <a href="./attendance">Click Here</a>
-                <a href="./attendance_view">View Attendance</a>
+                <a href="TA/attendance">Click Here</a>
+                <a href="TA/attendance_view">View Attendance</a>
             </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
                 <p>Forward the assistanship application of TAs</p>
             </div>
             <div class="card-action">
-                <a href="./show_claims">Click Here</a>
+                <a href="TA/show_claims">Click Here</a>
             </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
                 <p>Assign batches for the TA's</p>
             </div>
             <div class="card-action">
-                <a href="./mnl_batch_assgn">Click here</a>
+                <a href="TA/mnl_batch_assgn">Click here</a>
             </div>
             </div>
         </div>
@@ -108,7 +108,7 @@
                 <p>Write a Feedback for a particlar TA</p>
             </div>
             <div class="card-action">
-                <a href="./feedback">Click Here</a>
+                <a href="TA/feedback">Click Here</a>
             </div>
             </div>
         </div>
@@ -122,7 +122,7 @@
                 <p>Send a Mail</p>  
             </div>
             <div class="card-action">
-                <a href="./mail">Click Here</a>
+                <a href="TA/mail">Click Here</a>
             </div>
             </div>
         </div>

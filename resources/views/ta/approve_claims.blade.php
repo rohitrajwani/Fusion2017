@@ -4,9 +4,9 @@
 	use App\TA;
 	
 	$id=$_SESSION['id'];//$_SESSION['id'];assumed session variable id
-	$fac = \DB::table('Faculty')->where('faculty_id',$id)->first();
+	$fac = \DB::table('faculty')->where('faculty_id',$id)->first();
 	$dept = $fac->department;//fetching department of the faculty.
-	$course = \DB::table('Course')->where('department',$dept)->pluck('course_id');//courses corresponding to the department
+	$course = \DB::table('course')->where('department',$dept)->pluck('course_id');//courses corresponding to the department
 	//print_r($course);
 	$tadetails = TA::whereIn('course_id',$course)->get();//get tas
 	$tas = $tadetails->pluck('student_id');
@@ -39,10 +39,10 @@
 <nav class="mynav blue">
   <div class="nav-wrapper">
     <ul>
-      <li><a href="./blade">Home</a></li>
-      <li class="active"><a href="./approve_claims">Approve-Claims</a></li>
-      <li><a href="./post_opening">Post-Opening</a></li>
-      <li><a href="./mail">Mail</a></li>
+      <li><a href="TA/">Home</a></li>
+      <li class="active"><a href="TA/approve_claims">Approve-Claims</a></li>
+      <li><a href="TA/post_opening">Post-Opening</a></li>
+      <li><a href="TA/mail">Mail</a></li>
     </ul>
   </div>
 </nav>
