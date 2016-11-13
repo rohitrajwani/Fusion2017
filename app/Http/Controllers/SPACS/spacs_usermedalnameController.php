@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SPACS;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
