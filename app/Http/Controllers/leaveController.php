@@ -46,7 +46,10 @@ class leaveController extends Controller
                 return Redirect::to('/ELMS/homeFaculty')->with('alert','Login Successful for '.Auth::user());
                 // return 'Login for Faculty';
             }
-        }            
+        }
+        else if($user->user_type == 'student'){
+            return Redirect::to('/dashboard')->with('alert', 'You are not allowed to enter this page');
+        }
     }
 
     public function history($app_id)

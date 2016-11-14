@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function ()
     Route::get('/attachRole/{role}','dashboardController@attachRole');
 });
 
-Route::get('/ELMS/display', 'leaveController@display');
+Route::get('/ELMS', 'leaveController@display');
 
 //Routes for Staff
 Route::get('/ELMS/homeStaff','leaveControllerStaff@homeStaff');
