@@ -56,17 +56,6 @@ class dashboardController extends Controller
 	}
 
 	public function dashboard(){
-		if(Auth::user()->user_type == 'faculty'){
-			$faculty = DB::table('faculty')->where('name','=',Auth::user()->username)->first();
-			return view('html.index',['faculty'=>$faculty]);
-		}
-		else if(Auth::user()->user_type == 'student'){
-			$student = DB::table('student')->where('name','=',Auth::user()->username)->first();
-			return view('html.student',['student'=>$student]);
-		}
-		else if(Auth::user()->user_type == 'others' && Auth::user()->hasRole('Acad_staff')){
-				return view('html.students');
-		}
 		return view('dashboard');
 	}
 
