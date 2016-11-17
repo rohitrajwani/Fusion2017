@@ -10,7 +10,7 @@ class users extends Model
 {
     use EntrustUserTrait; // add this trait to your user model
 
-    protected $table = 'login';
+    protected $table = 'Login';
     protected $primaryKey = 'username';
     public $incrementing = false;
 }
