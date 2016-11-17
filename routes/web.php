@@ -28,6 +28,19 @@ Route::group(['middleware' => ['auth']], function () {
     //Function to attach role
     Route::get('/attachRole/{role}','dashboardController@attachRole');
 
-    
+    Route::get('/signupForm','dashboardController@signup_form');
+
+    Route::get('/adminPanel','dashboardController@adminPanel');
+
+    Route::get('/admin/verify','dashboardController@verifyUsers');
+    Route::get('/admin/assign','dashboardController@assignRole');
+
+    Route::post('/admin/approveStudents','dashboardController@approveStudents');
+    Route::post('/admin/approveFaculties','dashboardController@approveFaculties');
+    Route::post('/admin/approveStaff','dashboardController@approveStaff');
+
+    Route::post('/student_signup','dashboardController@student_signup');
+    Route::post('/faculty_signup','dashboardController@faculty_signup');
+    Route::post('/staff_signup','dashboardController@staff_signup');
 
 });

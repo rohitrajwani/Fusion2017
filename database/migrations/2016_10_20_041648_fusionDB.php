@@ -73,7 +73,7 @@ class FusionDB extends Migration
                   $table->integer('batch');
                   $table->string('programme');
                   $table->string('branch', 50);
-                  $table->integer('semester');
+                  $table->integer('semester')->nullable;
                   $table->double('cpi');
                   $table->string('room_no', 10);
                   $table->string('hall_no', 5);
@@ -524,6 +524,7 @@ class FusionDB extends Migration
                   $table->string('username', 100);
                   $table->string('user_type', 100);
                   $table->string('password', 100);
+                  $table->integer('status')->default(0);
                   $table->primary('username');
 		  $table->rememberToken();
                   //$table->foreign('username')->references('student_id')->on('Student')->onDelete('cascade')->onUpdate('cascade');

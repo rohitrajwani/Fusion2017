@@ -97,7 +97,7 @@ input.file-path{
 }
 
 .file-path-wrapper .file-path{
-    width: 100% !important;
+    width: 90% !important;
 }
 
 .button{
@@ -174,4 +174,21 @@ ul.dropdown-content .divider{
 
 .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected{
     background-color: #076392;
+}
+
+ul.tabs li.tab a{
+    color: #076392;
+}
+
+ul.tabs li.tab a:hover{
+    color: rgba(7, 99, 146,0.8);
+}
+
+ul.tabs .tab.disabled a{
+    color: rgba(7, 99, 146,0.8);
+}
+
+.tabs .indicator{
+    background-color: rgba(7, 99, 146,0.6);
+    height: 1.5px;
 }
