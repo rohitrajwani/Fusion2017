@@ -2,15 +2,17 @@
   <html>
     <head>
         
-        <title>@yield('title')</title>
+        <title>Fusion</title>
         
       <!--Import Google Icon Font-->
 <!--      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
       <!--Import materialize.css-->
+
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
 
-        <link href="/materialize-css/css/materialize.min.css" type="text/css" rel="stylesheet">
+        {!! MaterializeCSS::include_full() !!}
+        <script src="https://use.fontawesome.com/5fd0aa1ca7.js"></script>
         
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         
@@ -37,6 +39,7 @@
         @if($alert = Session::get('alert'))
             <script type="text/javascript">alert("{{$alert}}");</script>
         @endif
+        
         <header>
             <nav>
                 <div class="nav-wrapper">
@@ -45,7 +48,8 @@
                   <ul class="right hide-on-med-and-down">
                     <li><a href="#">Link</a></li>
                     <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
+                    <li><a href="/logout">Logout</a></li>
+
                   </ul>
                   <ul class="side-nav" id="mobile-demo">
                     <li><a href="#">Link</a></li>
@@ -67,8 +71,14 @@
         </div>
         
         <div class="main-container row">
-        		@yield('content')
+        	@yield('TT_content')
+            @yield('VH_nav')
+            @yield('VH_content')
+
         </div>
-        
+
+        @yield('scripts')
+
     </body>
   </html>
+>>>>>>> VH_booking

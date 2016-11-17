@@ -4,7 +4,7 @@
 	Create Time Table
 @stop
 
-@section('content')
+@section('TT_content')
 	<nav class="mynav">
 	  <div class="nav-wrapper">
 	    <ul>

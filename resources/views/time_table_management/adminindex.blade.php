@@ -4,7 +4,7 @@
         Time Table Management
     @stop
 
-    @section('content')
+    @section('TT_content')
         <h4 class="col s12 m4 offset-m4">Welcome {{Auth::user()->username}}</h4>
         <div class="button-container col s12 m4">
             <a href="/time_table_management/creatett" class="button col s8 offset-s2">

@@ -2,7 +2,7 @@
 @section('title')
   Schedule an extra class
 @stop
-@section('content')
+@section('TT_content')
 
 <nav class="mynav">
 	<div class="nav-wrapper">
