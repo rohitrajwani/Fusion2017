@@ -17,14 +17,13 @@
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         
         <link href="/css/style.css" type="text/css" rel="stylesheet">
-	<link href="/css/tt_style.css" type="text/css" rel="stylesheet">
+	   <link href="/css/tt_style.css" type="text/css" rel="stylesheet">
 
-        <script src="/js/jquery-3.1.1.min.js"></script> 
-        <script src="/materialize-css/js/materialize.min.js"></script>
+        
 
         <script src="/js/jspdf.debug.js"></script>
         <script src="/js/jspdf.plugin.autotable.js"></script>
-        <link rel="stylesheet" href="{{url('fonts/font-awesome-4.6.3/css/font-awesome.min.css')}}">
+        
                 
         <script>
             $(document).ready(function() {
@@ -81,4 +80,3 @@
 
     </body>
   </html>
->>>>>>> VH_booking
