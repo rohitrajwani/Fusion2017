@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Redirect;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Complaint;
+use App\VH_Complaint;
 use App\Student;
-use App\Book;
-use App\Room;
-use App\bookRooms;
+use App\VH_Book;
+use App\VH_Room;
+use App\VH_bookRooms;
 use Auth;
 use Validator;
 
@@ -42,7 +42,7 @@ class VH_PagesController extends Controller
     public function bookingHistory(){
         $user = Auth::user();
         //$stu = Student::where('student_id',$user->username)->get();
-        $requests = Book::where('bookers_id',$user->username)->get();
+        $requests = VH_Book::where('bookers_id',$user->username)->get();
         return view('stakeholder.bookingHistory',compact('requests'));
     }
 
@@ -82,7 +82,7 @@ class VH_PagesController extends Controller
 
     //Function fetches all the data from visitors_complaint table then redirects to Complaint staus page on Vh caretaker's portal
     public function complaintStatus(){
-    		$complaints = Complaint::all();
+    		$complaints = VH_Complaint::all();
     		return view('caretaker.ct_complaint',compact('complaints'));
     }
 
@@ -99,7 +99,7 @@ class VH_PagesController extends Controller
              }
 
             else
-            $complaint = new Complaint;
+            $complaint = new VH_Complaint;
             $complaint->booking_id = $request->booking_id;
             $complaint->description = $request->description;
             $complaint->save();
@@ -108,18 +108,18 @@ class VH_PagesController extends Controller
 
     //Function fetches all the data from visitors_complaint table then redirects to respond_complaint page on Vh incharge's portal
     public function respond(){
-    		$complaints = Complaint::orderBy('complaint_no','DESC')->get();
+    		$complaints = VH_Complaint::orderBy('complaint_no','DESC')->get();
     		return view('vhincharge.respond_complaint',compact('complaints'));
     }
 
     //Function recieves complaint_id as a param fetches corresponding complaint from visitors_complaint table then redirects back
     public function addFine(Request $request,$complaint){    	
     		//$complaint =  $request->fineButton;
-    		$comp = Complaint::find($complaint);      		  		
+    		$comp = VH_Complaint::find($complaint);      		  		
     		$comp->fine = $request->amount;
     		$id = $comp->booking_id;
     		$comp->save(); 
-    		$booking = Book::find($id);
+    		$booking = VH_Book::find($id);
     		$booking->fine = $booking->fine + $request->amount;
     		$booking->save();
     		return back();
@@ -129,61 +129,61 @@ class VH_PagesController extends Controller
 
     //Function fetches all the data from booking table then redirects to page which displays all booking requests on Vh caretaker's portal
     public function bookingRequest(){
-    	$requests = Book::all();
+    	$requests = VH_Book::all();
     		return view('vhincharge.booking_request',compact('requests'));
     }
 
     public function bookingDetails(){
-    	$requests = Book::all();
+    	$requests = VH_Book::all();
     		return view('caretaker.booking_details',compact('requests'));
     }
 
     public function roomDetailsVH(){
-    	$rooms = Room::all();
+    	$rooms = VH_Room::all();
     	return view('vhincharge.room_details_vh',compact('rooms'));
     }
 
     public function roomDetailsCT(){
-    	$rooms = Room::all();
+    	$rooms = VH_Room::all();
     	return view('caretaker.room_details_ct',compact('rooms'));
     }
 
     public function viewVH($reqID){
-    	$booking = Book::find($reqID);
+    	$booking = VH_Book::find($reqID);
     	return view('vhincharge.viewDetails',compact('booking'));
     }
 
     public function viewCT($reqID){
-    	$booking = Book::find($reqID);
+    	$booking = VH_Book::find($reqID);
     	return view('caretaker.view_details_ct',compact('booking'));
     }
 
     public function viewStake($reqID){
-        $booking = Book::find($reqID);
+        $booking = VH_Book::find($reqID);
         return view('stakeholder.view_details_stake',compact('booking'));
     }
 
     public function approve($id){
-    	$booking = Book::find($id);
+    	$booking = VH_Book::find($id);
     	$booking->status = 1;
     	$booking->save();
     	return view('vhincharge.viewDetails',compact('booking'));
     }
 
     public function approveNot($id){
-    	$booking = Book::find($id);
+    	$booking = VH_Book::find($id);
     	$booking->status = 2;
     	$booking->save();
     	return view('vhincharge.viewDetails',compact('booking'));
     }
 
     public function approvedRooms(){
-    	$rooms = Book::where('status',1)->get();
+    	$rooms = VH_Book::where('status',1)->get();
     	return view('caretaker.approved_rooms',compact('rooms'));
     }
 
     public function assignRoom($id){    	
-    	$room = Book::find($id);
+    	$room = VH_Book::find($id);
     	return view('caretaker.assign_room',compact('room'));
     }
 
@@ -194,8 +194,8 @@ class VH_PagesController extends Controller
         $available[] = NULL;
         $x = 0; 
         $flag = 0;
-        $roo = Book::find($id);
-        $booked = Book::where( function ($q) use($roo) {
+        $roo = VH_Book::find($id);
+        $booked = VH_Book::where( function ($q) use($roo) {
                                       $q->where( function ($query) use($roo) {
                                             $query->where('arrival_date','<=',$roo->arrival_date)
                                                   ->where('departure_date','>=',$roo->arrival_date)
@@ -210,7 +210,7 @@ class VH_PagesController extends Controller
                                 ->where('room_no','!=','Not Assigned')
                                 ->where('status','=',1)->get(['id']);
 
-        $bookRooms = bookRooms::all();
+        $bookRooms = VH_bookRooms::all();
 
         foreach($booked as $book) {
               foreach($bookRooms as $bookRoom) {
@@ -230,7 +230,7 @@ class VH_PagesController extends Controller
 
         $flag1 = 0;
         $count =sizeof($request);
-        $r = Room::all();
+        $r = VH_Room::all();
 
         foreach($request->Room as $room) {
             foreach($r as $ro) {
@@ -250,13 +250,13 @@ class VH_PagesController extends Controller
                 $bookRooms->save();
             }             
 
-            $room = Book::find($id);
+            $room = VH_Book::find($id);
             $room->room_no = 'Assigned';
             $room->save();
 
-            //$room1 = Room::where('room_no',$request->Room)->update(["availability" => 0]);
+            //$room1 = VH_Room::where('room_no',$request->Room)->update(["availability" => 0]);
 
-        	$rooms = Book::where('status',1)->get();
+        	$rooms = VH_Book::where('status',1)->get();
         	return view('caretaker.approved_rooms',compact('rooms'));
         }
 
@@ -267,11 +267,11 @@ class VH_PagesController extends Controller
     }
 
     public function change($id){        
-        $room = Room::find($id);
-        if($room->checked_in == '0') Room::where('room_no',$room->room_no)->update(["checked_in" => 1]);
+        $room = VH_Room::find($id);
+        if($room->checked_in == '0') VH_Room::where('room_no',$room->room_no)->update(["checked_in" => 1]);
         if($room->checked_in == '1') $room->checked_in = 0;
         $room->save();
-        $rooms = Room::all();
+        $rooms = VH_Room::all();
         return Redirect::to('/vhbooking/roomDetailsCT');
     }
 
@@ -279,7 +279,7 @@ class VH_PagesController extends Controller
 
     $available[] = NULL;
     $x = 0;
-    $booked = Book::where( function ($q) use($request) {
+    $booked = VH_Book::where( function ($q) use($request) {
                                       $q->where( function ($query) use($request) {
                                             $query->where('arrival_date','<=',$request->from)
                                                   ->where('departure_date','>=',$request->from)
@@ -295,12 +295,12 @@ class VH_PagesController extends Controller
                                 ->where('status','=',1)->get(['id']);
     //return $booked;
 
-    $bookRooms = bookRooms::all();
+    $bookRooms = VH_bookRooms::all();
 
     foreach($booked as $book) {
           foreach($bookRooms as $bookRoom) {
              if($book->id == $bookRoom->booking_id) { 
-                  $room1 = Room::where('room_no',$bookRoom->room_no)->update(["availability" => 0]);
+                  $room1 = VH_Room::where('room_no',$bookRoom->room_no)->update(["availability" => 0]);
                   $available[$x] = $bookRoom->room_no;
                   $x++;
              } 
@@ -314,7 +314,7 @@ class VH_PagesController extends Controller
 
     $available[] = NULL;
     $x = 0;
-    $booked = Book::where( function ($q) use($request) {
+    $booked = VH_Book::where( function ($q) use($request) {
                                       $q->where( function ($query) use($request) {
                                             $query->where('arrival_date','<=',$request->from)
                                                   ->where('departure_date','>=',$request->from)
@@ -330,12 +330,12 @@ class VH_PagesController extends Controller
                                 ->where('status','=',1)->get(['id']);
     //return $booked;
 
-    $bookRooms = bookRooms::all();
+    $bookRooms = VH_bookRooms::all();
 
     foreach($booked as $book) {
           foreach($bookRooms as $bookRoom) {
              if($book->id == $bookRoom->booking_id) { 
-                  $room1 = Room::where('room_no',$bookRoom->room_no)->update(["availability" => 0]);
+                  $room1 = VH_Room::where('room_no',$bookRoom->room_no)->update(["availability" => 0]);
                   $available[$x] = $bookRoom->room_no;
                   $x++;
              } 
@@ -346,14 +346,14 @@ class VH_PagesController extends Controller
     }
 
    public function cancel(Request $request){     
-        $room = Book::find($request->booking_id)->delete();
-        $bookRoom = bookRooms::where('booking_id',$request->booking_id)->delete();
+        $room = VH_Book::find($request->booking_id)->delete();
+        $bookRoom = VH_bookRooms::where('booking_id',$request->booking_id)->delete();
         return view('caretaker.assign_room',compact('room'));
     }
 
 
     // public function change($complaint_no){    	
-    // 	$room = Room::find($complaint_no);
+    // 	$room = VH_Room::find($complaint_no);
     // 	if($room->checked_in == 0) $room->checked_in = 1; 
     // 	else $room->checked_in = 0;
     // 	if($room->availability == 0) $room->availability = 1; 

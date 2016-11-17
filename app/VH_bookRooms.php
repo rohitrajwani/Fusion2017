@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class bookRooms extends Model
+class VH_bookRooms extends Model
 {
     protected $table = 'booking_rooms';    
 }

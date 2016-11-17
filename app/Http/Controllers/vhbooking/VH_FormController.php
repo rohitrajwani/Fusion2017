@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
-use App\Book;
+use App\VH_Book;
 use Auth;
 use Validator;
 
@@ -71,7 +71,7 @@ class VH_FormController extends Controller
             else
        
 
-                 $booking = new Book;
+                 $booking = new VH_Book;
                  $booking->bookers_id = $user->username;
                  $booking->name = $request->nam;
                  $booking->nationality = $request->nation;
