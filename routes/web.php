@@ -49,7 +49,6 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/time_table_management/scheduleanextraclass', 'time_table_management\PagesController@scheduleanextraclass');
 	Route::get('/time_table_management/scheduleanextraclass/schedule','time_table_management\PagesController@schedule');
 	Route::get('/time_table_management/get_slots', 'time_table_management\AjaxController@get_slots');
->>>>>>> time_table_management
 
 	// Related to Requests
 	Route::get('/time_table_management/viewmyrequests', 'time_table_management\PagesController@viewmyrequests');
