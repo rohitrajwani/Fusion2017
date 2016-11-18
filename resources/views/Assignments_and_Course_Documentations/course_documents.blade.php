@@ -1,5 +1,5 @@
 @extends('layout')
-@section('content')
+@section('assignments_content')
 	<nav class="mynav">
 	  <div class="nav-wrapper">
   		<ul>

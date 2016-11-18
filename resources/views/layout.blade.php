@@ -54,7 +54,7 @@
         
         
         <div class="main-container row">
-            @yield('content')
+            @yield('assignments_content')
         </div>
         
         <script>
