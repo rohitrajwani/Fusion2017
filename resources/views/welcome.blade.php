@@ -9,7 +9,11 @@
 <!--      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
       <!--Import materialize.css-->
 
+      
+        <script src="/materialize-css/js/jquery-3.1.1.min.js"></script>
+
         {!! MaterializeCSS::include_full() !!}
+
 
         <script src="https://use.fontawesome.com/5fd0aa1ca7.js"></script>
         

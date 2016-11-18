@@ -143,6 +143,7 @@ class RolesTableSeeder extends Seeder
             'name' => 'dean_acad',
             'display_name' => 'Dean Acadmics'
         ]);
+
         DB::table('roles')->insert([
             'name' => 'mess_admin',
             'display_name' => 'Mess Admin'
