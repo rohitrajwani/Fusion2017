@@ -57,7 +57,7 @@
             
         
             
-            @yield('content')
+            @yield('acad_content')
         
         
         

@@ -64,16 +64,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('acadaff/branch_next','acadaff\cardsController@branch_next');
 	Route::get('acadaff/student_show','acadaff\cardsController@show');
 
-	Route::get('acadaff/about','acadaff\PagesController@about');
-
-	Route::get('login',function(){
-	    return view('portal.login');
+	Route::get('acadaff/about',function(){
+		return view('acadaff/pages.about');
 	});
-
-	Route::put('portal/login', 'Auth\AuthController@createUser');
-
-	Route::get('auth/google', 'Auth\AuthController@redirectToProvider');
-	Route::get('auth/google/callback', 'Auth\AuthController@handleProviderCallback');
 
 	Route::get('acadaff/admin','acadaff\cardsController@admin');
 

@@ -1,7 +1,7 @@
 @extends('layout')
 
 
-@section('content')
+@section('acad_content')
 
 <?php 
     if($errors->first()!=''){ 

@@ -14,7 +14,7 @@ $f1=0;$f2=0;$f3=0;$f4=0;
 @extends('layout')
 
 
-@section('content')
+@section('acad_content')
          
 
 

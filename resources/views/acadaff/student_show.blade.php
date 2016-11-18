@@ -21,7 +21,7 @@ $count=0;
 @extends('layout')
 
 
-@section('content')
+@section('acad_content')
 <a class="waves-effect btn" href="students">Home</a>
 <a class="waves-effect btn" href="submission">Submissions</a>
 

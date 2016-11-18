@@ -15,7 +15,7 @@ $flag5=0;
 @extends('layout')
 
 
-@section('content')
+@section('acad_content')
          
 
 
