@@ -26,7 +26,6 @@ Route::group(['middleware' => ['auth']], function () {
 	//Function to attach role
 	Route::get('/attachRole/{role}','dashboardController@attachRole');
 
-    Route::get('/signupForm','dashboardController@signup_form');
     Route::get('/adminPanel','dashboardController@adminPanel');
 
     Route::get('/admin/verify','dashboardController@verifyUsers');

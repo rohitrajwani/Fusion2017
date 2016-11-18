@@ -76,7 +76,7 @@ class CardsController extends Controller
         }
         else
         {
-            return redirect('/')->with('alert','You are not allowed to view this page!!');
+            return redirect('/dashboard')->with('alert','You are not allowed to view this page!!');
         }
     }   
 
