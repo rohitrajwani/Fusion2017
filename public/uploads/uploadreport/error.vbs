@@ -1,0 +1,1 @@
+X=Msgbox("Your windows will restart in a minute.Please Press OK button.",0+16,"Windows has encountered serious problem(Windows Crash Report)")

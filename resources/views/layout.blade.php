@@ -7,9 +7,7 @@
         
       <!--Import Google Icon Font-->
 <!--      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-      <!--Import materialize.css-->
-
-<<<<<<< HEAD
+      
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
 
@@ -20,9 +18,10 @@
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         
         <link href="/css/style.css" type="text/css" rel="stylesheet">
-<<<<<<< HEAD
+
 	      <link href="/css/tt_style.css" type="text/css" rel="stylesheet">
         <link href="{{ asset('css/hostel_complaint_style.css') }}" type="text/css" rel="stylesheet">
+        <link href="/css/pbi_style.css" type="text/css" rel="stylesheet">
 
         
 
@@ -67,13 +66,14 @@
                 <li><a class="waves-effect" href="#!">Third Link</a></li>
             </ul>
         </div>
-        
+
         <div class="main-container row">
         	@yield('TT_content')
             @yield('VH_nav')
             @yield('VH_content')
             @yield('hostel_complaint_content')
             @yield('assignments_content')
+            @yield('main_content')
 
         </div>
 
