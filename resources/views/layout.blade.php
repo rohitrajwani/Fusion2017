@@ -2,7 +2,6 @@
   <html>
     <head>
         
-<<<<<<< HEAD
         <title>Fusion</title>
         
       <!--Import Google Icon Font-->
@@ -18,7 +17,7 @@
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         <link href="/css/style.css" type="text/css" rel="stylesheet">
 
-	    <link href="/css/tt_style.css" type="text/css" rel="stylesheet">
+        <link href="/css/tt_style.css" type="text/css" rel="stylesheet">
         <link href="{{ asset('css/hostel_complaint_style.css') }}" type="text/css" rel="stylesheet">
         <link href="/css/pbi_style.css" type="text/css" rel="stylesheet">
         <link href="/css/SPACS_style.css" type="text/css" rel="stylesheet">
@@ -65,10 +64,9 @@
                 <li><a class="waves-effect" href="#!">Third Link</a></li>
             </ul>
         </div>
-<<<<<<< HEAD
 
         <div class="main-container row">
-        	@yield('TT_content')
+            @yield('TT_content')
             @yield('VH_nav')
             @yield('VH_content')
             @yield('hostel_complaint_content')
@@ -77,13 +75,14 @@
             @yield('SPACS_content')
             @yield('mess_content')
             @yield('acad_content')
+            @yield('bus_content')
         </div>
 
         @yield('scripts')
         
         <script>
             $(document).ready(function() {
-            	$('.modal-trigger').leanModal();
+                $('.modal-trigger').leanModal();
                 $('select').material_select();
                 $(".dropdown-button").dropdown();
             });

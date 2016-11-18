@@ -66,6 +66,7 @@ return [
             'engine' => 'InnoDB',
         ],
 
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', 'localhost'),
