@@ -4,22 +4,18 @@
 <head>
     <!--Import Google Icon Font-->
 
-
-    
-        
-      <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         
         {!! MaterializeCSS::include_full() !!}
         
-        <link rel="stylesheet" href="{{asset('fonts/font-awesome-4.6.3/css/font-awesome.min.css')}}'>
+        <link rel="stylesheet" href="{{asset('/fonts/font-awesome-4.6.3/css/font-awesome.min.css')}}'>
         
         <link type="text/css" rel="stylesheet" href="{{asset('css/materialize.min.css')}}"  media="screen,projection"/>
         
-        <link href="{{asset('css/fusion_style.css')}}" type="text/css" rel="stylesheet">
+        <link href="{{asset('/css/fusion_style.css')}}" type="text/css" rel="stylesheet">
         
-        <link href="{{asset('css/style.css')}}" type="text/css" rel="stylesheet">
-		<link href="{{asset('css/class_attendance.css')}}" type="text/css" rel="stylesheet">
+        <link href="{{asset('/css/style.css')}}" type="text/css" rel="stylesheet">
+		<link href="{{asset('/css/class_attendance.css')}}" type="text/css" rel="stylesheet">
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
@@ -87,7 +83,7 @@
   </nav>
       
         
-        @yield('content')
+        @yield('class_attendance_content')
     </div>
 	
 

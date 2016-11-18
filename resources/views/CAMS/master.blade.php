@@ -87,7 +87,7 @@
   </nav>
       
         
-        @yield('content')
+        @yield('class_attendance_content')
     </div>
 	
 

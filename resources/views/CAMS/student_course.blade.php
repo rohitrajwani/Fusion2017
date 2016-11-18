@@ -1,5 +1,5 @@
 @extends('CAMS.master')
-@section('content')
+@section('class_attendance_content')
 	<br>
 <div class="right-align">
 	<a style="background-color:#076392" href="#modal3" class="waves-effect waves-light btn modal-trigger">

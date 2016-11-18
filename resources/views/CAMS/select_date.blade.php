@@ -1,5 +1,5 @@
 @extends('CAMS.layout')
-@section('content')
+@section('class_attendance_content')
 
 <br>
 <center>

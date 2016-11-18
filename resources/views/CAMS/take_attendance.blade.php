@@ -1,6 +1,6 @@
 @extends('CAMS.layout')
 
-@section('content')
+@section('class_attendance_content')
 	<br>
 			<center><h3><span class="rt" >{{$coursename}}</span></h3></p></center><br></br>
 			<div class="container">

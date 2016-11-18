@@ -1,5 +1,5 @@
 @extends('CAMS.layout')
-@section('content')
+@section('class_attendance_content')
 	<div class="container">
 		<div class="row">
 			<div class="col s6 offset-s3 m6 offset-m3 l6 offset-l3">

@@ -1,6 +1,6 @@
 @extends('CAMS.master')
 
-@section('content')
+@section('class_attendance_content')
 
 	<br></br>
 <form action = "/CAMS/leave_form/{{$coursename}}" method = "post">
