@@ -1,5 +1,5 @@
 @extends('layout')
-@section('content')
+@section('bus_content')
         <nav>
           <div class="nav-wrapper">
           <span style="margin-left: 50px">

@@ -67,7 +67,7 @@
         </div>
         
         <div class="main-container row">
-        		@yield('content')
+        		@yield('bus_content')
         </div>
         
     </body>

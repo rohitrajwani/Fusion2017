@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 use DB;
 
-use App\feedback;    
+use App\bus_feedback;    
 
 
 class PagesController extends Controller
@@ -23,7 +23,7 @@ class PagesController extends Controller
 
     public function feed_store(Request $request)
     {
-    	$a = new feedback;
+    	$a = new bus_feedback;
 		/*$a->feedback_id= 1111;*/
         $a->description= $request->description;
         
