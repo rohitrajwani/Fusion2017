@@ -32,20 +32,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
-
-
 Route::get('/SPACS/', function(){
 	if(Auth::user()->user_type=="student"){
     	return view('SPACS.user.user_home');
@@ -53,7 +39,6 @@ Route::get('/SPACS/', function(){
     else if(Auth::user()->hasRole('spacs_convener')){
 		return view('SPACS.spacs.spacs_home');
 	}
-
 	if(Auth::user()->hasRole('spacscom_dir_gm')){
 		return view('SPACS.spacscom_dir_gm.spacscom_dir_gm_home');
 	}
@@ -157,19 +142,15 @@ Route::post('/SPACS/dir_sil_cul_a/{scholarship_id}/{student_id}','SPACS\spacs_us
 Route::post('/SPACS/dm_prof_gm_a/{scholarship_id}/{student_id}','SPACS\spacs_usermedalnameController@dir_gm_a');
 Route::post('/SPACS/iiitdmj_prof_a/{scholarship_id}/{student_id}','SPACS\spacs_usermedalnameController@dir_gm_a');
 Route::post('/SPACS/spacs_create_sch','SPACS\spacs_usermedalnameController@spacs_create_sch');
-
 Route::get('/SPACS/user_winners',function(){
     return view('SPACS.user.user_winners');
 });
-
 Route::get('/SPACS/spacs_scholarship_create',function(){
     return view('SPACS.spacs.spacs_scholarship_create');
 });
 Route::get('/SPACS/spacs_medal_create',function(){
     return view('SPACS.spacs.spacs_medal_create');
 });
-
-
 Route::get('/SPACS/user_summarycurrent','SPACS\spacs_usermedalnameController@user_summarycurrent');
 Route::get('/SPACS/user_summaryprevious','SPACS\spacs_usermedalnameController@user_summaryprevious');
 Route::get('/SPACS/user_mcmform',function(){

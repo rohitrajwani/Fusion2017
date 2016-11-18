@@ -1,5 +1,5 @@
 @extends('layout')
-@section('content')
+@section('SPACS_content')
           <?php
      $batch_year=$_GET['batch_year'];
 $scholarship_id=$_GET['id'];

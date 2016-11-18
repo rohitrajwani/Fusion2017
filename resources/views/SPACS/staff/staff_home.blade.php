@@ -1,5 +1,5 @@
 @extends('layout')  
-@section('content')      
+@section('SPACS_content')      
         <div class="main-container row">
             <h4 class="col s12 m8 offset-m2">SCHOLARSHIPS</h4><br><br><br><br><br><br><br><br>
         <?php $scholarship01=DB::table('medals_awards_scholarship')->where('title','MCM Scholarship')->max('end_date');

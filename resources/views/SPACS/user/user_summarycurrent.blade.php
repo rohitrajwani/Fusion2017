@@ -2,7 +2,7 @@
 $user_id=Auth::user()->username;
 ?>
 @extends('layout')
-@section('content')
+@section('SPACS_content')
 			
 			<div class="main-container row">
 				<h4 class="col s12 m8 offset-m2">Summary</h4></br>

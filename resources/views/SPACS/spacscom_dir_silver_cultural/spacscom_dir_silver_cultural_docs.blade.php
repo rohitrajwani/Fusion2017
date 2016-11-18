@@ -3,7 +3,7 @@
 $student_id=$_GET['student_id'];
 ?>
 @extends('layout')
-@section('content')
+@section('SPACS_content')
 
  <div class="main-container row">
             <h4 class="col s12 m8 offset-m2">DOCS</h4><br><br><br><br><br><br><br><br>

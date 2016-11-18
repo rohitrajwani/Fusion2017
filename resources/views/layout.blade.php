@@ -52,7 +52,7 @@
             </ul>
         </div>
 
-        @yield('content')
+        @yield('SPACS_content')
         <script>
             $(document).ready(function() {
             	  $('.modal-trigger').leanModal();

@@ -3,7 +3,7 @@
 	$id=$_GET['id'];
 ?>
 @extends('layout')
-@section('content')
+@section('SPACS_content')
 			
 			<div class="main-container row">
 				
