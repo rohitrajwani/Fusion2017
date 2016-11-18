@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/staff_signup','dashboardController@staff_signup');
 
 
-//---------------------------Routes for VH-Booking----------------------------------------
+//---------------------------1)Routes for VH-Booking----------------------------------------
     Route::get('/vhbooking','vhbooking\VH_PagesController@portalCheck');
     Route::get('vhbooking/stakeholder','vhbooking\VH_PagesController@stakeholder');    
 	Route::get('vhbooking/caretaker','vhbooking\VH_PagesController@caretaker');
@@ -77,7 +77,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/vhbooking/checkAvailabilityVH','vhbooking\VH_PagesController@availabilityVH');
 //---------------------------Routes for VH-Booking end here---------------------------------------------
 
-//---------------------------Routes for Time Table Management--------------------------------
+//---------------------------2)Routes for Time Table Management--------------------------------
 	//Routes for Time Table module
 	Route::get('/time_table_management', 'time_table_management\PagesController@index');
 	
@@ -105,7 +105,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('time_table_management/quizzes', 'time_table_management\PagesController@quizzes');
 //---------------------------Routes for Time Table Management end here----------------------------
 
-//---------------------------Routes for TA Management begin here----------------------------
+//---------------------------3)Routes for TA Management begin here----------------------------
 	Route::get('TA/','TA\CardsController@index');///Main Page -- will automatically redirect to student, Faculty or HOD.
 	Route::get('TA/wele', 'dashboardController@dashboard');
 	Route::get('TA/attendance','TA\CardsController@attendance');//faculty attendance page
@@ -137,14 +137,14 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('TA/view_feedback','TA\AdminController@view_feedback');//view feedback admin page.
 //---------------------------Routes for TA Management end here----------------------------
 
-//---------------------------Routes for Hostel Complaints begin here----------------------------
+//---------------------------4)Routes for Hostel Complaints begin here----------------------------
 	Route::get('/hostelComplaints','ComplaintsController@display');
 	Route::post('/hostelComplaints','ComplaintsController@store');
 	Route::post('/hostelComplaints/{complaint}','ComplaintsController@update');	  
 	Route::post('/Complaints','ComplaintsController@show');
 //---------------------------Routes for Hostel Complaints end here----------------------------
 
-//---------------------------Routes for CC Complaints begin here----------------------------
+//---------------------------5)Routes for CC Complaints begin here----------------------------
 	Route::get('cc-complaint/', 'cc\PagesController@index');
 	Route::post('cc-complaint/create', 'cc\CreateController@insert');
 	Route::post('cc-complaint/updateAll', 'cc\UpdateAllController@updateAll');
@@ -154,7 +154,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('cc-complaint/sort', 'cc\SortController@sort');
 //---------------------------Routes for CC Complaints end here----------------------------
 
-//---------------------------Assignments_and_Course_Documentation Routes-----------------------------------
+//---------------------------6)Assignments_and_Course_Documentation Routes-----------------------------------
    Route::get('/Assignments_and_Course_Documentation', 'Assignments_and_Course_Documentations\Student@check');
    Route::get('/Assignments_and_Course_Documentation/student', 'Assignments_and_Course_Documentations\Student@home');
    Route::get('/Assignments_and_Course_Documentation/student/{course}','Assignments_and_Course_Documentations\Student@selected_course');
@@ -171,7 +171,7 @@ Route::group(['middleware' => ['auth']], function () {
    Route::post('/Assignments_and_Course_Documentation/solve_assignment','Assignments_and_Course_Documentations\Student@store');
 //---------------------------Assignments_and_Course_Documentation Routes End here-----------------------------------
 
-//---------------------------PBI Routes Begin here------------------------------------------------------------------
+//---------------------------7)PBI Routes Begin here------------------------------------------------------------------
     Route::get('/PBI/', function(){
     	if(Auth::user()->user_type=='student')
             return Redirect::to('/PBI/welcome_student')->with('alert','Login Successful for '.Auth::user());
@@ -232,7 +232,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/PBI/view_faculty_topic/{parameter}','PBI\ApplyController@view_faculty_topic');
 //---------------------------PBI Routes End here----------------------------------------------------
 
-//---------------------------SPACS Routes Begin here----------------------------------------------------
+//---------------------------8)SPACS Routes Begin here----------------------------------------------------
 	Route::get('/SPACS/', function(){
 		if(Auth::user()->user_type=="student"){
 	    	return view('SPACS.user.user_home');
@@ -396,7 +396,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/SPACS/spacscom_iiitdmj_prof_results','SPACS\spacs_usermedalnameController@spacscom_iiitdmj_prof_results');
 //---------------------------SPACS Routes End here----------------------------------------------------
 
-//---------------------------Mess Management Routes Begin here----------------------------------------------------
+//---------------------------9)Mess Management Routes Begin here----------------------------------------------------
 
 	Route::get('/mess_management','mess_management\messcontroller@index');
 	Route::get('/mess_management/Student', 'mess_management\messcontroller@student');
@@ -467,7 +467,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/mess_management/orderform','mess_management\messcontroller@placeorder');
 //---------------------------Mess Management Routes End here----------------------------------------------------
 
-//---------------------------Academic Affairs Routes Begin here----------------------------------------------------
+//---------------------------10)Academic Affairs Routes Begin here----------------------------------------------------
 	Route::get('/acadaff/', function(){
 		return redirect('acadaff/index');
 	});
@@ -513,7 +513,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('acadaff/index','acadaff\cardsController@index');
 //---------------------------Academic Affairs Routes End here----------------------------------------------------
 
-//---------------------------Event Organizing Routes Begin here----------------------------------------------------
+//---------------------------11)Event Organizing Routes Begin here----------------------------------------------------
 	Route::get('/event_organizing','event_organizing_Controllers\EventController@index');
 	Route::get('/event_organizing/acad','event_organizing_Controllers\EventController@acad');
 	Route::post('/event_organizing/acad/eventcreated','event_organizing_Controllers\EventCreateController@store');
@@ -528,7 +528,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/event_organizing/{clubname}/event_review/{id}','event_organizing_Controllers\EventController@review');
 //---------------------------Event Organizing Routes End here----------------------------------------------------
 
-//---------------------------Bus Management Routes Begin here----------------------------------------------------
+//---------------------------12)Bus Management Routes Begin here----------------------------------------------------
     Route::get('/bus_management', 'Bus_management\bus_management@index');
 
 	Route::get('bus_management/home','Bus_management\HomeController@home');
@@ -579,4 +579,21 @@ Route::group(['middleware' => ['auth']], function () {
 		'as'=>'post_not'
 		]);
 //---------------------------Bus Manaegement Routes End here----------------------------------------------------
+
+//---------------------------13)Class Attendance Routes Begin here----------------------------------------------------
+	Route::get('/CAMS/', 'ClassAttendance\ClassAttendanceController@index');
+	Route::get('/CAMS/faculty','ClassAttendance\HomePageController@facHome');
+	Route::get('/CAMS/student','ClassAttendance\HomePageController@stuHome');
+	Route::post('/CAMS/choose_date/{coursename}','ClassAttendance\ViewAttendanceController@student_status');	
+	Route::get('/CAMS/faculty/{course}','ClassAttendance\FacultyCoursePageController@view_course');
+	Route::get('/CAMS/student/course/{course_name}','ClassAttendance\StudentCoursePageController@student_course');
+	Route::get('/CAMS/take-attendance/{coursename}','ClassAttendance\TakeAttendanceController@take_attendance');
+	Route::post('/CAMS/store-attendance_offline/{coursename}','ClassAttendance\TakeAttendanceController@store_attendance_offline');
+	Route::post('/CAMS/store-attendance_online/{coursename}','ClassAttendance\TakeAttendanceController@store_attendance_online');
+	Route::post('/CAMS/send-notification/{coursename}','ClassAttendance\SendMessageController@send');
+	Route::get('/CAMS/fill_leave-form/{coursename}','ClassAttendance\LeaveFormController@fill_leaveform');
+	Route::post('/CAMS/leave_form/{coursename}','ClassAttendance\LeaveFormController@store_leaveform');
+	Route::get('/CAMS/take-attendance/online/{coursename}','ClassAttendance\TakeAttendanceController@online_mode');
+	Route::get('/CAMS/take-attendance/offline/{coursename}','ClassAttendance\TakeAttendanceController@offline_mode');
+//---------------------------Class Attendance Routes End here----------------------------------------------------
 });
