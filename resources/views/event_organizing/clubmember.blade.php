@@ -2,7 +2,7 @@
 
 @section('title', 'Fusion')
 
-@section('content')
+@section('event_content')
 	<!--Top Header-->
 	<div class="main-container">
 		<div class="head custom">

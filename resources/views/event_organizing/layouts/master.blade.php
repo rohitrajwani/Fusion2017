@@ -45,12 +45,9 @@
 		</div>
 
    
-		 @yield('content')
+		 @yield('event_content')
 	   
 
-
-	<script src="{{asset("js/jquery-3.1.1.min.js")}}"></script>
-	<script src="{{asset("js/materialize.min.js")}}"></script>
 	<script src="{{asset("js/jquery.smooth-scroll.min.js")}}"></script>
 	@yield('script')
 	</body>

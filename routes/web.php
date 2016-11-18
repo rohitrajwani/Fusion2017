@@ -32,6 +32,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 /*Start    Event Organizing Routes*/
 
+Route::get('/event_organizing','event_organizing_Controllers\EventController@index');
+
 Route::get('/event_organizing/acad','event_organizing_Controllers\EventController@acad');
 
 Route::post('/event_organizing/acad/eventcreated','event_organizing_Controllers\EventCreateController@store');
@@ -55,7 +57,7 @@ Route::post('/event_organizing/getrooms','event_organizing_Controllers\AjaxCalls
 Route::post('/event_organizing/{clubname}/event_review/{id}','event_organizing_Controllers\EventController@review');
 
 /*End    Event Organizing Routes*/
-		});
+});
 
 
 

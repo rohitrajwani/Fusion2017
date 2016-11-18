@@ -22,6 +22,18 @@ use Zizaco\Entrust\Traits\EntrustRoleTrait;
 
 class EventController extends Controller
 {
+
+	public function index(){
+		if(Auth::user()->hasRole('faculty') || Auth::user()->hasRole('Acad_staff'))
+		{
+			return redirect('/event_organizing/acad');
+		}
+		if(Auth::user()->hasRole('ug_student'))
+		{
+			return \Redirect::action('event_organizing_Controllers\EventController@clubpages');
+		}
+	}
+
 	public function acad(Request $request)
 	{
 		
