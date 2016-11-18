@@ -13,7 +13,7 @@ class User extends Authenticatable
     use EntrustUserTrait;
     use Notifiable;
 
-    protected $table = 'Login';
+    protected $table = 'login';
     protected $primaryKey = 'username';
     public $incrementing = false;
 

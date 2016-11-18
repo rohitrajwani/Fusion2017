@@ -300,7 +300,7 @@ class PagesController extends BaseController
 	   $user = Auth::user()->username;
 
 	   if(Auth::user()->user_type=='student'){
-		$stu = DB::table('Student')->where('student_id', $user)->get()->first();
+		$stu = DB::table('student')->where('student_id', $user)->get()->first();
 
 		$info['sem'] = $stu->semester;
 		$info['dep'] = $stu->branch;
