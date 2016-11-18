@@ -15,7 +15,7 @@
 
         <script src="https://use.fontawesome.com/5fd0aa1ca7.js"></script>
         
-        <link href="css/stylemain.css" rel="stylesheet">
+        <link href="/css/stylemain.css" rel="stylesheet">
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         <link href="/css/style.css" type="text/css" rel="stylesheet">
 
