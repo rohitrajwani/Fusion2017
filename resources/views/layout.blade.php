@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
+
   <html>
     <head>
         
@@ -9,15 +9,18 @@
 <!--      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
       <!--Import materialize.css-->
 
+<<<<<<< HEAD
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
 
         {!! MaterializeCSS::include_full() !!}
+
         <script src="https://use.fontawesome.com/5fd0aa1ca7.js"></script>
         
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         
         <link href="/css/style.css" type="text/css" rel="stylesheet">
+<<<<<<< HEAD
 	      <link href="/css/tt_style.css" type="text/css" rel="stylesheet">
         <link href="{{ asset('css/hostel_complaint_style.css') }}" type="text/css" rel="stylesheet">
 
@@ -42,9 +45,6 @@
         @endif
         
         <header>
-
-<body>
-   <header>
             <nav>
                 <div class="nav-wrapper">
                   <a href="#!" class="brand-logo">Fusion</a>
@@ -73,10 +73,18 @@
             @yield('VH_nav')
             @yield('VH_content')
             @yield('hostel_complaint_content')
+            @yield('assignments_content')
 
         </div>
 
         @yield('scripts')
+        
+        <script>
+            $(document).ready(function() {
+                $('select').material_select();
+                $(".dropdown-button").dropdown();
+            });
+        </script>
 
     </body>
   </html>
