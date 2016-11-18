@@ -48,7 +48,7 @@ class RolesTableSeeder extends Seeder
             'display_name' => 'Culb Coordinator'
         ]);
         DB::table('roles')->insert([
-            'name' => 'cilb_coco',
+            'name' => 'club_coco',
             'display_name' => 'Club Co-Coordinator'
         ]);
         DB::table('roles')->insert([

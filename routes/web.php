@@ -513,4 +513,20 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('acadaff/supervisornext2','acadaff\cardsController@supervisornext2');
 	Route::get('acadaff/index','acadaff\cardsController@index');
 //---------------------------Academic Affairs Routes End here----------------------------------------------------
+
+//---------------------------Event Organizing Routes Begin here----------------------------------------------------
+	Route::get('/event_organizing','event_organizing_Controllers\EventController@index');
+	Route::get('/event_organizing/acad','event_organizing_Controllers\EventController@acad');
+	Route::post('/event_organizing/acad/eventcreated','event_organizing_Controllers\EventCreateController@store');
+	Route::post('/event_organizing/acad/eventcanceled/{id}','event_organizing_Controllers\EventCreateController@destroy');
+	Route::get('/event_organizing/clubs','event_organizing_Controllers\EventController@clubpages');
+	Route::get('/event_organizing/clubadmin/{clubname}','event_organizing_Controllers\EventController@club');
+	Route::post('/event_organizing/{clubname}/clubeventcreated','event_organizing_Controllers\ClubEventCreateController@store');
+	Route::post('/event_organizing/{clubname}/clubeventresults/{id}','event_organizing_Controllers\ClubEventCreateController@update');
+	Route::post('/event_organizing/{clubname}/clubeventcanceled/{id}','event_organizing_Controllers\ClubEventCreateController@destroy');
+	Route::get('/event_organizing/clubmember/{clubname}','event_organizing_Controllers\EventController@clubmembers');
+	Route::post('/event_organizing/getrooms','event_organizing_Controllers\AjaxCallsController@index');
+	Route::post('/event_organizing/{clubname}/event_review/{id}','event_organizing_Controllers\EventController@review');
+//---------------------------Event Organizing Routes End here----------------------------------------------------
+
 });
