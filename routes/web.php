@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/staff_signup','dashboardController@staff_signup');
 
 
-//---------------------------------Routes for VH-Booking----------------------------------------
+//---------------------------Routes for VH-Booking----------------------------------------
     Route::get('/vhbooking','vhbooking\VH_PagesController@portalCheck');
     Route::get('vhbooking/stakeholder','vhbooking\VH_PagesController@stakeholder');    
 	Route::get('vhbooking/caretaker','vhbooking\VH_PagesController@caretaker');
@@ -75,10 +75,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/cancel','vhbooking\VH_PagesController@cancel');
 	Route::post('/vhbooking/checkAvailabilityCT','vhbooking\VH_PagesController@availabilityCT');
 	Route::post('/vhbooking/checkAvailabilityVH','vhbooking\VH_PagesController@availabilityVH');
+//---------------------------Routes for VH-Booking end here---------------------------------------------
 
-//--------------------Routes for VH-Booking end here---------------------------------------------
-
-//-------------------------------Routes for Time Table Management--------------------------------
+//---------------------------Routes for Time Table Management--------------------------------
 	//Routes for Time Table module
 	Route::get('/time_table_management', 'time_table_management\PagesController@index');
 	
@@ -104,9 +103,7 @@ Route::group(['middleware' => ['auth']], function () {
 	// Related to Extra Classes
 	Route::get('time_table_management/extra_classes', 'time_table_management\PagesController@extra_classes');
 	Route::get('time_table_management/quizzes', 'time_table_management\PagesController@quizzes');
-
 //---------------------------Routes for Time Table Management end here----------------------------
-
 
 //---------------------------Routes for TA Management begin here----------------------------
 	Route::get('TA/','TA\CardsController@index');///Main Page -- will automatically redirect to student, Faculty or HOD.
@@ -138,7 +135,6 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('TA/sendmail','TA\TAMainController@sendmail');//post method
 	Route::get('TA/attendance_view','TA\CardsController@attendance_view');//view attendance 
 	Route::get('TA/view_feedback','TA\AdminController@view_feedback');//view feedback admin page.
-	
 //---------------------------Routes for TA Management end here----------------------------
 
 //---------------------------Routes for Hostel Complaints begin here----------------------------
@@ -158,7 +154,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('cc-complaint/sort', 'cc\SortController@sort');
 //---------------------------Routes for CC Complaints end here----------------------------
 
-//-----------------------Assignments_and_Course_Documentation Routes-----------------------------------
+//---------------------------Assignments_and_Course_Documentation Routes-----------------------------------
    Route::get('/Assignments_and_Course_Documentation', 'Assignments_and_Course_Documentations\Student@check');
    Route::get('/Assignments_and_Course_Documentation/student', 'Assignments_and_Course_Documentations\Student@home');
    Route::get('/Assignments_and_Course_Documentation/student/{course}','Assignments_and_Course_Documentations\Student@selected_course');
@@ -173,9 +169,9 @@ Route::group(['middleware' => ['auth']], function () {
    Route::post('/Assignments_and_Course_Documentation/assignment', 'Assignments_and_Course_Documentations\Faculty@store1');
    Route::post('/Assignments_and_Course_Documentation/assess_assignment', 'Assignments_and_Course_Documentations\Faculty@store2');
    Route::post('/Assignments_and_Course_Documentation/solve_assignment','Assignments_and_Course_Documentations\Student@store');
-//-----------------------Assignments_and_Course_Documentation Routes End here-----------------------------------
+//---------------------------Assignments_and_Course_Documentation Routes End here-----------------------------------
 
-//-----------------------PBI Routes Begin here------------------------------------------------------------------
+//---------------------------PBI Routes Begin here------------------------------------------------------------------
     Route::get('/PBI/', function(){
     	if(Auth::user()->user_type=='student')
             return Redirect::to('/PBI/welcome_student')->with('alert','Login Successful for '.Auth::user());
@@ -234,9 +230,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/PBI/viewschedule','PBI\ApplyController@viewschedule');
 	Route::get('/PBI/apply1','PBI\ApplyController@apply1');
 	Route::get('/PBI/view_faculty_topic/{parameter}','PBI\ApplyController@view_faculty_topic');
-//-----------------------PBI Routes End here----------------------------------------------------
+//---------------------------PBI Routes End here----------------------------------------------------
 
-//-----------------------SPACS Routes Begin here----------------------------------------------------
+//---------------------------SPACS Routes Begin here----------------------------------------------------
 	Route::get('/SPACS/', function(){
 		if(Auth::user()->user_type=="student"){
 	    	return view('SPACS.user.user_home');
@@ -398,11 +394,10 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/SPACS/spacs_dir_silver_games_results','SPACS\spacs_usermedalnameController@spacs_dir_silver_games_results');
 	Route::get('/SPACS/spacscom_dm_prof_gm_results','SPACS\spacs_usermedalnameController@spacscom_dm_prof_gm_results');
 	Route::get('/SPACS/spacscom_iiitdmj_prof_results','SPACS\spacs_usermedalnameController@spacscom_iiitdmj_prof_results');
-
-//-----------------------------------SPACS Routes End here----------------------------------------------------
+//---------------------------SPACS Routes End here----------------------------------------------------
 
 	
-//-----------------------------------Mess Management Routes Begin here----------------------------------------------------
+//---------------------------Mess Management Routes Begin here----------------------------------------------------
 
 	Route::get('/mess_management','mess_management\messcontroller@index');
 	Route::get('/mess_management/Student', 'mess_management\messcontroller@student');
@@ -471,6 +466,51 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/mess_management/viewfeedback','mess_management\messcontroller@viewfeedback');
 
 	Route::post('/mess_management/orderform','mess_management\messcontroller@placeorder');
+//---------------------------Mess Management Routes End here----------------------------------------------------
 
-//-----------------------------------Mess Management Routes End here----------------------------------------------------
+//---------------------------Academic Affairs Routes Begin here----------------------------------------------------
+	Route::get('/acadaff/', function(){
+		return redirect('acadaff/index');
+	});
+	
+	Route::get('acadaff/students','acadaff\cardsController@first');
+	Route::post('acadaff/bonafide','acadaff\cardsController@bonafide');
+	Route::post('acadaff/semirr','acadaff\cardsController@s');
+	Route::post('acadaff/semirr2','acadaff\cardsController@s2');
+	Route::get('acadaff/ug_student','acadaff\cardsController@ug');
+
+
+	Route::post('acadaff/cec','acadaff\cardsController@cec');
+	Route::post('acadaff/seminar_committee','acadaff\cardsController@seminar_committee');
+	Route::post('acadaff/seminar_report','acadaff\cardsController@seminar_report');
+	Route::post('acadaff/supervisor','acadaff\cardsController@supervisor');
+	Route::post('acadaff/leave','acadaff\cardsController@leave');
+
+	Route::get('acadaff/academic','acadaff\cardsController@academic');
+	Route::get('acadaff/faculty','acadaff\cardsController@faculty');
+	Route::get('acadaff/submission','acadaff\cardsController@submission');
+
+	Route::get('acadaff/ug_student_show','acadaff\cardsController@submission2');
+	Route::post('acadaff/branch_change','acadaff\cardsController@branch_change');
+	Route::post('acadaff/seminarrequest','acadaff\cardsController@seminarnext');
+	Route::post('acadaff/seminarrequest2','acadaff\cardsController@seminarnext2');
+
+	Route::post('acadaff/cec','acadaff\cardsController@cec');
+	Route::post('acadaff/cerequest','acadaff\cardsController@cenext');
+	Route::post('acadaff/cerequest2','acadaff\cardsController@cenext2');
+
+	Route::post('acadaff/bonafidenext','acadaff\cardsController@bonafidenext');
+	Route::post('acadaff/leaverequest','acadaff\cardsController@leavenext');
+	Route::post('acadaff/supervisorrequest','acadaff\cardsController@supervisornext');
+	Route::post('acadaff/branch_next','acadaff\cardsController@branch_next');
+	Route::get('acadaff/student_show','acadaff\cardsController@show');
+
+	Route::get('acadaff/about',function(){
+		return view('acadaff/pages.about');
+	});
+
+	Route::get('acadaff/admin','acadaff\cardsController@admin');
+	Route::post('acadaff/supervisornext2','acadaff\cardsController@supervisornext2');
+	Route::get('acadaff/index','acadaff\cardsController@index');
+//---------------------------Academic Affairs Routes End here----------------------------------------------------
 });

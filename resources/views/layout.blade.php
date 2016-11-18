@@ -2,6 +2,7 @@
   <html>
     <head>
         
+<<<<<<< HEAD
         <title>Fusion</title>
         
       <!--Import Google Icon Font-->
@@ -64,6 +65,7 @@
                 <li><a class="waves-effect" href="#!">Third Link</a></li>
             </ul>
         </div>
+<<<<<<< HEAD
 
         <div class="main-container row">
         	@yield('TT_content')
@@ -74,6 +76,7 @@
             @yield('main_content')
             @yield('SPACS_content')
             @yield('mess_content')
+            @yield('acad_content')
         </div>
 
         @yield('scripts')

@@ -11,7 +11,6 @@ class User extends Authenticatable
 {
 
     use EntrustUserTrait;
-
     use Notifiable;
 
     protected $table = 'Login';
