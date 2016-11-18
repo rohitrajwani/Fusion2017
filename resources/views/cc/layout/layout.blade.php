@@ -10,9 +10,7 @@
         
          <link rel="stylesheet" href="/css/style.css">
         <!--shortcut icon on tab-->
-
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--<link rel="stylesheet" href="cc/asset/css/style/style.css">-->
+        
         @stack('css')
         @stack('admin_css')
         <!--Let browser know website is optimized for mobile-->
