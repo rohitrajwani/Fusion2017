@@ -794,4 +794,19 @@ Route::group(['middleware' => ['auth']], function () {
 
 //---------------------------Employee Leave System Routes End here--------------------------
 
+//---------------------------Health Center Routes Begin here--------------------------------
+
+	Route::get('/health-centre', 'healthcentre\PageController@getIndex');
+	Route::get('/health-centre/gallery','healthcentre\PageController@getGallery');
+	Route::resource('health-centre/appointment','healthcentre\AppointmentController');
+	Route::resource('health-centre/doctor','healthcentre\DoctorController');
+	Route::resource('health-centre/doctorprofile','healthcentre\DoctorProfileController');
+	Route::resource('health-centre/appointmentpatient','healthcentre\AppointmentDoctor');
+	Route::resource('health-centre/prescribe','healthcentre\PrescribeController');
+	Route::get('health-centre/upcoming-appointment',['uses'=> 'healthcentre\AppointmentController@next','as' => 'appointment.next']);
+	Route::get('health-centre/upcoming-appointments',['uses'=> 'healthcentre\AppointmentDoctor@next','as' => 'appointmentdoctor.next']);
+	Route::get('health-centre/previous-appointment',['uses'=> 'healthcentre\AppointmentDoctor@previous','as' => 'appointmentdoctor.previous']);
+
+//---------------------------Health Center Routes End here----------------------------------
+
 });
