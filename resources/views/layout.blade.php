@@ -3,6 +3,7 @@
     <head>
         
         <title>Fusion</title>
+<<<<<<< HEAD
         
       <!--Import Google Icon Font-->
 <!--      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
@@ -14,6 +15,7 @@
 
         <script src="https://use.fontawesome.com/5fd0aa1ca7.js"></script>
         
+        <link href="css/stylemain.css" rel="stylesheet">
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         <link href="/css/style.css" type="text/css" rel="stylesheet">
 
@@ -64,6 +66,7 @@
                 <li><a class="waves-effect" href="#!">Third Link</a></li>
             </ul>
         </div>
+<<<<<<< HEAD
 
         <div class="main-container row">
             @yield('TT_content')
@@ -76,6 +79,7 @@
             @yield('mess_content')
             @yield('acad_content')
             @yield('bus_content')
+            @yield('counselling_content')
         </div>
 
         @yield('scripts')

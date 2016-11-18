@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
 	return view('welcome');
 });
@@ -75,9 +76,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/cancel','vhbooking\VH_PagesController@cancel');
 	Route::post('/vhbooking/checkAvailabilityCT','vhbooking\VH_PagesController@availabilityCT');
 	Route::post('/vhbooking/checkAvailabilityVH','vhbooking\VH_PagesController@availabilityVH');
-//---------------------------Routes for VH-Booking end here---------------------------------------------
+//---------------------------Routes for VH-Booking end here---------------------------------
 
-//---------------------------2)Routes for Time Table Management--------------------------------
+//---------------------------2)Routes for Time Table Management-----------------------------
 	//Routes for Time Table module
 	Route::get('/time_table_management', 'time_table_management\PagesController@index');
 	
@@ -103,9 +104,9 @@ Route::group(['middleware' => ['auth']], function () {
 	// Related to Extra Classes
 	Route::get('time_table_management/extra_classes', 'time_table_management\PagesController@extra_classes');
 	Route::get('time_table_management/quizzes', 'time_table_management\PagesController@quizzes');
-//---------------------------Routes for Time Table Management end here----------------------------
+//---------------------------Routes for Time Table Management end here----------------------
 
-//---------------------------3)Routes for TA Management begin here----------------------------
+//---------------------------3)Routes for TA Management begin here--------------------------
 	Route::get('TA/','TA\CardsController@index');///Main Page -- will automatically redirect to student, Faculty or HOD.
 	Route::get('TA/wele', 'dashboardController@dashboard');
 	Route::get('TA/attendance','TA\CardsController@attendance');//faculty attendance page
@@ -135,16 +136,16 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('TA/sendmail','TA\TAMainController@sendmail');//post method
 	Route::get('TA/attendance_view','TA\CardsController@attendance_view');//view attendance 
 	Route::get('TA/view_feedback','TA\AdminController@view_feedback');//view feedback admin page.
-//---------------------------Routes for TA Management end here----------------------------
+//---------------------------Routes for TA Management end here------------------------------
 
-//---------------------------4)Routes for Hostel Complaints begin here----------------------------
+//---------------------------4)Routes for Hostel Complaints begin here----------------------
 	Route::get('/hostelComplaints','ComplaintsController@display');
 	Route::post('/hostelComplaints','ComplaintsController@store');
 	Route::post('/hostelComplaints/{complaint}','ComplaintsController@update');	  
 	Route::post('/Complaints','ComplaintsController@show');
-//---------------------------Routes for Hostel Complaints end here----------------------------
+//---------------------------Routes for Hostel Complaints end here--------------------------
 
-//---------------------------5)Routes for CC Complaints begin here----------------------------
+//---------------------------5)Routes for CC Complaints begin here--------------------------
 	Route::get('cc-complaint/', 'cc\PagesController@index');
 	Route::post('cc-complaint/create', 'cc\CreateController@insert');
 	Route::post('cc-complaint/updateAll', 'cc\UpdateAllController@updateAll');
@@ -152,9 +153,9 @@ Route::group(['middleware' => ['auth']], function () {
 	//Route::post('/updateStaff', 'UpdateStaffController@updateStaff');
 	//Route::post('/updateStudent', 'UpdateStudentController@updateStudent');
 	Route::post('cc-complaint/sort', 'cc\SortController@sort');
-//---------------------------Routes for CC Complaints end here----------------------------
+//---------------------------Routes for CC Complaints end here------------------------------
 
-//---------------------------6)Assignments_and_Course_Documentation Routes-----------------------------------
+//---------------------------6)Assignments_and_Course_Documentation Routes------------------
    Route::get('/Assignments_and_Course_Documentation', 'Assignments_and_Course_Documentations\Student@check');
    Route::get('/Assignments_and_Course_Documentation/student', 'Assignments_and_Course_Documentations\Student@home');
    Route::get('/Assignments_and_Course_Documentation/student/{course}','Assignments_and_Course_Documentations\Student@selected_course');
@@ -169,9 +170,9 @@ Route::group(['middleware' => ['auth']], function () {
    Route::post('/Assignments_and_Course_Documentation/assignment', 'Assignments_and_Course_Documentations\Faculty@store1');
    Route::post('/Assignments_and_Course_Documentation/assess_assignment', 'Assignments_and_Course_Documentations\Faculty@store2');
    Route::post('/Assignments_and_Course_Documentation/solve_assignment','Assignments_and_Course_Documentations\Student@store');
-//---------------------------Assignments_and_Course_Documentation Routes End here-----------------------------------
+//---------------------------Assignments_and_Course_Documentation Routes End here-----------
 
-//---------------------------7)PBI Routes Begin here------------------------------------------------------------------
+//---------------------------7)PBI Routes Begin here----------------------------------------
     Route::get('/PBI/', function(){
     	if(Auth::user()->user_type=='student')
             return Redirect::to('/PBI/welcome_student')->with('alert','Login Successful for '.Auth::user());
@@ -230,9 +231,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/PBI/viewschedule','PBI\ApplyController@viewschedule');
 	Route::get('/PBI/apply1','PBI\ApplyController@apply1');
 	Route::get('/PBI/view_faculty_topic/{parameter}','PBI\ApplyController@view_faculty_topic');
-//---------------------------PBI Routes End here----------------------------------------------------
+//---------------------------PBI Routes End here--------------------------------------------
 
-//---------------------------8)SPACS Routes Begin here----------------------------------------------------
+//---------------------------8)SPACS Routes Begin here--------------------------------------
 	Route::get('/SPACS/', function(){
 		if(Auth::user()->user_type=="student"){
 	    	return view('SPACS.user.user_home');
@@ -394,9 +395,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/SPACS/spacs_dir_silver_games_results','SPACS\spacs_usermedalnameController@spacs_dir_silver_games_results');
 	Route::get('/SPACS/spacscom_dm_prof_gm_results','SPACS\spacs_usermedalnameController@spacscom_dm_prof_gm_results');
 	Route::get('/SPACS/spacscom_iiitdmj_prof_results','SPACS\spacs_usermedalnameController@spacscom_iiitdmj_prof_results');
-//---------------------------SPACS Routes End here----------------------------------------------------
+//---------------------------SPACS Routes End here------------------------------------------
 
-//---------------------------9)Mess Management Routes Begin here----------------------------------------------------
+//---------------------------9)Mess Management Routes Begin here----------------------------
 
 	Route::get('/mess_management','mess_management\messcontroller@index');
 	Route::get('/mess_management/Student', 'mess_management\messcontroller@student');
@@ -465,9 +466,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/mess_management/viewfeedback','mess_management\messcontroller@viewfeedback');
 
 	Route::post('/mess_management/orderform','mess_management\messcontroller@placeorder');
-//---------------------------Mess Management Routes End here----------------------------------------------------
+//---------------------------Mess Management Routes End here--------------------------------
 
-//---------------------------10)Academic Affairs Routes Begin here----------------------------------------------------
+//---------------------------10)Academic Affairs Routes Begin here--------------------------
 	Route::get('/acadaff/', function(){
 		return redirect('acadaff/index');
 	});
@@ -511,9 +512,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('acadaff/admin','acadaff\cardsController@admin');
 	Route::post('acadaff/supervisornext2','acadaff\cardsController@supervisornext2');
 	Route::get('acadaff/index','acadaff\cardsController@index');
-//---------------------------Academic Affairs Routes End here----------------------------------------------------
+//---------------------------Academic Affairs Routes End here-------------------------------
 
-//---------------------------11)Event Organizing Routes Begin here----------------------------------------------------
+//---------------------------11)Event Organizing Routes Begin here--------------------------
 	Route::get('/event_organizing','event_organizing_Controllers\EventController@index');
 	Route::get('/event_organizing/acad','event_organizing_Controllers\EventController@acad');
 	Route::post('/event_organizing/acad/eventcreated','event_organizing_Controllers\EventCreateController@store');
@@ -526,9 +527,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/event_organizing/clubmember/{clubname}','event_organizing_Controllers\EventController@clubmembers');
 	Route::post('/event_organizing/getrooms','event_organizing_Controllers\AjaxCallsController@index');
 	Route::post('/event_organizing/{clubname}/event_review/{id}','event_organizing_Controllers\EventController@review');
-//---------------------------Event Organizing Routes End here----------------------------------------------------
+//---------------------------Event Organizing Routes End here-------------------------------
 
-//---------------------------12)Bus Management Routes Begin here----------------------------------------------------
+//---------------------------12)Bus Management Routes Begin here----------------------------
     Route::get('/bus_management', 'Bus_management\bus_management@index');
 
 	Route::get('bus_management/home','Bus_management\HomeController@home');
@@ -578,9 +579,9 @@ Route::group(['middleware' => ['auth']], function () {
 		'uses'=>'Bus_management\AdminController@post_not',
 		'as'=>'post_not'
 		]);
-//---------------------------Bus Manaegement Routes End here----------------------------------------------------
+//---------------------------Bus Manaegement Routes End here--------------------------------
 
-//---------------------------13)Class Attendance Routes Begin here----------------------------------------------------
+//---------------------------13)Class Attendance Routes Begin here--------------------------
 	Route::get('/CAMS/', 'ClassAttendance\ClassAttendanceController@index');
 	Route::get('/CAMS/faculty','ClassAttendance\HomePageController@facHome');
 	Route::get('/CAMS/student','ClassAttendance\HomePageController@stuHome');
@@ -595,5 +596,43 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/CAMS/leave_form/{coursename}','ClassAttendance\LeaveFormController@store_leaveform');
 	Route::get('/CAMS/take-attendance/online/{coursename}','ClassAttendance\TakeAttendanceController@online_mode');
 	Route::get('/CAMS/take-attendance/offline/{coursename}','ClassAttendance\TakeAttendanceController@offline_mode');
-//---------------------------Class Attendance Routes End here----------------------------------------------------
+//---------------------------Class Attendance Routes End here-------------------------------
+
+//---------------------------14)Counselling Cell Routes Begin here--------------------------
+	Route::get('/counselling_cell/','counsellingcontroller@main');
+	Route::get('/counselling_cell/student_guide_form',function(){
+		return view('/cou/Student_guide_form');
+		});
+	Route::get('/counselling_cell/assign_guides',function(){
+		return view('/cou/assign_sg');
+		});
+	Route::get('/counselling_cell/assign_assistant',function(){
+		return view('/cou/assign_asc');
+		});
+	//assistant coordinator form
+	Route::get('/counselling_cell/assistant_coordinator_form',function(){
+	return view('/cou/Asst_Coord_form');
+		});
+	Route::post('/counselling_cell/studymaterial', 'counsellingcontroller@studymaterial');//post study material 
+	Route::post('/counselling_cell/form_asstcoor', 'counsellingcontroller@asst_coor_form'); //assistant_coordinator form
+	Route::post('/counselling_cell/form_stu_guide', 'counsellingcontroller@stu_guide_form'); //assistant_coordinator form
+	Route::get('/counselling_cell/study_material', 'counsellingcontroller@studyymaterial');//study portal view
+	// problem portal
+	Route::get('/counselling_cell/problemportal','counsellingcontroller@problemmportal');//problem portal view
+	Route::post('/counselling_cell/{cc}/answer', 'counsellingcontroller@answers'); //assistant_coordinator form
+	Route::post('/counselling_cell/question', 'counsellingcontroller@problem'); //assistant_coordinator form
+	Route::get('/counselling_cell/student_guides_list','counsellingcontroller@stuguide');//view student guide list
+	Route::get('/counselling_cell/assistant_coordinator_list','counsellingcontroller@assistcoord');//assistant_coordinator list
+	Route::get('/counselling_cell/student_guides_application','counsellingcontroller@stuguideapp');//application of assistant_coordinator list
+	Route::get('/counselling_cell/assistant_coordinator_application','counsellingcontroller@assistcoordapp');//application of stu_guide_form
+	Route::get('/counselling_cell/privateportal','counsellingcontroller@privateportal');//private portal view
+	Route::post('/counselling_cell/privatequestion', 'counsellingcontroller@privatequestion'); //private problem post
+	Route::post('/counselling_cell/{cc}/privateanswer', 'counsellingcontroller@privateanswer'); //private answer post
+	Route::get('/counselling_cell/faculty_access','counsellingcontroller@adminportal');//faculty admin access portal
+	// application page where links to the forms of student guide and assistant coordinators are present
+	Route::get('/counselling_cell/formfill',function(){
+		return view('/cou/applications'); 
+	});
+//---------------------------Counselling Cell Routes End here-------------------------------
+
 });
