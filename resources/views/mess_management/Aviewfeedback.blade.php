@@ -1,6 +1,6 @@
 
 @extends('layout')
-			@section('content')
+			@section('mess_content')
         
         <div class="main-container row">
             <h4 class="col s12 m4 offset-m4"><b>CENTRAL MESS</b></h4>

@@ -51,7 +51,7 @@
             </ul>
         </div>
         
-		@yield('content')
+		@yield('mess_content')
 		
 		
 	</body>

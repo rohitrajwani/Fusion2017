@@ -33,11 +33,6 @@ Route::group(['middleware' => ['auth']], function () {
 	
 	//MESS MANAGEMENT MODULE
 
-	
-	
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('/mess_management','mess_management\messcontroller@index');
 Route::get('/mess_management/Student', 'mess_management\messcontroller@student');
 Route::get('/mess_management/Register', function () {

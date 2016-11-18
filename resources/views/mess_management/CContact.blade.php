@@ -1,5 +1,5 @@
 @extends('layout')
-		@section('content')
+		@section('mess_content')
         
         
         <div class="main-container row">
