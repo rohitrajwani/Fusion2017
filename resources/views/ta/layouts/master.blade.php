@@ -122,27 +122,19 @@
     </div>
         
         
-        
-        
-        <!-- <script type="text/javascript" src="{{asset('js/jquery-2.1.4.js')}}"></script>
-        Import jQuery before materialize.js
-        <script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>     -->    
-        
-        
         <script>
         @yield('script')
-              $(document).ready(function(){
-                  $('.modal-trigger').leanModal();
-                    $('ul.tabs').tabs();
-                      $('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15, // Creates a dropdown of 15 years to control year,
-    formatSubmit: 'yyyy-mm-dd',
-    hiddenName: true,
-  });
-                       $('select').material_select();
-     
-            })
+                $(document).ready(function(){
+                    $('.modal-trigger').leanModal();
+                        $('ul.tabs').tabs();
+                        $('.datepicker').pickadate({
+                            selectMonths: true, // Creates a dropdown to control month
+                            selectYears: 15, // Creates a dropdown of 15 years to control year,
+                            formatSubmit: 'yyyy-mm-dd',
+                            hiddenName: true,
+                        });
+                        $('select').material_select();
+                })
         </script>
     </body>
 </html>

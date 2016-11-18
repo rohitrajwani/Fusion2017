@@ -2,7 +2,7 @@
     <head>
         <title>@yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link type="text/css" rel="stylesheet" href="./css/materialize.min.css"  media="screen,projection"/>
+        {!! MaterializeCSS::include_full() !!}
         <link type="text/css" rel="stylesheet" href="./css/fusion_style.min.css"  media="screen,projection"/>
         <link rel="stylesheet" href="./font-awesome-4.5.0/css/font-awesome.min.css">
        
@@ -71,13 +71,6 @@
         @yield('timetable')
         @yield('cards')
      </div>
-    
-        
-        
-        
-        
-        <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
-        <script type="text/javascript" src="./js/materialize.min.js"></script>
         
         
         

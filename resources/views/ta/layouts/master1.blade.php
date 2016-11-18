@@ -92,10 +92,7 @@
             </div>
         </div>
 
-        <!-- 
-        <script type="text/javascript" src="{{asset('js/jquery-2.1.4.js')}}"></script>
-        Import jQuery before materialize.js
-        <script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script> -->
+       
         <script>
             $(document).ready(function() {
                 $(".dropdown-button").dropdown();
