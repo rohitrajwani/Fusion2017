@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
   <html>
     <head>
         
@@ -17,7 +18,8 @@
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         
         <link href="/css/style.css" type="text/css" rel="stylesheet">
-	   <link href="/css/tt_style.css" type="text/css" rel="stylesheet">
+	      <link href="/css/tt_style.css" type="text/css" rel="stylesheet">
+        <link href="{{ asset('css/hostel_complaint_style.css') }}" type="text/css" rel="stylesheet">
 
         
 
@@ -40,6 +42,9 @@
         @endif
         
         <header>
+
+<body>
+   <header>
             <nav>
                 <div class="nav-wrapper">
                   <a href="#!" class="brand-logo">Fusion</a>
@@ -48,12 +53,6 @@
                     <li><a href="#">Link</a></li>
                     <li><a href="#">Link</a></li>
                     <li><a href="/logout">Logout</a></li>
-
-                  </ul>
-                  <ul class="side-nav" id="mobile-demo">
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
                   </ul>
                 </div>
             </nav>
@@ -73,6 +72,7 @@
         	@yield('TT_content')
             @yield('VH_nav')
             @yield('VH_content')
+            @yield('hostel_complaint_content')
 
         </div>
 

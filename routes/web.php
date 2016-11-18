@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', function () {
-return view('welcome');
+	return view('welcome');
 });
 
 Route::post('/login','dashboardController@login_check');
@@ -170,4 +170,12 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('TA/view_feedback','TA\AdminController@view_feedback');//view feedback admin page.
 
 //---------------------------Routes for TA Management end here----------------------------
+
+//---------------------------Routes for Hostel Complaints begin here----------------------------
+	Route::get('/hostelComplaints','ComplaintsController@display');
+	Route::post('/hostelComplaints','ComplaintsController@store');
+	Route::post('/hostelComplaints/{complaint}','ComplaintsController@update');	  
+	Route::post('/Complaints','ComplaintsController@show');
+//---------------------------Routes for Hostel Complaints end here----------------------------
 });
+
