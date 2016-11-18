@@ -36,10 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
         else if(Auth::user()->user_type=='others')
              return Redirect::to('/PBI/welcome_chairman')->with('alert','Login Successful for '.Auth::user());
     });
-
-
 	//PBI
-
 	Route::get('/PBI/welcome_student','PBI\ApplyController@index');
 	Route::get('/PBI/feedback','PBI\ApplyController@index7');
 	Route::get('/PBI/studentguidelines','PBI\ApplyController@studentguidelines');
@@ -57,15 +54,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/PBI/feedbackfaculty','PBI\ApplyController@feedbackfaculty');
 	Route::get('/PBI/view_requests','PBI\ApplyController@view_requests');
 
-
-
-
 	Route::post('/PBI/apply_pbi','PBI\ApplyController@apply_pbi');
 	Route::post('/PBI/changepbi','PBI\ApplyController@changepbi');
 	Route::post('/PBI/feedbackform','PBI\ApplyController@feedbackform');
-
-
-
 	Route::post('/PBI/uploadreport','PBI\ApplyController@upload_report');
 	Route::post('/PBI/uploadgrades','PBI\ApplyController@uploadgrades');
 	Route::post('/PBI/uploadmarks','PBI\ApplyController@uploadmarks');

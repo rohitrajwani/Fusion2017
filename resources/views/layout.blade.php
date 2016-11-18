@@ -62,9 +62,6 @@
          <div class="main-container row">
 		@yield('main_content')
         </div>
-		<!--<script src="http://localhost:8000/js/jquery-3.1.1.min.js"></script>
-        <!--Import jQuery before materialize.js-->
-        <!--<script type="text/javascript" src="http://localhost:8000/js/materialize.min.js"></script>-->
         
     </body>
   </html>
