@@ -38,7 +38,7 @@ class dashboardController extends Controller
             $user = \App\User::where('username','=',$userdata['username'])->get()->first();
             Auth::login($user);
 
-            return Redirect::to('/signupForm')->with('alert','Login Successful for '.Auth::user());
+            return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
 
         } else {        
             return Redirect::to('/')->with('alert','Login Error!! Please check your Credentials');
@@ -60,7 +60,11 @@ class dashboardController extends Controller
 
 	}
 
-	public function signup_form(){
+	public function adminPanel(){
+		return view('admin');
+	}
+
+	public function dashboard(){
 		if(Auth::user()->user_type == 'admin'){
 			return Redirect::to('/adminPanel');
 		}
@@ -68,16 +72,8 @@ class dashboardController extends Controller
 			if(Auth::user()->status == 0 OR Auth::user()->status == 1)
 				return view('signup');
 			else if(Auth::user()->status == 2)
-				return Redirect::to('/dashboard');
+				return view('dashboard');
 		}
-	}
-
-	public function adminPanel(){
-		return view('admin');
-	}
-
-	public function dashboard(){
-		return view('dashboard');
 	}
 
 	public function student_signup(Request $data){
