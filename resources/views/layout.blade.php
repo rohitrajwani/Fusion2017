@@ -17,7 +17,7 @@
         <link href="/css/fusion_style.css" type="text/css" rel="stylesheet">
         <link href="/css/style.css" type="text/css" rel="stylesheet">
 
-	      <link href="/css/tt_style.css" type="text/css" rel="stylesheet">
+	    <link href="/css/tt_style.css" type="text/css" rel="stylesheet">
         <link href="{{ asset('css/hostel_complaint_style.css') }}" type="text/css" rel="stylesheet">
         <link href="/css/pbi_style.css" type="text/css" rel="stylesheet">
         <link href="/css/SPACS_style.css" type="text/css" rel="stylesheet">
@@ -73,6 +73,7 @@
             @yield('assignments_content')
             @yield('main_content')
             @yield('SPACS_content')
+            @yield('mess_content')
         </div>
 
         @yield('scripts')
