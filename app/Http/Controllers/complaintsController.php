@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests;
 
-use App\Complaint;
+use App\hostelComplaint;
 use App\Role;
 use App\Login;
 use Illuminate\Support\Facades\Input;
@@ -56,10 +56,10 @@ class complaintsController extends Controller
 			// 	$carename[$count]=DB::table('staff')->where('staff_id',$staffid)->value('name');				
 			// 	$count++;							
 			// }											
-			$complaints=Complaint::where('student_id','=',$username)->orderBy('complaint_id', 'desc')->get();	
-			$pendingcomplaints=Complaint::where('status','=','unsolved')->where('student_id','=',$username)->count();
-			$unsolvedcomplaints=Complaint::where('status','=','unsolved')->where('student_id','=',$username)->orderBy('complaint_id','desc')->get();
-			$solvedcomplaints=Complaint::where('status','=','solved')->where('student_id','=',$username)->orderBy('complaint_id','desc')->get();				
+			$complaints=hostelComplaint::where('student_id','=',$username)->orderBy('complaint_id', 'desc')->get();	
+			$pendingcomplaints=hostelComplaint::where('status','=','unsolved')->where('student_id','=',$username)->count();
+			$unsolvedcomplaints=hostelComplaint::where('status','=','unsolved')->where('student_id','=',$username)->orderBy('complaint_id','desc')->get();
+			$solvedcomplaints=hostelComplaint::where('status','=','solved')->where('student_id','=',$username)->orderBy('complaint_id','desc')->get();				
 			return view('hostelComplaints.student',compact('caretakeremail','wardenemail','awardenemail','complaints','cnt','pendingcomplaints','solvedcomplaints','unsolvedcomplaints','warden','assistantwarden','caretaker'));
 		}
 
@@ -73,14 +73,14 @@ class complaintsController extends Controller
 
 			$sub=DB::table('staff')->where('staff_id',$username)->where('post','caretaker')->value('sub_department');			
 			$name=DB::table('staff')->where('staff_id',$username)->where('post','caretaker')->value('name');
-			$complaints=Complaint::where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
-			$roomcomplaints=Complaint::where('category','=','room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
-			$washroomcomplaints=Complaint::where('category','=','wash room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
-			$readingroomcomplaints=Complaint::where('category','=','reading room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
-			$commonroomcomplaints=Complaint::where('category','=','common room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
-			$tvroomcomplaints=Complaint::where('category','=','tv room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
-			$othercomplaints=Complaint::where('category','=','others')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();								
-			$pendingcomplaints=Complaint::where('status','=','unsolved')->where('hall_no','=',$sub)->count();			
+			$complaints=hostelComplaint::where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
+			$roomcomplaints=hostelComplaint::where('category','=','room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
+			$washroomcomplaints=hostelComplaint::where('category','=','wash room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
+			$readingroomcomplaints=hostelComplaint::where('category','=','reading room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
+			$commonroomcomplaints=hostelComplaint::where('category','=','common room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
+			$tvroomcomplaints=hostelComplaint::where('category','=','tv room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
+			$othercomplaints=hostelComplaint::where('category','=','others')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();								
+			$pendingcomplaints=hostelComplaint::where('status','=','unsolved')->where('hall_no','=',$sub)->count();			
 			$searchcomp=Null;
 		
 			// $searchcomp=show();
@@ -94,14 +94,14 @@ class complaintsController extends Controller
 		// 	foreach ($roles as $role) {
 		// 		$hallNo=Role::where('id','=',$role->role_id)->where('name','=','warden')->value('description');				
 		// 	}					
-		// 	$complaints=Complaint::where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
-		// 	$roomcomplaints=Complaint::where('category','=','room')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
-		// 	$washroomcomplaints=Complaint::where('category','=','washroom')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
-		// 	$readingroomcomplaints=Complaint::where('category','=','readingroom')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
-		// 	$commonroomcomplaints=Complaint::where('category','=','commonroom')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
-		// 	$tvroomcomplaints=Complaint::where('category','=','tvroom')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
-		// 	$othercomplaints=Complaint::where('category','=','others')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();					
-		// 	$pendingcomplaints=Complaint::where('status','=','unsolved')->where('hall_no','=',$hallNo)->count();			
+		// 	$complaints=hostelComplaint::where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
+		// 	$roomcomplaints=hostelComplaint::where('category','=','room')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
+		// 	$washroomcomplaints=hostelComplaint::where('category','=','washroom')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
+		// 	$readingroomcomplaints=hostelComplaint::where('category','=','readingroom')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
+		// 	$commonroomcomplaints=hostelComplaint::where('category','=','commonroom')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
+		// 	$tvroomcomplaints=hostelComplaint::where('category','=','tvroom')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
+		// 	$othercomplaints=hostelComplaint::where('category','=','others')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();					
+		// 	$pendingcomplaints=hostelComplaint::where('status','=','unsolved')->where('hall_no','=',$hallNo)->count();			
 		// 	return view('hostelComplaints.warden',compact('complaints','roomcomplaints','washroomcomplaints','readingroomcomplaints','commonroomcomplaints','othercomplaints','tvroomcomplaints','pendingcomplaints'));			
 		// }
 		else if($type=='faculty'){
@@ -121,14 +121,14 @@ class complaintsController extends Controller
 				$hallNo=DB::table('faculty_roles')->where('roles',$role)->value('department');				
 			}
 
-			$complaints=Complaint::where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
-			$roomcomplaints=Complaint::where('category','=','room')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
-			$washroomcomplaints=Complaint::where('category','=','wash room')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
-			$readingroomcomplaints=Complaint::where('category','=','reading room')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
-			$commonroomcomplaints=Complaint::where('category','=','common room')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
-			$tvroomcomplaints=Complaint::where('category','=','tv room')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
-			$othercomplaints=Complaint::where('category','=','others')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();					
-			$pendingcomplaints=Complaint::where('status','=','unsolved')->where('hall_no','=',$hallNo)->count();			
+			$complaints=hostelComplaint::where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
+			$roomcomplaints=hostelComplaint::where('category','=','room')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
+			$washroomcomplaints=hostelComplaint::where('category','=','wash room')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
+			$readingroomcomplaints=hostelComplaint::where('category','=','reading room')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
+			$commonroomcomplaints=hostelComplaint::where('category','=','common room')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
+			$tvroomcomplaints=hostelComplaint::where('category','=','tv room')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();
+			$othercomplaints=hostelComplaint::where('category','=','others')->where('hall_no','=',$hallNo)->orderBy('complaint_id', 'desc')->get();					
+			$pendingcomplaints=hostelComplaint::where('status','=','unsolved')->where('hall_no','=',$hallNo)->count();			
 			return view('hostelComplaints.warden',compact('name','complaints','roomcomplaints','washroomcomplaints','readingroomcomplaints','commonroomcomplaints','othercomplaints','tvroomcomplaints','pendingcomplaints'));			
 		}
 	}
@@ -150,7 +150,7 @@ class complaintsController extends Controller
 	}
 
 	public function update($complaint, Request $request){
-		$comp=Complaint::find($complaint);		
+		$comp=hostelComplaint::find($complaint);		
 		$comp->status=$request->status;
 		$comp->save();
 		return back();
@@ -164,16 +164,16 @@ class complaintsController extends Controller
 		// $stuid=$request->search;
 		$sub=DB::table('staff')->where('staff_id',$username)->where('post','caretaker')->value('sub_department');			
 		$name=DB::table('staff')->where('staff_id',$username)->where('post','caretaker')->value('name');
-		$complaints=Complaint::where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
-		$roomcomplaints=Complaint::where('category','=','room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
-		$washroomcomplaints=Complaint::where('category','=','wash room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
-		$readingroomcomplaints=Complaint::where('category','=','reading room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
-		$commonroomcomplaints=Complaint::where('category','=','common room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
-		$tvroomcomplaints=Complaint::where('category','=','tv room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
-		$othercomplaints=Complaint::where('category','=','others')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();								
-		$pendingcomplaints=Complaint::where('status','=','unsolved')->where('hall_no','=',$sub)->count();			
+		$complaints=hostelComplaint::where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
+		$roomcomplaints=hostelComplaint::where('category','=','room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
+		$washroomcomplaints=hostelComplaint::where('category','=','wash room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
+		$readingroomcomplaints=hostelComplaint::where('category','=','reading room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
+		$commonroomcomplaints=hostelComplaint::where('category','=','common room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
+		$tvroomcomplaints=hostelComplaint::where('category','=','tv room')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();
+		$othercomplaints=hostelComplaint::where('category','=','others')->where('hall_no','=',$sub)->orderBy('complaint_id', 'desc')->get();								
+		$pendingcomplaints=hostelComplaint::where('status','=','unsolved')->where('hall_no','=',$sub)->count();			
 
-		$searchcomp=Complaint::where('student_id','=',$stuid)->get();		
+		$searchcomp=hostelComplaint::where('student_id','=',$stuid)->get();		
 			// $searchcomp=show();
 
 		return view('hostelComplaints.caretaker',compact('searchcomp','name','complaints','roomcomplaints','washroomcomplaints','readingroomcomplaints','commonroomcomplaints','othercomplaints','tvroomcomplaints','pendingcomplaints'));							

@@ -2,17 +2,12 @@
 <html>
 <head>
 
-  <title>Fusion -HOSTEL COMPLAINTS</title>
+  <title>Fusion</title>
 
-  <!--Import Google Icon Font-->
-  <!--      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-  <!--Import materialize.css-->
+  
   {!! MaterializeCSS::include_full() !!}
 
   <script src="https://use.fontawesome.com/5fd0aa1ca7.js"></script>
-  <!-- <link rel="stylesheet" href="{{ asset ('fonts/font-awesome-4.6.3/css/font-awesome.min.css') }}"> -->
-
-  <!-- <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}"  media="screen,projection"/> -->
 
   <link href="{{ asset('css/fusion_style.css') }}" type="text/css" rel="stylesheet">
 
@@ -52,7 +47,7 @@
             </ul>
         </div>
 
-  @yield('content')
+  @yield('hostel_complaint_content')
   
 </body>
 </html>

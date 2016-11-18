@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('content')
+@section('hostel_complaint_content')
 
 <!-- The segment below contains the main buttons used in the page-->
 <div class="main-container row">
