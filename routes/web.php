@@ -635,7 +635,7 @@ Route::group(['middleware' => ['auth']], function () {
 	});
 //---------------------------Counselling Cell Routes End here-------------------------------
 
-//---------------------------Course Management Routes Begin here----------------------------
+//---------------------------15)Course Management Routes Begin here----------------------------
 
 	Route::get('course_management/', function(){
 		if(Auth::user()->user_type == 'faculty'){
@@ -756,7 +756,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 //---------------------------Course Management Routes End here------------------------------
 
-//---------------------------Employee Leave System Routes Begin here------------------------
+//---------------------------16)Employee Leave System Routes Begin here------------------------
 
 	Route::get('/ELMS', 'leaveController@display');
 
@@ -794,7 +794,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 //---------------------------Employee Leave System Routes End here--------------------------
 
-//---------------------------Health Center Routes Begin here--------------------------------
+//---------------------------17)Health Center Routes Begin here--------------------------------
 
 	Route::get('/health-centre', 'healthcentre\PageController@getIndex');
 	Route::get('/health-centre/gallery','healthcentre\PageController@getGallery');
@@ -809,7 +809,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 //---------------------------Health Center Routes End here----------------------------------
 
-//---------------------------Training & Placement Cell Routes Begin here--------------------
+//---------------------------18)Training & Placement Cell Routes Begin here--------------------
 
 	Route::get('/training_and_placement_cell', 'Training_and_Placement_Cell\PagesController@index');
 
@@ -867,7 +867,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 //---------------------------Training & Placement Cell Routes End here----------------------
 
-//---------------------------Online Quizzing Routes Begin here------------------------------
+//---------------------------19)Online Quizzing Routes Begin here------------------------------
 
 	Route::get('/online_quizzing/quiz','QuizController@show');
 
@@ -910,7 +910,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 //---------------------------Online Quizzing Routes End here--------------------------------
 
-//---------------------------Employee Information System Routes Begin here------------------
+//---------------------------20)Employee Information System Routes Begin here------------------
 
 	Route::get('fac', 'fac\QualController@index');
 	Route::post('fac/add', 'fac\QualController@store');
