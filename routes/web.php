@@ -950,5 +950,62 @@ Route::group(['middleware' => ['auth']], function () {
 
 //---------------------------Employee Information System Routes End here--------------------
 
+//---------------------------21)Stock Management Routes Begin here--------------------------
+
+	Route::get('/stock_management/', [
+    'uses'=>'stock@stockhome',
+]);
+
+	Route::get('/stock_management/requests',[
+		'uses'=>'stock@reqhome',
+		'as'=>'requests'
+		]);
+
+	Route::get('/stock_management/stock', function () {
+	    return view('stock');
+	});
+
+	Route::get('/stock_management/view', [
+		'uses'=>'stock@viewstock'
+		]);
+
+	Route::get('/stock_management/new',[
+		'uses'=>'stock@newpage'
+		]);
+
+	Route::get('/stock_management/existing',[
+		'uses'=>'stock@existing'
+		]);
+
+	Route::post('/stock_management/additem',[
+		'uses'=>'stock@additem',
+		'as'=>'additem'
+		]);
+
+	Route::post('/stock_management/exist',[
+		'uses'=>'stock@addexist',
+		'as'=>'exist'
+		]);
+
+	Route::post('/stock_management/addreq',[
+		'uses'=>'stock@addreq',
+		'as'=>'addreq'
+		]);
+
+	Route::get('/stock_management/checkreq',[
+		'uses'=>'stock@chrhome',
+		'as'=>'checkreq'
+		]);
+
+	Route::get('/stock_management/status{req}',[
+			'uses'=>'stock@status',
+			'as'=>'/status{req}'
+		]);
+
+	Route::post('/stock_management/confirm',[
+		'uses'=>'stock@statconf',
+		'as'=>'confirm'
+		]);
+//---------------------------Stock Management Routes End here-------------------------------
 
 });
