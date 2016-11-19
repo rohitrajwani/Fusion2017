@@ -1008,4 +1008,57 @@ Route::group(['middleware' => ['auth']], function () {
 		]);
 //---------------------------Stock Management Routes End here-------------------------------
 
+//---------------------------22)Student Feedback System Routes Begin here-------------------
+
+	Route::get('/student_feedback','feedback_system\HomeController@home1');   
+
+
+	Route::get('/student_feedback/home/{type1}',[
+		'uses'=>'feedback_system\HomeController@home',
+		'as'=>'/student_feedback/home/{type1}']);
+
+
+	Route::get('/student_feedback/admin','feedback_system\HomeController@admin'); 
+
+
+	Route::get('/student_feedback/feed/{cour}/{facid}/{id}/{type1}',[
+	'uses'=>'feedback_system\HomeController@feedback',
+	'as'=>'/student_feedback/feedback/{cour}/{facid}/{id}/{type1}'
+		]);
+
+
+	Route::get('/student_feedback/sem',[
+		'uses'=>'feedback_system\HomeController@sem',
+		'as'=>'/student_feedback/sem']);
+
+
+
+	Route::get('/student_feedback/view/{type}',[
+		'uses'=>'feedback_system\HomeController@view',
+		'as'=>'/student_feedback/view/{type}']);
+
+	Route::post('/student_feedback/feedinsert',[
+		'uses'=>'feedback_system\HomeController@feedbackinsert',
+		'as'=>'/student_feedback/feedinsert'
+		]);
+
+	Route::get('/student_feedback/faculty/{fid}/{type}',[
+		'uses'=>'feedback_system\HomeController@courses',
+		'as'=>'/faculty/{fid}/{type}'
+	]);
+
+
+	Route::get('/student_feedback/course{cid}',[
+		'uses'=>'feedback_system\HomeController@review',
+		'as'=>'course{cid}']);
+
+	Route::get('/student_feedback/review/{fid}/{cid}/{type}',[
+		'uses'=>'feedback_system\HomeController@review1',
+		'as'=>'/review/{fid}/{cid}/{type}'
+		]);
+	Route::post('/student_feedback/admin/add','feedback_system\HomeController@add');
+	Route::post('/student_feedback/admin/delete','feedback_system\HomeController@destroy');
+
+//---------------------------Student Feedback System Routes End here------------------------
+
 });

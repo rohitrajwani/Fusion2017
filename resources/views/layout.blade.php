@@ -85,6 +85,8 @@
             @yield('placement_content')
             @yield('health_center_content')
             @yield('cms_content')
+            @yield('stock_content')
+            @yield('feedback_content')
         </div>
 
         @yield('scripts')
