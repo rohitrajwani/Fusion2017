@@ -1,7 +1,7 @@
-@extends('health-centre/main')
+@extends('layout')
 @section('title','Primary Medical Care - PDPM IIITDM Jabalpur')
 
-@section('content')
+@section('health_center_content')
   <?php 
     use Html;
   ?>

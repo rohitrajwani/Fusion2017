@@ -1,6 +1,6 @@
-@extends('health-centre/main')
+@extends('layout')
 @section('title','Create An Appointment')
-@section('content')
+@section('health_center_content')
   <div class="mar">
 <h2 class="primary-text center-align">Create an Appointment</h2>
 <center><div class="line secondary"></div></center>

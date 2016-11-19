@@ -1,7 +1,6 @@
-@extends('student_layout');
+@extends('layout')
 
-
-@section('header')
+@section('scripts')
 	
 
 	<script type="text/javascript">
@@ -88,7 +87,7 @@
 @stop
 
 
-@section('content')
+@section('online_quiz_content')
 
 	
 	<div class="main-container row">

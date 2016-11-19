@@ -1,4 +1,6 @@
+@extends('layout')
 
+@section('online_quiz_content')
 		<div>
 			<h3>Statement:</h3>
 			<br>
@@ -35,4 +37,4 @@
 				@endforeach
 			</table>
 		</div>
-	
+	@stop

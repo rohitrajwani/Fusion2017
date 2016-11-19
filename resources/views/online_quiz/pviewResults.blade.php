@@ -1,6 +1,6 @@
-@extends('faculty_layout')
+@extends('layout')
 
-@section('content')
+@section('online_quiz_content')
 
     <div class="main-container row">
         <h4 align="center">Quiz Results</h4>

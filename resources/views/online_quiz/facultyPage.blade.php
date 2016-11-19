@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('content')
+@section('online_quiz_content')
 
 
 		<br><br><br><br><br><br>

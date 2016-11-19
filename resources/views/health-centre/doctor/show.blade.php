@@ -1,9 +1,9 @@
-@extends('health-centre/main')
+@extends('layout')
 @section('title','Doctor - Primary Medical Care PDPM IIITDM Jabalpur')
 @section('stylesheets')
 {{ Html::style('css/pmc_doctor.css') }}
 @endsection
-@section('content')
+@section('health_center_content')
   <div class="mar">
 <h2 class="center-align primary-text">{{ $staff->name }}</h2>
 <div class="line secondary" style="margin:auto"></div>

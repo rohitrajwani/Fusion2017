@@ -1,6 +1,6 @@
-@extends('faculty_layout')
+@extends('layout')
 
-@section('header')
+@section('scriots')
 
 <!--    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />-->
     <link type="text/css" rel="stylesheet" href="/css/materialize.clockpicker.css" media="screen,projection" />
@@ -10,7 +10,7 @@
 
 @stop
 
-@section('content')
+@section('online_quiz_content')
     
     <div class="main-container row">
     <form action="/online_quizzing/add_quiz" method="POST">

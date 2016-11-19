@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('content')
+@section('cms_content')
             <h4 class="col s12 m4 offset-m4">Manage Faculty</h4>
             <div class="container col s12 " style="width:90%">
 

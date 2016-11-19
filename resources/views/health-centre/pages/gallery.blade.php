@@ -1,6 +1,6 @@
-@extends('main')
+@extends('layout')
 @section('title','Gallery - Primary Medical Centre PDPM IIITDM Jabalpur')
-@section('content')
+@section('health_center_content')
   <div class="mar">
     <div class="center-align primary-text"><h2>Gallery</h2>
     </div>

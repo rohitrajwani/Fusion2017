@@ -1,7 +1,6 @@
-<html>
-<head>
-</head>
-<body >
+@extends('layout')
+
+@section('online_quiz_content')
 <div align="center">
 <h5 >Statement:</h5>
 <div ><p>{{ $ques->body }} </p></div>
@@ -52,5 +51,4 @@
 
 
 </div>
-</body>
-</html>
+@stop

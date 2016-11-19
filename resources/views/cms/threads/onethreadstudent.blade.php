@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('content')    
+@section('cms_content')    
         <div class="container col s12 " style="width:90%">
                 <div class="divider col s12"></div>
          

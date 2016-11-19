@@ -1,6 +1,6 @@
-@extends('faculty_layout');
+@extends('layout')
 
-@section('header')
+@section('scripts')
 	<script type="text/javascript">
 		try{
 				var xmlHttp=new XMLHttpRequest();
@@ -114,7 +114,7 @@
 @stop
 
 
-@section('content')
+@section('online_quiz_content')
 	<div class="main-container row center">
         <h4 align="center">Manage Quiz</h4>
         <div  id="quiz" class="col l4">

@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('content')
+@section('online_quiz_content')
 	
 	<h1 class="c">Quizzes </h1>
 	<table align="center" border="1" cellspacing="5">

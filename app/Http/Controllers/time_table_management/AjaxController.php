@@ -14,18 +14,18 @@ class AjaxController extends Controller {
 
 		if(!(empty($_GET['prog']) || empty($_GET['sem'])))
 			if(!empty($_GET['dep']))
-				$courses = DB::table('Course')->get()->where('sem', $_GET['sem'])->where('programme', $_GET['prog'])->where('department', $_GET['dep']);
+				$courses = DB::table('course')->get()->where('sem', $_GET['sem'])->where('programme', $_GET['prog'])->where('department', $_GET['dep']);
 			else
-				$courses = DB::table('Course')->get()->where('sem', $_GET['sem'])->where('programme', $_GET['prog']);
+				$courses = DB::table('course')->get()->where('sem', $_GET['sem'])->where('programme', $_GET['prog']);
 
 
 		if(!empty($_GET['fcode'])){
-			$courses = DB::table('Faculty_Takes_Course')->get()->where('faculty_id', $_GET['fcode']);
+			$courses = DB::table('faculty_takes_course')->get()->where('faculty_id', $_GET['fcode']);
 		}
 
-		$rooms = DB::table('Classroom_Slots')->select('room_id')->distinct()->get();
+		$rooms = DB::table('classroom_lots')->select('room_id')->distinct()->get();
 
-		$slots = DB::table('Classroom_Slots')->orderByRaw(DB::raw('FIELD (day, "Monday", "Tuesday", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY")'))->orderBy('from_time')->get();
+		$slots = DB::table('classroom_slots')->orderByRaw(DB::raw('FIELD (day, "Monday", "Tuesday", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY")'))->orderBy('from_time')->get();
 
 		return view('time_table_management/change_tt', compact('courses','slots','rooms'));
 	}
@@ -62,10 +62,10 @@ class AjaxController extends Controller {
         $timestamp = strtotime($rdate);
         $rday = date('l', $timestamp);
 
-        $class_rooms = DB::table('Class_Rooms')->get();
+        $class_rooms = DB::table('class_rooms')->get();
 
-        $booked_rooms_on_day = DB::table('Classroom_Slots')->get()->where('day', $rday);
-        $booked_requests = DB::table('Room_Booking_Request')->get()->where('date', $rdate)->where('status', 1);
+        $booked_rooms_on_day = DB::table('classroom_slots')->get()->where('day', $rday);
+        $booked_requests = DB::table('room_booking_request')->get()->where('date', $rdate)->where('status', 1);
 
         $clash_rooms = array();
 

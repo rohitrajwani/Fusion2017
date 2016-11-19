@@ -1,3 +1,6 @@
+@extends('layout')
+
+@section('online_quiz_content')
 <div class="col l12">
             <ul>
                         <?php $i=1 ?>
@@ -12,3 +15,4 @@
             </div>	
         <button  class="waves-effect btn col l6 offset-l3" onclick="addquestion()">Add Question</button>    
 
+@stop

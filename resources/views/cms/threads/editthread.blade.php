@@ -1,5 +1,5 @@
 @extends('layout')
-@section('content')
+@section('cms_content')
 
     
             

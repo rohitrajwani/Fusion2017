@@ -3,7 +3,7 @@
 	{{ $course->course_id }}
 @endsection
 
-@section('content')
+@section('cms_content')
 			<h4 align="center">{{ $course->course_id }}- {{ $course->course_name }}</h4><br>
 			<h4>Registered Students- </h4>
                     <table class="bordered highlight">

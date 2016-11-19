@@ -8,7 +8,7 @@
         
         {!! MaterializeCSS::include_full() !!}
         
-        <link rel="stylesheet" href="{{asset('/fonts/font-awesome-4.6.3/css/font-awesome.min.css')}}'>
+        <link rel="stylesheet" href="{{asset('/fonts/font-awesome-4.6.3/css/font-awesome.min.css')}}'">
         
         <link type="text/css" rel="stylesheet" href="{{asset('css/materialize.min.css')}}"  media="screen,projection"/>
         

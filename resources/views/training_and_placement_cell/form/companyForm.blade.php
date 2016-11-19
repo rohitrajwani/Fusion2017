@@ -1,6 +1,6 @@
-@extends('training_and_placement_cell.layout')
+@extends('layout')
 
-@section('content')
+@section('placement_content')
         
         <div class="main-container row">
             <div class="col s12 m5 offset-m3"><h4> Company info</h4></div>
@@ -160,22 +160,3 @@
                 
                 
      @stop  
-
-     @section('js')
-<script src="{{URL::asset('js/studentForm.js')}}"></script>
-@stop         
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-        
-        

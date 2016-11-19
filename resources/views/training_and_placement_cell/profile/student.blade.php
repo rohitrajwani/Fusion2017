@@ -1,6 +1,6 @@
-@extends('training_and_placement_cell.layout')
+@extends('layout')
 
-@section('content')
+@section('placement_content')
   <div class="main-container row">
         <nav class="mynav">
           <div class="nav-wrapper">

@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('content')
+@section('online_quiz_content')
 
 	<div class="main-container row">
 		<br><br><br><br><br><br>

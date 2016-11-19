@@ -1,6 +1,6 @@
-@extends('training_and_placement_cell.layout')
+@extends('layout')
 
-@section('content')
+@section('placement_content')
 
 <div class="main-container row">
 		
@@ -81,16 +81,13 @@
        		
 	       		
           	{!! Form::close() !!}
-
-	@section('js')
+            
 		<script>
 			$(document).ready(function (){
 				var $studCount = $('.student').length;
 				$(this).find('#dummy').attr('value', $studCount);
 			});
 		</script>
-
-	@stop
 
 
 @stop

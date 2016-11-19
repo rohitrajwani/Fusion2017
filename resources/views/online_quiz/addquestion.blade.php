@@ -1,7 +1,6 @@
-<html>
-<head>
-</head>
-<body>
+@extends('layout')
+
+@section('online_quiz_content')
 <h5>Statement:</h5>
 <form id="question_data">
 	<div>
@@ -23,5 +22,4 @@
 
 <button class="waves-effect btn col s4 offset-s2" onclick='addoption()'>Add Option</button>      <!-- Button placed outside form to prevent form from redirecting to the same page because form data is to be processed by javascript function addoption() -->
 <button class="waves-effect btn col s4" onclick="savequestion()">Save</button>
-</body>
-</html>
+@stop

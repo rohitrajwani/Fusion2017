@@ -1,6 +1,6 @@
-@extends('training_and_placement_cell.layout')
+@extends('layout')
 
-@section('content')
+@section('placement_content')
         
         <div class="main-container row">
             <div class="col s12 m4 offset-m4">
@@ -58,20 +58,6 @@
             </div>
             
           </div>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-      @section('js')          
         
        <script>
                  $(document).ready(function(){

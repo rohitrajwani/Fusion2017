@@ -27,8 +27,9 @@
 
         <script src="/js/jspdf.debug.js"></script>
         <script src="/js/jspdf.plugin.autotable.js"></script>
-        
-                
+        <script src="/js/studentForm.js"></script>
+        <script src="/js/tokenizer.js"></script>
+
         <script>
             $(document).ready(function() {
                 $('select').material_select();
@@ -80,6 +81,10 @@
             @yield('acad_content')
             @yield('bus_content')
             @yield('counselling_content')
+            @yield('online_quiz_content')
+            @yield('placement_content')
+            @yield('health_center_content')
+            @yield('cms_content')
         </div>
 
         @yield('scripts')

@@ -25,7 +25,7 @@ class PagesController extends BaseController
 
 	$fac_courses = '';
 	if(Auth::user()->user_type=='faculty'){
-		$fac_courses = DB::table('Faculty_Takes_Course')->get()->where('faculty_id', Auth::user()->username);
+		$fac_courses = DB::table('faculty_takes_course')->get()->where('faculty_id', Auth::user()->username);
 	}
 
     	return view('time_table_management/scheduleanextraclass', compact('stat', 'fac_courses'));
@@ -43,15 +43,15 @@ class PagesController extends BaseController
 		$ts = strtotime($date);
 		$day = date('l', $ts);
 
-		$sd = DB::table('Course')->where('course_id', $course)->get()->first();
+		$sd = DB::table('course')->where('course_id', $course)->get()->first();
 
 		$sd_courses='';
 		
-		$sd_courses = DB::table('Course')->get()->where('sem', $sd->sem)->where('programme', $sd->programme);
+		$sd_courses = DB::table('course')->get()->where('sem', $sd->sem)->where('programme', $sd->programme);
 
 		$clash = 0;
 		foreach($sd_courses as $sdc){
-			$cls = DB::table('Classroom_Slots')->get()->where('course_id', $sdc->course_id)->where('day', $day);
+			$cls = DB::table('classroom_slots')->get()->where('course_id', $sdc->course_id)->where('day', $day);
 			
 			foreach($cls as $cl){
 				$ftime = $cl->from_time;
@@ -75,7 +75,7 @@ class PagesController extends BaseController
 			}
 
 			if($clash!=-1){
-				$rqs = DB::table('Room_Booking_Request')->get()->where('purpose', $sdc->course_id.'Q')->where('purpose', $sdc->course_id.'E')->where('status', '1')->where('date', $date);
+				$rqs = DB::table('room_booking_request')->get()->where('purpose', $sdc->course_id.'Q')->where('purpose', $sdc->course_id.'E')->where('status', '1')->where('date', $date);
 				    
 				foreach($rqs as $cl){
 					$ftime = $cl->from_time;
@@ -169,10 +169,10 @@ class PagesController extends BaseController
 
     	$requests = '';
     	if($status=='-1')
-    	    	$requests = DB::table('Room_Booking_Request')->where('requester_id',$user_id)->get();
+    	    	$requests = DB::table('room_booking_request')->where('requester_id',$user_id)->get();
 
     	else{
-    		$requests = DB::table('Room_Booking_Request')->where('requester_id', $user_id)->where('status', $status)->get();
+    		$requests = DB::table('room_booking_request')->where('requester_id', $user_id)->where('status', $status)->get();
     	}
 
     	foreach($requests as $request){
@@ -180,7 +180,7 @@ class PagesController extends BaseController
     		$room_id = $request->room_id;
 
     		if($request->status == '0'){
-    			$request->status = "Yet To Decide";
+    			$request->status = "In Progress";
     			$request->room_id = 'N/A';
     		}
     		else if($request->status == '1')
@@ -201,9 +201,9 @@ class PagesController extends BaseController
             return Redirect::to('time_table_management');
         }
 
-	    DB::table('Room_Booking_Request')->where('date','<', date('Y-m-d'))->delete();
+	    DB::table('room_booking_request')->where('date','<', date('Y-m-d'))->delete();
 
-    	$requests = DB::table('Room_Booking_Request')->where('status', 0)->get();
+    	$requests = DB::table('room_booking_request')->where('status', 0)->get();
 
         $fac_mode = 0;
     	return view('time_table_management/viewallrequests',compact('requests', 'fac_mode'));
@@ -288,7 +288,7 @@ class PagesController extends BaseController
 		$etime = $_GET['etime'];
 
 		if($cid && $rid && $ftime && $etime){
-			DB::table('Classroom_Slots')->where('room_id', $rid)->where('course_id', $cid)->where('from_time', $ftime)->where('to_time', $etime)->delete();
+			DB::table('classroom_slots')->where('room_id', $rid)->where('course_id', $cid)->where('from_time', $ftime)->where('to_time', $etime)->delete();
 		}
 	}
 	
@@ -317,8 +317,8 @@ class PagesController extends BaseController
 
     public function extra_classes(){
         $user_id = Auth::user()->username;
-        $courses = DB::table('Register_Course')->select('course_id')->where('student_id',$user_id)->get();
-        $all_extra_classes = DB::table('Room_Booking_Request')->where('status', 1)->where('purpose', 'LIKE', '%E')->get();
+        $courses = DB::table('register_course')->select('course_id')->where('student_id',$user_id)->get();
+        $all_extra_classes = DB::table('room_booking_request')->where('status', 1)->where('purpose', 'LIKE', '%E')->get();
         $extra_classes = array();
         foreach ($courses as $course) {
             foreach ($all_extra_classes as $extra) {
@@ -335,8 +335,8 @@ class PagesController extends BaseController
 
     public function quizzes(){
 	$user_id = Auth::user()->username;
-        $courses = DB::table('Register_Course')->select('course_id')->where('student_id',$user_id)->get();
-        $all_extra_classes = DB::table('Room_Booking_Request')->where('status', 1)->where('purpose', 'LIKE', '%Q')->get();
+        $courses = DB::table('register_course')->select('course_id')->where('student_id',$user_id)->get();
+        $all_extra_classes = DB::table('room_booking_request')->where('status', 1)->where('purpose', 'LIKE', '%Q')->get();
         $extra_classes = array();
         foreach ($courses as $course) {
             foreach ($all_extra_classes as $extra) {
