@@ -23,7 +23,7 @@ class dashboardController extends Controller
         if (Auth::attempt($userdata)) {
             $user = \App\User::where('username','=',$userdata['username'])->get()->first();
             Auth::login($user);
-            return Redirect::to('/dashboard')->with('alert','Login Successful for '.Auth::user());
+            return Redirect::to('/dashboard');
 
         } else {        
             return Redirect::to('/')->with('alert','Login Error!! Please check your Credentials');

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use Illuminate\Support\Facades\Redirect;
 use App\event_organizing_Models\Academic_Event;
 
 use App\event_organizing_Models\Non_Academic_Event;
@@ -32,6 +32,8 @@ class EventController extends Controller
 		{
 			return \Redirect::action('event_organizing_Controllers\EventController@clubpages');
 		}
+		else
+			return Redirect::to('/dashboard');
 	}
 
 	public function acad(Request $request)

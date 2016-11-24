@@ -6,7 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>@yield('title')</title>
+		
+		<script src="/js/jquery-3.1.1.min.js"></script>
 		{{-- {!! MaterializeCSS::include_full() !!} --}}
+		
 		<link href="{{asset("fonts/materialfont/material-icons.css")}}" rel="stylesheet"/>
 		<link href="{{asset("css/materialize1.css")}}" rel="stylesheet" />
 		<link href="{{asset("css/font-awesome.min.css")}}" rel="stylesheet" />
@@ -34,15 +37,7 @@
 			</nav>
 		</header>
 		
-		<div class="sidebar">
-			<ul id="slide-out" class="side-nav fixed">
-				<li><a href="#!" class="waves-effect">First Link</a></li>
-				<li><a href="#!" class="waves-effect">Second Link</a></li>
-				<li><div class="divider"></div></li>
-				<li><a class="subheader">Subheader</a></li>
-				<li><a class="waves-effect" href="#!">Third Link</a></li>
-			</ul>
-		</div>
+		@include('sidebar')
 
    
 		 @yield('event_content')

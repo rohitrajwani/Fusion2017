@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
   <html>
     <head>
@@ -42,15 +41,7 @@
             </nav>
         </header>
         
-        <div class="sidebar">
-            <ul id="slide-out" class="side-nav fixed">
-                <li><a href="#!" class="waves-effect">First Link</a></li>
-                <li><a href="#!" class="waves-effect">Second Link</a></li>
-                <li><div class="divider"></div></li>
-                <li><a class="subheader">Subheader</a></li>
-                <li><a class="waves-effect" href="#!">Third Link</a></li>
-            </ul>
-        </div>
+        @include('sidebar')
         
         
         <div class="main-container row">
@@ -400,9 +391,9 @@
             <h3 class="col s12 m10 offset-m1" style="position:relative;top:100px;text-align:center">Profile Yet to be approved by admin!!</h3>
         @endif
 
-        </div>
-
         
+        
+        </div>
         
         <script>
             $(document).ready(function() {
@@ -413,6 +404,8 @@
                     selectYears: 50, // Creates a dropdown of 15 years to control year
                     format: 'yyyy-mm-dd' 
                 });
+                $('.modal-trigger').leanModal();
+                $('ul.tabs').tabs();
             });
         </script>
     </body>

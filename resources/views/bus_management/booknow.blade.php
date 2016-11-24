@@ -39,7 +39,7 @@
     <?php
     $num = 0;
     ?>
-    <form action="{{route('bus_management/payment')}}" method = "POST">
+    <form action="/bus_management/payment" method = "POST">
     @foreach($schedule as $sch)
       <tr>
       <td>

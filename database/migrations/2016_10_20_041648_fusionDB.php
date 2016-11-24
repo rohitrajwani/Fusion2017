@@ -1919,8 +1919,7 @@ Schema::create('Assistant_Coordinator', function (Blueprint $table) {
        * @return void
        */
       public function down()
-
-            {
+      {
             Schema::drop('Academic_Events');
             Schema::drop('Academic_Result');
             Schema::drop('Achievements');
@@ -1931,13 +1930,11 @@ Schema::create('Assistant_Coordinator', function (Blueprint $table) {
             Schema::drop('Application_Assistant_Coordinator');
             Schema::drop('Application_Counselling');
             Schema::drop('Application_documents');
-           
             Schema::drop('Applied_For_Company');
             Schema::drop('Applied_For_TA');
             Schema::drop('Appointment_Doctor');
             Schema::drop('Assessment');
             Schema::drop('Assignment');
-            
             Schema::drop('Awards_Achievement');
             Schema::drop('Awards_Applications');
             Schema::drop('Balance_leaves');
@@ -1950,7 +1947,6 @@ Schema::create('Assistant_Coordinator', function (Blueprint $table) {
             Schema::drop('Bus_Booking');
             Schema::drop('Bus_Feedback');
             Schema::drop('Bus_Schedule');
-            
             Schema::drop('CC_Complaint');
             Schema::drop('Ce_Committee');
             Schema::drop('Classroom_Slots');
@@ -2000,13 +1996,11 @@ Schema::create('Assistant_Coordinator', function (Blueprint $table) {
             Schema::drop('Order');
             Schema::drop('Patents');
             Schema::drop('Patient');
-            
             Schema::drop('Problem');
             Schema::drop('Procurement_form');
             Schema::drop('Procurement_item');
             Schema::drop('Project_by_Gymkhana');
             Schema::drop('Publications');
-           
             Schema::drop('Purchase_dept');
             Schema::drop('Qualification_Details');
             Schema::drop('Question');
@@ -2029,9 +2023,9 @@ Schema::create('Assistant_Coordinator', function (Blueprint $table) {
             Schema::drop('Semester_Feedback');
             Schema::drop('Seminar_Committee');
             Schema::drop('Seminar_Report');
-          Schema::drop('Senate_Election');
-          Schema::drop('Senate_Election_Nominees');
-          Schema::drop('Senate_Election_Votes');
+            Schema::drop('Senate_Election');
+            Schema::drop('Senate_Election_Nominees');
+            Schema::drop('Senate_Election_Votes');
             Schema::drop('Senate_Meeting');
             Schema::drop('Senate_Member');
             Schema::drop('Solves_Assignment');
@@ -2043,9 +2037,7 @@ Schema::create('Assistant_Coordinator', function (Blueprint $table) {
             Schema::drop('Student_Committee');
             Schema::drop('Student_Committee_Members');
             Schema::drop('Student_Counselling');
-           
             Schema::drop('Student_Leave_Application');
-           
             Schema::drop('St_Achievement');
             Schema::drop('St_Cert');
             Schema::drop('St_Courses');
@@ -2076,27 +2068,27 @@ Schema::create('Assistant_Coordinator', function (Blueprint $table) {
             Schema::drop('Visitors_Complaint');
             Schema::drop('Ward');
             Schema::drop('Assistant_Coordinator');
-          Schema::drop('Assistant_Coordinator_Assign');
-          Schema::drop('Application_Assistant_Coordinator');
-          Schema::drop('Student_Guide');
-          Schema::drop('Student_Guide_Assign'); 
-          Schema::drop('Application_Student_Guide');
-          Schema::drop('Public_Post');
-          Schema::drop('Study_Material');
-          Schema::drop('private_post');
-          Schema::drop('answers');
-          Schema::drop('change_pbi');
-          Schema::drop('faculty_floats_pbi');
-          Schema::drop('grades');
-          Schema::drop('marks');
-          Schema::drop('pbi_reports');
-          Schema::drop('pbi_status');
-          Schema::drop('pbi_topics');
-          Schema::drop('student_applies_pbi');
+            Schema::drop('Assistant_Coordinator_Assign');
+            Schema::drop('Application_Assistant_Coordinator');
+            Schema::drop('Student_Guide');
+            Schema::drop('Student_Guide_Assign'); 
+            Schema::drop('Application_Student_Guide');
+            Schema::drop('Public_Post');
+            Schema::drop('Study_Material');
+            Schema::drop('private_post');
+            Schema::drop('answers');
+            Schema::drop('change_pbi');
+            Schema::drop('faculty_floats_pbi');
+            Schema::drop('grades');
+            Schema::drop('marks');
+            Schema::drop('pbi_reports');
+            Schema::drop('pbi_status');
+            Schema::drop('pbi_topics');
+            Schema::drop('student_applies_pbi');
             Schema::drop('Other_venues_slots');
             Schema::drop('Other_venues');
             Schema::drop('Event_teams');
             Schema::drop('Competition_Registrations');
             Schema::drop('Competitions');
-            }
       }
+}

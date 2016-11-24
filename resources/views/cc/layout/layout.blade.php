@@ -4,8 +4,9 @@
         
         <title>Welcome to CC-Complaint|IIITDM Fusion</title>    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <script src="/js/jquery-3.1.1.min.js"></script>
         {!!MaterializeCSS::include_full()!!}
-        <!-- <link rel="stylesheet" href="cc/asset/css/materialize.min.css"> -->
+        
         <link rel="stylesheet" href="/css/fusion_style.css">
         
          <link rel="stylesheet" href="/css/style.css">
@@ -41,15 +42,7 @@
             </nav>
         </header>
         
-        <div class="sidebar">
-            <ul id="slide-out" class="side-nav fixed">
-                <li><a href="#!" class="waves-effect">First Link</a></li>
-                <li><a href="#!" class="waves-effect">Second Link</a></li>
-                <li><div class="divider"></div></li>
-                <li><a class="subheader">Subheader</a></li>
-                <li><a class="waves-effect" href="#!">Third Link</a></li>
-            </ul>
-        </div>
+        @include('sidebar')
         
         <div class="main-container row">
             <!--For Admin -->

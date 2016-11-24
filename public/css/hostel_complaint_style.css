@@ -226,16 +226,8 @@ p{
     overflow:auto;
 }
 
-.main-container1{
-    margin: 40px 20px 60px 240px;
-    height: auto;
-    background-color: white;
-    border: 1px solid rgba(128, 128, 128, 0.22);
-    box-shadow: 0 0 3px rgba(0,0,0,0.1);
-}
-
-.main-container2{
-    margin: 0px 20px 60px 240px;
+.main-container2,.main-container1{
+    margin: 30px 10px;
     height: auto;
     background-color: white;
     border: 1px solid rgba(128, 128, 128, 0.22);

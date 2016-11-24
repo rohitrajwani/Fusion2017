@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use DB;
+use Auth;
 use  App\question;
 
 class HomeController extends Controller
@@ -33,10 +34,6 @@ return view('student_feedback.home1');
 
     
 }
-
-
-
-
 
     public function home($type1)  // home page
     {

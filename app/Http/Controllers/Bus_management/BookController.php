@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Bus_management;
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use DB;
 class BookController extends Controller

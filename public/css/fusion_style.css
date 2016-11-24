@@ -176,6 +176,11 @@ ul.dropdown-content .divider{
     background-color: #076392;
 }
 
+ul.tabs{
+    margin-bottom: 10px;
+    border-bottom: 1px solid lightgrey; 
+}
+
 ul.tabs li.tab a{
     color: #076392;
 }

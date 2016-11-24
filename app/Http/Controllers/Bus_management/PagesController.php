@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Bus_management;
 
 use Illuminate\Http\Request;
- 
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use DB;
-
 use App\bus_feedback;    
-
+use DB;
 
 class PagesController extends Controller
 {

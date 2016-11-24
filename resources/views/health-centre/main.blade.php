@@ -5,7 +5,7 @@
     </head>
       <body>
         @include('health-centre/partials._horinav')
-        @include('health-centre/partials._sidenav')
+        @include('sidebar')
       <div class="main-container row">
         @include('health-centre/partials._mainnav')
         @include('health-centre/partials._messages')

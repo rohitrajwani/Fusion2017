@@ -635,9 +635,9 @@ Route::group(['middleware' => ['auth']], function () {
 	});
 //---------------------------Counselling Cell Routes End here-------------------------------
 
-//---------------------------15)Course Management Routes Begin here----------------------------
+//---------------------------15)Course Management Routes Begin here-------------------------
 
-	Route::get('course_management/', function(){
+	Route::get('/course_management/', function(){
 		if(Auth::user()->user_type == 'faculty'){
 				$faculty = DB::table('faculty')->where('faculty_id','=',Auth::user()->username)->get()->first();
 				return view('cms.html.index',compact('faculty'));
@@ -753,10 +753,9 @@ Route::group(['middleware' => ['auth']], function () {
 		]);
 	Route::get('cms/threads','ThreadsController@index');
 	Route::get('cms/threads/new','ThreadsController@create');
-
 //---------------------------Course Management Routes End here------------------------------
 
-//---------------------------16)Employee Leave System Routes Begin here------------------------
+//---------------------------16)Employee Leave System Routes Begin here---------------------
 
 	Route::get('/ELMS', 'leaveController@display');
 
@@ -791,10 +790,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/ELMS/historyFacultyLGO', 'leaveControllerFaculty1@history');
 	Route::get('/ELMS/requestsFacultyLGO', 'leaveControllerFaculty1@req');
 	Route::post('/ELMS/grantingFaculty/{app_id}', 'leaveControllerFaculty1@grant');
-
 //---------------------------Employee Leave System Routes End here--------------------------
 
-//---------------------------17)Health Center Routes Begin here--------------------------------
+//---------------------------17)Health Center Routes Begin here-----------------------------
 
 	Route::get('/health-centre', 'healthcentre\PageController@getIndex');
 	Route::get('/health-centre/gallery','healthcentre\PageController@getGallery');
@@ -806,10 +804,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('health-centre/upcoming-appointment',['uses'=> 'healthcentre\AppointmentController@next','as' => 'appointment.next']);
 	Route::get('health-centre/upcoming-appointments',['uses'=> 'healthcentre\AppointmentDoctor@next','as' => 'appointmentdoctor.next']);
 	Route::get('health-centre/previous-appointment',['uses'=> 'healthcentre\AppointmentDoctor@previous','as' => 'appointmentdoctor.previous']);
-
 //---------------------------Health Center Routes End here----------------------------------
 
-//---------------------------18)Training & Placement Cell Routes Begin here--------------------
+//---------------------------18)Training & Placement Cell Routes Begin here-----------------
 
 	Route::get('/training_and_placement_cell', 'Training_and_Placement_Cell\PagesController@index');
 
@@ -864,10 +861,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/training_and_placement_cell/tpo/profile/company1/{company_id}', 'Training_and_Placement_Cell\CompanyProfileTPOController@index');
 
 	Route::get('/training_and_placement_cell/tpo/companyList1', 'Training_and_Placement_Cell\CompanyListController@showTpo');
-
 //---------------------------Training & Placement Cell Routes End here----------------------
 
-//---------------------------19)Online Quizzing Routes Begin here------------------------------
+//---------------------------19)Online Quizzing Routes Begin here---------------------------
 
 	Route::get('/online_quizzing/quiz','QuizController@show');
 
@@ -907,10 +903,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/online_quizzing/view_result/{quiz}','QuizController@view_result');
 
 	Route::post('/online_quizzing/add_quiz','QuizController@add_quiz');
-
 //---------------------------Online Quizzing Routes End here--------------------------------
 
-//---------------------------20)Employee Information System Routes Begin here------------------
+//---------------------------20)Employee Information System Routes Begin here---------------
 
 	Route::get('fac', 'fac\QualController@index');
 	Route::post('fac/add', 'fac\QualController@store');
@@ -937,7 +932,6 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('fac/vadd', 'fac\viscontroller@v_store');
 	Route::get('vdel/{id}',['as' => 'vdel', 'uses' => 'fac\viscontroller@destroy']);
 
-
 	Route::post('fac/up', 'fac\QualController@update');
 
 	Route::get('upd/{id}','fac\QualController@update');
@@ -947,14 +941,11 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/fac/upd', 'fac\faculty@update');
 	
 	Route::post('/image_upload', 'fac\faculty@img');
-
 //---------------------------Employee Information System Routes End here--------------------
 
 //---------------------------21)Stock Management Routes Begin here--------------------------
 
-	Route::get('/stock_management/', [
-    'uses'=>'stock@stockhome',
-]);
+	Route::get('/stock_management/','stock@stockhome');
 
 	Route::get('/stock_management/requests',[
 		'uses'=>'stock@reqhome',
@@ -1058,7 +1049,6 @@ Route::group(['middleware' => ['auth']], function () {
 		]);
 	Route::post('/student_feedback/admin/add','feedback_system\HomeController@add');
 	Route::post('/student_feedback/admin/delete','feedback_system\HomeController@destroy');
-
 //---------------------------Student Feedback System Routes End here------------------------
 
 });

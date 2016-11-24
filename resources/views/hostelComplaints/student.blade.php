@@ -7,7 +7,7 @@
 <script type="text/javascript">alert("{{$alert}}");</script>
 @endif
 
-<div class="main-container row">
+<div class="main-container1 row">
 
   <div class="border2 col s12">
     <!-- Modal Trigger -->

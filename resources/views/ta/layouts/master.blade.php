@@ -3,7 +3,9 @@
     <head>
         <title>@yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="/js/jquery-3.1.1.min.js"></script>
          {!! MaterializeCSS::include_full() !!}
+         
         <!-- <link type="text/css" rel="stylesheet" href="{{asset('css/materialize.min.css')}}"  media="screen,projection"/> -->
         <link type="text/css" rel="stylesheet" href="/css/fusion_style.css"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{{asset('css/style.css')}}"  media="screen,projection"/>
@@ -87,15 +89,7 @@
         <div class="">
         <div class="row">
         <div class="col l3">
-        <div class="sidebar">
-            <ul id="slide-out" class="side-nav fixed">
-                <li><a href="#!" class="waves-effect">First Link</a></li>
-                <li><a href="#!" class="waves-effect">Second Link</a></li>
-                <li><div class="divider"></div></li>
-                <li><a class="subheader">Subheader</a></li>
-                <li><a class="waves-effect" href="#!">Third Link</a></li>
-            </ul>
-        </div>
+        @include('sidebar')
         </div>
         </div>
         </div>

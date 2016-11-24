@@ -2,7 +2,9 @@
     <head>
         <title>@yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="/js/jquery-3.1.1.min.js"></script>
         {!! MaterializeCSS::include_full() !!}
+        
         <link type="text/css" rel="stylesheet" href="./css/fusion_style.min.css"  media="screen,projection"/>
         <link rel="stylesheet" href="./font-awesome-4.5.0/css/font-awesome.min.css">
        

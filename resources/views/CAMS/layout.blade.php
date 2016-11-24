@@ -5,7 +5,7 @@
     <!--Import Google Icon Font-->
 
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        
+        <script src="/js/jquery-3.1.1.min.js"></script>
         {!! MaterializeCSS::include_full() !!}
         
         <link rel="stylesheet" href="{{asset('/fonts/font-awesome-4.6.3/css/font-awesome.min.css')}}'">
@@ -49,25 +49,8 @@
                 </div>
             </nav>
         </header>
-    <div class="sidebar">
-        <ul id="slide-out" class="side-nav fixed">
-            <li>
-                <a href="#!" class="waves-effect">First Link</a>
-            </li>
-            <li>
-                <a href="#!" class="waves-effect">Second Link</a>
-            </li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li>
-                <a class="subheader">Subheader</a>
-            </li>
-            <li>
-                <a class="waves-effect" href="#!">Third Link</a>
-            </li>
-        </ul>
-    </div>
+    @include('sidebar')
+    
     <div class="main-container row">
 <div class="container col s12" style="width:100%">       
 	<nav style="background-color:#076392">

@@ -8,7 +8,9 @@
       <!--Import Google Icon Font-->
 <!--      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
       <!--Import materialize.css-->
+         <script src="/js/jquery-3.1.1.min.js"></script>
          {!! MaterializeCSS::include_full() !!}
+         
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!-- <link type="text/css" rel="stylesheet" href="{{asset('css/materialize.min.css')}}"  media="screen,projection"/> -->
         <link type="text/css" rel="stylesheet" href="/css/fusion_style.css"  media="screen,projection"/>
@@ -72,15 +74,7 @@
             </nav>
         </header>
         
-        <div class="sidebar">
-            <ul id="slide-out" class="side-nav fixed">
-                <li><a href="#!" class="waves-effect">First Link</a></li>
-                <li><a href="#!" class="waves-effect">Second Link</a></li>
-                <li><div class="divider"></div></li>
-                <li><a class="subheader">Subheader</a></li>
-                <li><a class="waves-effect" href="#!">Third Link</a></li>
-            </ul>
-        </div>
+        @include('sidebar')
 
         <div class="main-container row">
             @yield('links')
