@@ -32,6 +32,11 @@ th{
     border-radius: 0px;
 }
 
+.modal{
+    max-height: 80%;
+    width: 60%;
+}
+
 .input-field input,.input-field textarea{
     border: 1px solid lightgrey;
 }

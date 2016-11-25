@@ -32,13 +32,6 @@
         <script src="/js/studentForm.js"></script>
         
 
-        <script>
-            $(document).ready(function() {
-                $('select').material_select();
-                $(".dropdown-button").dropdown();
-            });
-        </script>
-
     </head>
 
     <body>
