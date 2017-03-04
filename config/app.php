@@ -164,6 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Skydiver\LaravelMaterializeCSS\MaterializeCSSServiceProvider::class,
+	Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -224,6 +225,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+	'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
+	'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'MaterializeCSS' => Skydiver\LaravelMaterializeCSS\MaterializeCSS::class
     ],
