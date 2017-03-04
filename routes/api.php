@@ -19,4 +19,5 @@ Route::group(["middleware"=> "jwt.auth"], function() {
 	});
 });
 
+Route::post('/signup', 'JwtSignupController@signup');
 Route::post('/authenticate', 'JwtAuthenticateController@authenticate');
